@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "cd .. && cd .. && husky install apps/next-app/.husky"
   },
   "dependencies": {
     "@types/node": "18.15.11",
@@ -21,5 +22,10 @@
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1"
   }
 }
