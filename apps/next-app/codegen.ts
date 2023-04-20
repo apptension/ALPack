@@ -16,7 +16,7 @@ const config: CodegenConfig = {
   ],
   documents: ['src/**/*.tsx'],
   generates: {
-    './src/gql/': {
+    './src/graphql/__generated/gql/': {
       documents: ['src/**/*.tsx'],
       preset: 'client',
       plugins: [],
