@@ -1,5 +1,6 @@
 import { Button } from 'shared/components/Button';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { getRedirectURL } from 'utils/getRedirectURL';
 
 const Login = () => {
   const supabaseClient = useSupabaseClient();
@@ -7,7 +8,7 @@ const Login = () => {
   const handleLogin = async () => {
     await supabaseClient.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: 'http://localhost:3000/dashboard' },
+      options: { redirectTo: getRedirectURL() },
     });
   };
 
