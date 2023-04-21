@@ -8,7 +8,7 @@ const Login = () => {
   const handleLogin = async () => {
     await supabaseClient.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${getRedirectURL()}auth/provider` },
+      options: { redirectTo: getRedirectURL() },
     });
   };
 
