@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { graphql } from 'graphql/__generated/gql';
+import { UPDATE_FULL_NAME } from 'shared/queries/index.graphql';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from 'shared/components/Button';
 
@@ -7,16 +7,6 @@ interface EditProfileFormValues {
   fullName: string;
   avatar: File;
 }
-
-const UPDATE_FULL_NAME = graphql(`
-  mutation updateProfile($input: profilesUpdateInput!) {
-    updateprofilesCollection(set: $input) {
-      records {
-        full_name
-      }
-    }
-  }
-`);
 
 interface EditProfileFormProps {
   fullName?: string;

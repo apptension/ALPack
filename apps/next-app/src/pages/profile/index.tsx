@@ -1,24 +1,10 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import { graphql } from 'graphql/__generated/gql';
 import { GetProfileQuery } from 'graphql/__generated/gql/graphql';
+import { GET_PROFILE } from 'shared/queries/index.graphql';
 import { GetServerSidePropsContext } from 'next';
 import { AvatarChanger } from 'shared/components/profile/AvatarChanger';
 import { EditProfileForm } from 'shared/components/profile/EditProfileForm';
 import { getApolloServerClient } from 'shared/services/apollo';
-
-const GET_PROFILE = graphql(`
-  query getProfile {
-    profilesCollection {
-      edges {
-        node {
-          id
-          full_name
-          avatar_url
-        }
-      }
-    }
-  }
-`);
 
 interface ProfileProps {
   profile: GetProfileQuery['profilesCollection'];

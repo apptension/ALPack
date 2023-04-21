@@ -1,20 +1,10 @@
 import { useMutation } from '@apollo/client';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { graphql } from 'graphql/__generated/gql';
-import Image from 'next/image';
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { UPDATE_AVATAR } from 'shared/queries/index.graphql';
+import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { Button } from 'shared/components/Button';
 import { Spinner } from 'shared/components/Spinner';
-
-const UPDATE_AVATAR = graphql(`
-  mutation updateAvatar($input: profilesUpdateInput!) {
-    updateprofilesCollection(set: $input) {
-      records {
-        avatar_url
-      }
-    }
-  }
-`);
+import { Avatar } from 'shared/components/Avatar';
 
 interface AvatarChangerProps {
   profileAvatarSrc?: string | null;
@@ -25,7 +15,7 @@ export const AvatarChanger = ({ profileAvatarSrc }: AvatarChangerProps) => {
   const supabase = useSupabaseClient();
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const [avatarSrc, setAvatarSrc] = useState<null | string>(null);
+  const [avatarSrc, setAvatarSrc] = useState(profileAvatarSrc || '');
 
   const downloadAvatar = useCallback(
     (url: string) => {
@@ -59,17 +49,6 @@ export const AvatarChanger = ({ profileAvatarSrc }: AvatarChangerProps) => {
     fileRef.current?.click();
   };
 
-  useEffect(() => {
-    // Google avatar
-    if (profileAvatarSrc?.includes('http') && !avatarSrc) {
-      return setAvatarSrc(profileAvatarSrc);
-    }
-
-    if (profileAvatarSrc && !avatarSrc) {
-      downloadAvatar(profileAvatarSrc);
-    }
-  }, [downloadAvatar, profileAvatarSrc, avatarSrc]);
-
   return (
     <div className="relative mb-14">
       <input
@@ -81,15 +60,7 @@ export const AvatarChanger = ({ profileAvatarSrc }: AvatarChangerProps) => {
       {loading ? (
         <Spinner />
       ) : (
-        avatarSrc && (
-          <Image
-            src={avatarSrc}
-            width={82}
-            height={82}
-            className="rounded-full"
-            alt="User Avatar"
-          />
-        )
+        avatarSrc && <Avatar src={avatarSrc} width={82} height={82} />
       )}
       <Button
         className="absolute py-1 px-1 text-sm font-thin -bottom-3 -right-7"
