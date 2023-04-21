@@ -1,6 +1,9 @@
 import { Button } from 'shared/components/Button';
+import { useLogin } from './useLogin.hook';
 
 const Login = () => {
+  const { handleLogin } = useLogin();
+
   return (
     <div className="flex min-h-screen flex-col  justify-center p-24 max-w-2xl mx-auto">
       <div className="mb-8">
@@ -10,7 +13,7 @@ const Login = () => {
         </span>
       </div>
 
-      <Button>Sign In With Google</Button>
+      <Button onClick={handleLogin}>Sign In With Google</Button>
     </div>
   );
 };
