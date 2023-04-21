@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -321,3 +322,71 @@ export type CountriesUpdateResponse = {
   /** Array of records impacted by the mutation */
   records: Array<Countries>;
 };
+
+export type GetCountriesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetCountriesQuery = {
+  __typename?: 'Query';
+  countriesCollection?: {
+    __typename?: 'countriesConnection';
+    edges: Array<{
+      __typename?: 'countriesEdge';
+      node: {
+        __typename?: 'countries';
+        name?: string | null;
+        short_code?: string | null;
+      };
+    }>;
+  } | null;
+};
+
+export const GetCountriesDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'getCountries' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'countriesCollection' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'edges' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'node' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'short_code' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetCountriesQuery, GetCountriesQueryVariables>;
