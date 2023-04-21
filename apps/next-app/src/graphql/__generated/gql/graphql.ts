@@ -131,10 +131,16 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Deletes zero or more records from the `countries` collection */
   deleteFromcountriesCollection: CountriesDeleteResponse;
+  /** Deletes zero or more records from the `profiles` collection */
+  deleteFromprofilesCollection: ProfilesDeleteResponse;
   /** Adds one or more `countries` records to the collection */
   insertIntocountriesCollection?: Maybe<CountriesInsertResponse>;
+  /** Adds one or more `profiles` records to the collection */
+  insertIntoprofilesCollection?: Maybe<ProfilesInsertResponse>;
   /** Updates zero or more records in the `countries` collection */
   updatecountriesCollection: CountriesUpdateResponse;
+  /** Updates zero or more records in the `profiles` collection */
+  updateprofilesCollection: ProfilesUpdateResponse;
 };
 
 /** The root type for creating and mutating data */
@@ -144,8 +150,19 @@ export type MutationDeleteFromcountriesCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationDeleteFromprofilesCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<ProfilesFilter>;
+};
+
+/** The root type for creating and mutating data */
 export type MutationInsertIntocountriesCollectionArgs = {
   objects: Array<CountriesInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntoprofilesCollectionArgs = {
+  objects: Array<ProfilesInsertInput>;
 };
 
 /** The root type for creating and mutating data */
@@ -153,6 +170,13 @@ export type MutationUpdatecountriesCollectionArgs = {
   atMost?: Scalars['Int'];
   filter?: InputMaybe<CountriesFilter>;
   set: CountriesUpdateInput;
+};
+
+/** The root type for creating and mutating data */
+export type MutationUpdateprofilesCollectionArgs = {
+  atMost?: Scalars['Int'];
+  filter?: InputMaybe<ProfilesFilter>;
+  set: ProfilesUpdateInput;
 };
 
 export type Node = {
@@ -193,6 +217,8 @@ export type Query = {
   countriesCollection?: Maybe<CountriesConnection>;
   /** Retrieve a record by its `ID` */
   node?: Maybe<Node>;
+  /** A pagable collection of type `profiles` */
+  profilesCollection?: Maybe<ProfilesConnection>;
 };
 
 /** The root type for querying data */
@@ -208,6 +234,16 @@ export type QueryCountriesCollectionArgs = {
 /** The root type for querying data */
 export type QueryNodeArgs = {
   nodeId: Scalars['ID'];
+};
+
+/** The root type for querying data */
+export type QueryProfilesCollectionArgs = {
+  after?: InputMaybe<Scalars['Cursor']>;
+  before?: InputMaybe<Scalars['Cursor']>;
+  filter?: InputMaybe<ProfilesFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<ProfilesOrderBy>>;
 };
 
 /** Boolean expression comparing fields on type "String" */
@@ -323,36 +359,141 @@ export type CountriesUpdateResponse = {
   records: Array<Countries>;
 };
 
-export type GetCountriesQueryVariables = Exact<{ [key: string]: never }>;
+export type Profiles = Node & {
+  __typename?: 'profiles';
+  avatar_url?: Maybe<Scalars['String']>;
+  full_name?: Maybe<Scalars['String']>;
+  id: Scalars['UUID'];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars['ID'];
+  updated_at?: Maybe<Scalars['Datetime']>;
+  username?: Maybe<Scalars['String']>;
+};
 
-export type GetCountriesQuery = {
+export type ProfilesConnection = {
+  __typename?: 'profilesConnection';
+  edges: Array<ProfilesEdge>;
+  pageInfo: PageInfo;
+};
+
+export type ProfilesDeleteResponse = {
+  __typename?: 'profilesDeleteResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profiles>;
+};
+
+export type ProfilesEdge = {
+  __typename?: 'profilesEdge';
+  cursor: Scalars['String'];
+  node: Profiles;
+};
+
+export type ProfilesFilter = {
+  avatar_url?: InputMaybe<StringFilter>;
+  full_name?: InputMaybe<StringFilter>;
+  id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
+  updated_at?: InputMaybe<DatetimeFilter>;
+  username?: InputMaybe<StringFilter>;
+};
+
+export type ProfilesInsertInput = {
+  avatar_url?: InputMaybe<Scalars['String']>;
+  full_name?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['UUID']>;
+  updated_at?: InputMaybe<Scalars['Datetime']>;
+  username?: InputMaybe<Scalars['String']>;
+};
+
+export type ProfilesInsertResponse = {
+  __typename?: 'profilesInsertResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profiles>;
+};
+
+export type ProfilesOrderBy = {
+  avatar_url?: InputMaybe<OrderByDirection>;
+  full_name?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  updated_at?: InputMaybe<OrderByDirection>;
+  username?: InputMaybe<OrderByDirection>;
+};
+
+export type ProfilesUpdateInput = {
+  avatar_url?: InputMaybe<Scalars['String']>;
+  full_name?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['UUID']>;
+  updated_at?: InputMaybe<Scalars['Datetime']>;
+  username?: InputMaybe<Scalars['String']>;
+};
+
+export type ProfilesUpdateResponse = {
+  __typename?: 'profilesUpdateResponse';
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars['Int'];
+  /** Array of records impacted by the mutation */
+  records: Array<Profiles>;
+};
+
+export type GetProfileQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetProfileQuery = {
   __typename?: 'Query';
-  countriesCollection?: {
-    __typename?: 'countriesConnection';
+  profilesCollection?: {
+    __typename?: 'profilesConnection';
     edges: Array<{
-      __typename?: 'countriesEdge';
+      __typename?: 'profilesEdge';
       node: {
-        __typename?: 'countries';
-        name?: string | null;
-        short_code?: string | null;
+        __typename?: 'profiles';
+        id: any;
+        full_name?: string | null;
+        avatar_url?: string | null;
       };
     }>;
   } | null;
 };
 
-export const GetCountriesDocument = {
+export type UpdateProfileMutationVariables = Exact<{
+  input: ProfilesUpdateInput;
+}>;
+
+export type UpdateProfileMutation = {
+  __typename?: 'Mutation';
+  updateprofilesCollection: {
+    __typename?: 'profilesUpdateResponse';
+    records: Array<{ __typename?: 'profiles'; full_name?: string | null }>;
+  };
+};
+
+export type UpdateAvatarMutationVariables = Exact<{
+  input: ProfilesUpdateInput;
+}>;
+
+export type UpdateAvatarMutation = {
+  __typename?: 'Mutation';
+  updateprofilesCollection: {
+    __typename?: 'profilesUpdateResponse';
+    records: Array<{ __typename?: 'profiles'; avatar_url?: string | null }>;
+  };
+};
+
+export const GetProfileDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'getCountries' },
+      name: { kind: 'Name', value: 'getProfile' },
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'countriesCollection' },
+            name: { kind: 'Name', value: 'profilesCollection' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -370,11 +511,15 @@ export const GetCountriesDocument = {
                           selections: [
                             {
                               kind: 'Field',
-                              name: { kind: 'Name', value: 'name' },
+                              name: { kind: 'Name', value: 'id' },
                             },
                             {
                               kind: 'Field',
-                              name: { kind: 'Name', value: 'short_code' },
+                              name: { kind: 'Name', value: 'full_name' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'avatar_url' },
                             },
                           ],
                         },
@@ -389,4 +534,136 @@ export const GetCountriesDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<GetCountriesQuery, GetCountriesQueryVariables>;
+} as unknown as DocumentNode<GetProfileQuery, GetProfileQueryVariables>;
+export const UpdateProfileDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'updateProfile' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'input' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'profilesUpdateInput' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'updateprofilesCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'set' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'input' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'records' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'full_name' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateProfileMutation,
+  UpdateProfileMutationVariables
+>;
+export const UpdateAvatarDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'updateAvatar' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'input' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'profilesUpdateInput' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'updateprofilesCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'set' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'input' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'records' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'avatar_url' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateAvatarMutation,
+  UpdateAvatarMutationVariables
+>;
