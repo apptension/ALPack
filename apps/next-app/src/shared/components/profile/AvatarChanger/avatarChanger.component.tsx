@@ -5,6 +5,7 @@ import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { Button } from 'shared/components/Button';
 import { Spinner } from 'shared/components/Spinner';
 import { Avatar } from 'shared/components/Avatar';
+import { SUPABASE_STORAGE } from 'constants/SUPABASE_STORAGE';
 
 interface AvatarChangerProps {
   profileAvatarSrc?: string | null;
@@ -19,7 +20,9 @@ export const AvatarChanger = ({ profileAvatarSrc }: AvatarChangerProps) => {
 
   const downloadAvatar = useCallback(
     (url: string) => {
-      const { data } = supabase.storage.from('avatars').getPublicUrl(url);
+      const { data } = supabase.storage
+        .from(SUPABASE_STORAGE.AVATARS)
+        .getPublicUrl(url);
       setAvatarSrc(data.publicUrl);
     },
     [supabase.storage]
@@ -37,7 +40,7 @@ export const AvatarChanger = ({ profileAvatarSrc }: AvatarChangerProps) => {
       const { filePath } = getFileData(file);
 
       const { data } = await supabase.storage
-        .from('avatars')
+        .from(SUPABASE_STORAGE.AVATARS)
         .upload(filePath, file);
 
       downloadAvatar(data?.path || '');
