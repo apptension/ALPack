@@ -1,8 +1,15 @@
 import { Button } from 'shared/components/Button';
-import { useLogin } from './useLogin.hook';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 const Login = () => {
-  const { handleLogin } = useLogin();
+  const supabaseClient = useSupabaseClient();
+
+  const handleLogin = async () => {
+    await supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: 'http://localhost:3000/dashboard' },
+    });
+  };
 
   return (
     <div className="flex min-h-screen flex-col  justify-center p-24 max-w-2xl mx-auto">
