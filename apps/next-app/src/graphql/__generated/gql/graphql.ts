@@ -457,18 +457,6 @@ export type GetProfileQuery = {
   } | null;
 };
 
-export type UpdateProfileMutationVariables = Exact<{
-  input: ProfilesUpdateInput;
-}>;
-
-export type UpdateProfileMutation = {
-  __typename?: 'Mutation';
-  updateprofilesCollection: {
-    __typename?: 'profilesUpdateResponse';
-    records: Array<{ __typename?: 'profiles'; full_name?: string | null }>;
-  };
-};
-
 export type UpdateAvatarMutationVariables = Exact<{
   input: ProfilesUpdateInput;
 }>;
@@ -478,6 +466,18 @@ export type UpdateAvatarMutation = {
   updateprofilesCollection: {
     __typename?: 'profilesUpdateResponse';
     records: Array<{ __typename?: 'profiles'; avatar_url?: string | null }>;
+  };
+};
+
+export type UpdateProfileMutationVariables = Exact<{
+  input: ProfilesUpdateInput;
+}>;
+
+export type UpdateProfileMutation = {
+  __typename?: 'Mutation';
+  updateprofilesCollection: {
+    __typename?: 'profilesUpdateResponse';
+    records: Array<{ __typename?: 'profiles'; full_name?: string | null }>;
   };
 };
 
@@ -535,72 +535,6 @@ export const GetProfileDocument = {
     },
   ],
 } as unknown as DocumentNode<GetProfileQuery, GetProfileQueryVariables>;
-export const UpdateProfileDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'updateProfile' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'input' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'profilesUpdateInput' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'updateprofilesCollection' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'set' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'input' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'records' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'full_name' },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateProfileMutation,
-  UpdateProfileMutationVariables
->;
 export const UpdateAvatarDocument = {
   kind: 'Document',
   definitions: [
@@ -666,4 +600,70 @@ export const UpdateAvatarDocument = {
 } as unknown as DocumentNode<
   UpdateAvatarMutation,
   UpdateAvatarMutationVariables
+>;
+export const UpdateProfileDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'updateProfile' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'input' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'profilesUpdateInput' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'updateprofilesCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'set' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'input' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'records' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'full_name' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateProfileMutation,
+  UpdateProfileMutationVariables
 >;
