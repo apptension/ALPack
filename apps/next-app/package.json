@@ -18,6 +18,8 @@
     "@graphql-typed-document-node/core": "^3.2.0",
     "@headlessui/react": "^1.7.14",
     "@next/env": "^13.3.0",
+    "@supabase/auth-helpers-nextjs": "^0.6.1",
+    "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/supabase-js": "^2.21.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.37",
