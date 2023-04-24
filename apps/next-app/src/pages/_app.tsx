@@ -17,15 +17,15 @@ export default function App({
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
   return (
-    <AppProviders>
-      <SessionContextProvider
-        supabaseClient={supabaseClient}
-        initialSession={pageProps.initialSession}
-      >
+    <SessionContextProvider
+      supabaseClient={supabaseClient}
+      initialSession={pageProps.initialSession}
+    >
+      <AppProviders>
         <main className={nunito.className}>
           <Component {...pageProps} />
         </main>
-      </SessionContextProvider>
-    </AppProviders>
+      </AppProviders>
+    </SessionContextProvider>
   );
 }
