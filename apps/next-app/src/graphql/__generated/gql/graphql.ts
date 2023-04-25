@@ -439,7 +439,9 @@ export type ProfilesUpdateResponse = {
   records: Array<Profiles>;
 };
 
-export type GetProfileQueryVariables = Exact<{ [key: string]: never }>;
+export type GetProfileQueryVariables = Exact<{
+  profileId: Scalars['UUID'];
+}>;
 
 export type GetProfileQuery = {
   __typename?: 'Query';
@@ -488,12 +490,53 @@ export const GetProfileDocument = {
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'getProfile' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'profileId' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
+          },
+        },
+      ],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'profilesCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filter' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'id' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'profileId' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [

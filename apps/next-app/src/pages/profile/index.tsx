@@ -30,6 +30,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const session = await supabase.auth.getSession();
   const client = getApolloServerClient(session.data.session?.access_token);
 
-  const { data } = await client.query({ query: GET_PROFILE });
+  const { data } = await client.query({
+    query: GET_PROFILE,
+    variables: { profileId: session.data.session?.user.id },
+  });
   return { props: { profile: data.profilesCollection } };
 };
