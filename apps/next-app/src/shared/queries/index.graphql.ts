@@ -1,13 +1,15 @@
 import { graphql } from 'graphql/__generated/gql';
 
 export const GET_PROFILE = graphql(`
-  query getProfile {
-    profilesCollection {
+  query getProfile($profileId: UUID!) {
+    profilesCollection(filter: { id: { eq: $profileId } }) {
       edges {
         node {
           id
           full_name
           avatar_url
+          stripe_customer_id
+          subscription
         }
       }
     }
