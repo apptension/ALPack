@@ -122,6 +122,12 @@ importers:
         specifier: ^1.50.12
         version: 1.50.12
 
+  packages/functions:
+    devDependencies:
+      supabase:
+        specifier: ^1.50.12
+        version: 1.50.12
+
 packages:
 
   /@adobe/css-tools@4.2.0:
