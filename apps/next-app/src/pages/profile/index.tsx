@@ -5,12 +5,15 @@ import { GetServerSidePropsContext } from 'next';
 import { AvatarChanger } from 'shared/components/profile/AvatarChanger';
 import { EditProfileForm } from 'shared/components/profile/EditProfileForm';
 import { getApolloServerClient } from 'shared/services/apollo';
+import { EDGE_FUNCTION_NAMES } from 'constants/EDGE_FUNCTION_NAMES';
+import { TransactionHistory } from 'shared/components/subscriptions/TransactionHistory';
 
 interface ProfileProps {
   profile: GetProfileQuery['profilesCollection'];
+  charges: any;
 }
 
-const Profile = ({ profile }: ProfileProps) => {
+const Profile = ({ profile, charges }: ProfileProps) => {
   const userProfile = profile?.edges[0];
 
   return (
@@ -19,6 +22,7 @@ const Profile = ({ profile }: ProfileProps) => {
 
       <AvatarChanger profileAvatarSrc={userProfile?.node.avatar_url} />
       <EditProfileForm fullName={userProfile?.node.full_name!} />
+      <TransactionHistory transactions={charges} />
     </div>
   );
 };
@@ -34,5 +38,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     query: GET_PROFILE,
     variables: { profileId: session.data.session?.user.id },
   });
-  return { props: { profile: data.profilesCollection } };
+
+  const { data: chargesData } = await supabase.functions.invoke(
+    EDGE_FUNCTION_NAMES.GET_STRIPE_CHARGES
+  );
+  return { props: { profile: data.profilesCollection, charges: chargesData } };
 };

@@ -42,9 +42,9 @@ importers:
       autoprefixer:
         specifier: 10.4.14
         version: 10.4.14(postcss@8.4.22)
-      axios:
-        specifier: ^1.3.6
-        version: 1.3.6
+      date-fns:
+        specifier: ^2.29.3
+        version: 2.29.3
       eslint:
         specifier: 8.38.0
         version: 8.38.0
@@ -3329,6 +3329,7 @@ packages:
 
   /asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+    dev: true
 
   /auto-bind@4.0.0:
     resolution: {integrity: sha512-Hdw8qdNiqdJ8LqT0iK0sVzkFbzg6fhnQqqfWhBDxcHZvU75+B+ayzTy8x+k5Ix0Y92XOhOUlx74ps+bA6BeYMQ==}
@@ -3358,16 +3359,6 @@ packages:
   /axe-core@4.7.0:
     resolution: {integrity: sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==}
     engines: {node: '>=4'}
-    dev: false
-
-  /axios@1.3.6:
-    resolution: {integrity: sha512-PEcdkk7JcdPiMDkvM4K6ZBRYq9keuVJsToxm2zQIM70Qqo2WHTdJZMXcG9X+RmRp2VPNUQC8W1RAGbgt6b1yMg==}
-    dependencies:
-      follow-redirects: 1.15.2
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
     dev: false
 
   /axobject-query@3.1.1:
@@ -3857,6 +3848,7 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
+    dev: true
 
   /commander@10.0.1:
     resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
@@ -4043,6 +4035,11 @@ packages:
     resolution: {integrity: sha512-8YnDaaf7N3k/q5HnTJVuzSyLETjoZjVmHc4AeKAzOvKHEFQKcn64OKBfzHYtE9zGjctNM7V9I0MfnUVLpi7M5g==}
     dev: true
 
+  /date-fns@2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
+    dev: false
+
   /debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
     dev: true
@@ -4143,6 +4140,7 @@ packages:
   /delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
+    dev: true
 
   /dependency-graph@0.11.0:
     resolution: {integrity: sha512-JeMq7fEshyepOWDfcfHK06N3MhyPhz++vtqWhMT5O9A3K42rdsEDpfdVqjaqaAhsw6a+ZqeDvQVtD0hFHQWrzg==}
@@ -4880,16 +4878,6 @@ packages:
   /flatted@3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
 
-  /follow-redirects@1.15.2:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dev: false
-
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -4902,6 +4890,7 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
+    dev: true
 
   /formdata-polyfill@4.0.10:
     resolution: {integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==}
@@ -6442,12 +6431,14 @@ packages:
   /mime-db@1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /mime-types@2.1.35:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: true
 
   /mimic-fn@2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
@@ -7119,10 +7110,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: false
-
-  /proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: false
 
   /psl@1.9.0:

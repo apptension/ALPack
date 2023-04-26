@@ -3,17 +3,22 @@ import { Nunito } from 'next/font/google';
 import type { AppProps } from 'next/app';
 import { AppProviders } from 'providers/AppProviders';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
-import { useState } from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { NextPage } from 'next';
+import { Layout } from 'shared/components/Layout';
 
 const nunito = Nunito({ subsets: ['latin'], weight: ['300', '500', '700'] });
 
-export default function App({
-  Component,
-  pageProps,
-}: AppProps<{
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type CustomAppProps = AppProps & {
   initialSession: Session;
-}>) {
+};
+
+export default function App({ Component, pageProps }: CustomAppProps) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
   return (
@@ -23,7 +28,9 @@ export default function App({
     >
       <AppProviders>
         <main className={nunito.className}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />)
+          </Layout>
         </main>
       </AppProviders>
     </SessionContextProvider>

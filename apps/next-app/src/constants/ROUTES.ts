@@ -7,4 +7,5 @@ export enum ROUTES {
   SUBSCRIPTION = '/subscription',
   SUBSCRIPTION_SUCCESS = '/subscription/success',
   SUBSCRIPTION_CANCEL = '/subscription/cancel',
+  ANALYTICS = '/analytics',
 }
