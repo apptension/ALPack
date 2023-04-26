@@ -1,11 +1,11 @@
-import { serve } from 'std/server';
-import { corsHeaders } from '../_shared/cors.ts';
-import { stripe } from '../_shared/stripe.ts';
-import { getSupabaseAuthClient } from '../_shared/supabaseClient.ts';
+import { serve } from "std/server";
+import { corsHeaders } from "../_shared/cors.ts";
+import { stripe } from "../_shared/stripe.ts";
+import { getSupabaseAuthClient } from "../_shared/supabaseClient.ts";
 
 serve(async (req: Request) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
@@ -16,8 +16,8 @@ serve(async (req: Request) => {
     } = await supabaseClient.auth.getUser();
 
     const { data } = await supabaseClient
-      .from('profiles')
-      .select('stripe_customer_id')
+      .from("profiles")
+      .select("stripe_customer_id")
       .match({ id: user?.id })
       .single();
 
@@ -26,12 +26,12 @@ serve(async (req: Request) => {
     });
 
     return new Response(JSON.stringify({ charges }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 400,
     });
   }
