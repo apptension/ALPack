@@ -1,8 +1,8 @@
 import { ROUTES } from 'constants/ROUTES';
 import CheckmarkSVG from 'assets/check-mark.svg';
 import Link from 'next/link';
-import { axiosApi } from 'shared/services/axios';
 import { GetServerSidePropsContext } from 'next';
+import { handleUnactiveCheckoutRedirect } from 'utils/handleUnactiveCheckoutRedirect';
 
 const Success = () => {
   return (
@@ -37,17 +37,5 @@ const Success = () => {
 export default Success;
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  try {
-    const { session_id } = ctx.query;
-    await axiosApi.get(
-      `/subscription/retrieve_session?session_id=${session_id}`
-    );
-    return { props: {} };
-  } catch (err) {
-    return {
-      redirect: {
-        destination: ROUTES.HOME,
-      },
-    };
-  }
+  return handleUnactiveCheckoutRedirect(ctx);
 };

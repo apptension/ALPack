@@ -8,6 +8,8 @@ export const GET_PROFILE = graphql(`
           id
           full_name
           avatar_url
+          stripe_customer_id
+          subscription
         }
       }
     }

@@ -1,7 +1,9 @@
-import { useUser } from '@supabase/auth-helpers-react';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { EDGE_FUNCTION_NAMES } from 'constants/EDGE_FUNCTION_NAMES';
 import { SUBSCRIPTION_PLAN } from 'constants/SUBSCRIPTION_PLAN';
+import { GetServerSidePropsContext } from 'next';
 import { SubscriptionCard } from 'shared/components/subscriptions/SubscriptionCard';
-import { axiosApi } from 'shared/services/axios';
 import { getStripe } from 'utils/getStripe';
 import { getSubscriptionPrice } from 'utils/getSubscriptionPrice';
 
@@ -10,27 +12,18 @@ interface SubscriptionProps {
 }
 
 const Subscription = ({ plans }: SubscriptionProps) => {
-  const user = useUser();
+  const supabase = useSupabaseClient();
 
-  const handleBasicPlan = async () => {
+  const handleBuyPlan = async (plan: string) => {
     try {
-      const { data } = await axiosApi.post('/subscription/checkout_session', {
-        plan: SUBSCRIPTION_PLAN.BASIC,
-        email: user?.email,
-      });
+      const { data } = await supabase.functions.invoke(
+        EDGE_FUNCTION_NAMES.CHECKOUT_SESSION,
+        {
+          body: { plan },
+        }
+      );
       const stripe = await getStripe();
-      await stripe?.redirectToCheckout({ sessionId: data.id });
-    } catch (err) {}
-  };
-
-  const handleProPlan = async () => {
-    try {
-      const { data } = await axiosApi.post('/subscription/checkout_session', {
-        plan: SUBSCRIPTION_PLAN.PRO,
-        email: user?.email,
-      });
-      const stripe = await getStripe();
-      await stripe?.redirectToCheckout({ sessionId: data.id });
+      await stripe?.redirectToCheckout({ sessionId: data.session.id });
     } catch (err) {}
   };
 
@@ -50,14 +43,14 @@ const Subscription = ({ plans }: SubscriptionProps) => {
           name={basicPlan.metadata.name}
           price={basicPlan.amount}
           currency={basicPlan.currency.toUpperCase()}
-          handleClick={handleBasicPlan}
+          handleClick={() => handleBuyPlan(basicPlan.id)}
         />
         <SubscriptionCard
           type={proPlan.metadata.type}
           name={proPlan.metadata.name}
           price={proPlan.amount}
           currency={proPlan.currency.toUpperCase()}
-          handleClick={handleProPlan}
+          handleClick={() => handleBuyPlan(proPlan.id)}
         />
       </div>
     </div>
@@ -66,8 +59,12 @@ const Subscription = ({ plans }: SubscriptionProps) => {
 
 export default Subscription;
 
-export const getServerSideProps = async () => {
-  const { data } = await axiosApi.get('/subscription/get_plans');
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  const supabase = createServerSupabaseClient(ctx);
+
+  const { data } = await supabase.functions.invoke(
+    EDGE_FUNCTION_NAMES.GET_SUBSCRIPTION_PLANS
+  );
 
   const plans = data.plans.data.map((plan: any) => ({
     ...plan,

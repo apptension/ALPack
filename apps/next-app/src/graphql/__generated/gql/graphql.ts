@@ -362,10 +362,13 @@ export type CountriesUpdateResponse = {
 export type Profiles = Node & {
   __typename?: 'profiles';
   avatar_url?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
   full_name?: Maybe<Scalars['String']>;
   id: Scalars['UUID'];
   /** Globally Unique Record Identifier */
   nodeId: Scalars['ID'];
+  stripe_customer_id?: Maybe<Scalars['String']>;
+  subscription?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['Datetime']>;
   username?: Maybe<Scalars['String']>;
 };
@@ -392,17 +395,23 @@ export type ProfilesEdge = {
 
 export type ProfilesFilter = {
   avatar_url?: InputMaybe<StringFilter>;
+  email?: InputMaybe<StringFilter>;
   full_name?: InputMaybe<StringFilter>;
   id?: InputMaybe<UuidFilter>;
   nodeId?: InputMaybe<IdFilter>;
+  stripe_customer_id?: InputMaybe<StringFilter>;
+  subscription?: InputMaybe<StringFilter>;
   updated_at?: InputMaybe<DatetimeFilter>;
   username?: InputMaybe<StringFilter>;
 };
 
 export type ProfilesInsertInput = {
   avatar_url?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
   full_name?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['UUID']>;
+  stripe_customer_id?: InputMaybe<Scalars['String']>;
+  subscription?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['Datetime']>;
   username?: InputMaybe<Scalars['String']>;
 };
@@ -417,16 +426,22 @@ export type ProfilesInsertResponse = {
 
 export type ProfilesOrderBy = {
   avatar_url?: InputMaybe<OrderByDirection>;
+  email?: InputMaybe<OrderByDirection>;
   full_name?: InputMaybe<OrderByDirection>;
   id?: InputMaybe<OrderByDirection>;
+  stripe_customer_id?: InputMaybe<OrderByDirection>;
+  subscription?: InputMaybe<OrderByDirection>;
   updated_at?: InputMaybe<OrderByDirection>;
   username?: InputMaybe<OrderByDirection>;
 };
 
 export type ProfilesUpdateInput = {
   avatar_url?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
   full_name?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['UUID']>;
+  stripe_customer_id?: InputMaybe<Scalars['String']>;
+  subscription?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['Datetime']>;
   username?: InputMaybe<Scalars['String']>;
 };
@@ -454,6 +469,8 @@ export type GetProfileQuery = {
         id: any;
         full_name?: string | null;
         avatar_url?: string | null;
+        stripe_customer_id?: string | null;
+        subscription?: string | null;
       };
     }>;
   } | null;
@@ -563,6 +580,17 @@ export const GetProfileDocument = {
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'avatar_url' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: {
+                                kind: 'Name',
+                                value: 'stripe_customer_id',
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'subscription' },
                             },
                           ],
                         },
