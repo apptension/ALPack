@@ -28,9 +28,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     >
       <AppProviders>
         <main className={nunito.className}>
-          <Layout>
-            <Component {...pageProps} />)
-          </Layout>
+          <Component {...pageProps} />)
         </main>
       </AppProviders>
     </SessionContextProvider>
