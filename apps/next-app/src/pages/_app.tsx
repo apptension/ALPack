@@ -7,6 +7,7 @@ import { ReactElement, ReactNode, useState } from 'react';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { NextPage } from 'next';
 import { Layout } from 'shared/components/Layout';
+import { ROUTES } from 'constants/ROUTES';
 
 const nunito = Nunito({ subsets: ['latin'], weight: ['300', '500', '700'] });
 
@@ -18,7 +19,11 @@ type CustomAppProps = AppProps & {
   initialSession: Session;
 };
 
-export default function App({ Component, pageProps }: CustomAppProps) {
+export default function App({
+  Component,
+  pageProps,
+  ...appProps
+}: CustomAppProps) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
   return (
@@ -28,9 +33,13 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     >
       <AppProviders>
         <main className={nunito.className}>
-          <Layout>
-            <Component {...pageProps} />)
-          </Layout>
+          {appProps.router.pathname === ROUTES.PROVIDER ? (
+            <Component {...pageProps} />
+          ) : (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          )}
         </main>
       </AppProviders>
     </SessionContextProvider>
