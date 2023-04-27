@@ -10,12 +10,15 @@ const Provider = () => {
   useEffect(() => {
     const getSession = async () => {
       const session = await supabase.auth.getSession();
-      router.replace(session ? ROUTES.DASHBOARD : ROUTES.LOGIN);
+      console.log('SESSION', session);
+      if (session) {
+        router.replace(ROUTES.DASHBOARD);
+      }
     };
     getSession();
   }, [router, supabase.auth]);
 
-  return null;
+  return <div>Provider</div>;
 };
 
 export default Provider;
