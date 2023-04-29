@@ -1,0 +1,6 @@
+# JetBrains IDE
+.idea/
+
+# Node artifact files
+node_modules/
+dist/
