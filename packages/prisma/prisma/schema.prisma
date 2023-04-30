@@ -5,6 +5,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator pothos {
+  provider = "prisma-pothos-types"
+  output   = "../generated/types.ts"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
