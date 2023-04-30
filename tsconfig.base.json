@@ -26,6 +26,9 @@
       ],
       "@vm/graphql/*": [
         "packages/graphql/*"
+      ],
+      "@vm/api-client/*": [
+        "packages/api-client/*"
       ]
     }
   },

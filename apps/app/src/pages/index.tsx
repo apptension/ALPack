@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { PostsComponent } from '../components/posts/posts.component';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -113,6 +114,7 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <PostsComponent />
     </main>
   )
 }
