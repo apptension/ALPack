@@ -29,6 +29,7 @@ model Service {
   versions ServiceVersion[]
   projectId String
   project Project @relation(fields: [projectId], references: [id])
+  @@unique([name, projectId])
 }
 
 model Environment {
@@ -50,6 +51,7 @@ model Version {
   updatedAt  DateTime   @updatedAt
   isCurrent Boolean @default(false)
   serviceVersions ServiceVersion[]
+  @@unique([name, environmentId])
 }
 
 model ServiceVersion {
@@ -62,4 +64,5 @@ model ServiceVersion {
   isCurrent Boolean @default(false)
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+  @@unique([name, serviceId])
 }
