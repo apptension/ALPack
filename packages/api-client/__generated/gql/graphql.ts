@@ -14,21 +14,191 @@ export type Scalars = {
   Float: number;
 };
 
-export type Post = {
-  __typename?: 'Post';
+export type Environment = Node & {
+  __typename?: 'Environment';
+  currentVersion?: Maybe<Version>;
   id: Scalars['ID'];
-  title: Scalars['String'];
+  name: Scalars['String'];
+  project: Project;
+  versions: EnvironmentVersionsConnection;
+};
+
+
+export type EnvironmentVersionsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+export type EnvironmentVersionsConnection = {
+  __typename?: 'EnvironmentVersionsConnection';
+  edges: Array<Maybe<EnvironmentVersionsConnectionEdge>>;
+  pageInfo: PageInfo;
+};
+
+export type EnvironmentVersionsConnectionEdge = {
+  __typename?: 'EnvironmentVersionsConnectionEdge';
+  cursor: Scalars['String'];
+  node: Version;
+};
+
+export type Node = {
+  id: Scalars['ID'];
+};
+
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  endCursor?: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  startCursor?: Maybe<Scalars['String']>;
+};
+
+export type Project = Node & {
+  __typename?: 'Project';
+  environments: ProjectEnvironmentsConnection;
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  services: ProjectServicesConnection;
+};
+
+
+export type ProjectEnvironmentsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type ProjectServicesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+export type ProjectEnvironmentsConnection = {
+  __typename?: 'ProjectEnvironmentsConnection';
+  edges: Array<Maybe<ProjectEnvironmentsConnectionEdge>>;
+  pageInfo: PageInfo;
+};
+
+export type ProjectEnvironmentsConnectionEdge = {
+  __typename?: 'ProjectEnvironmentsConnectionEdge';
+  cursor: Scalars['String'];
+  node: Environment;
+};
+
+export type ProjectServicesConnection = {
+  __typename?: 'ProjectServicesConnection';
+  edges: Array<Maybe<ProjectServicesConnectionEdge>>;
+  pageInfo: PageInfo;
+};
+
+export type ProjectServicesConnectionEdge = {
+  __typename?: 'ProjectServicesConnectionEdge';
+  cursor: Scalars['String'];
+  node: Service;
 };
 
 export type Query = {
   __typename?: 'Query';
-  posts: Array<Post>;
+  node?: Maybe<Node>;
+  nodes: Array<Maybe<Node>>;
+  project: Array<Project>;
+  projects: Array<Project>;
 };
 
-export type PostsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+export type QueryNodeArgs = {
+  id: Scalars['ID'];
+};
 
 
-export type PostsQueryQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: string, title: string }> };
+export type QueryNodesArgs = {
+  ids: Array<Scalars['ID']>;
+};
 
 
-export const PostsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"postsQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<PostsQueryQuery, PostsQueryQueryVariables>;
+export type QueryProjectArgs = {
+  id: Scalars['ID'];
+};
+
+export type Service = Node & {
+  __typename?: 'Service';
+  currentVersion?: Maybe<ServiceVersion>;
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  project: Project;
+  versions: ServiceVersionsConnection;
+};
+
+
+export type ServiceVersionsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+export type ServiceVersion = Node & {
+  __typename?: 'ServiceVersion';
+  createdAt: Scalars['String'];
+  id: Scalars['ID'];
+  isCurrent: Scalars['Boolean'];
+  name: Scalars['String'];
+  service: Service;
+  version: Version;
+};
+
+export type ServiceVersionsConnection = {
+  __typename?: 'ServiceVersionsConnection';
+  edges: Array<Maybe<ServiceVersionsConnectionEdge>>;
+  pageInfo: PageInfo;
+};
+
+export type ServiceVersionsConnectionEdge = {
+  __typename?: 'ServiceVersionsConnectionEdge';
+  cursor: Scalars['String'];
+  node: ServiceVersion;
+};
+
+export type Version = Node & {
+  __typename?: 'Version';
+  createdAt: Scalars['String'];
+  environment: Environment;
+  id: Scalars['ID'];
+  isCurrent: Scalars['Boolean'];
+  name: Scalars['String'];
+  serviceVersions: VersionServiceVersionsConnection;
+};
+
+
+export type VersionServiceVersionsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+export type VersionServiceVersionsConnection = {
+  __typename?: 'VersionServiceVersionsConnection';
+  edges: Array<Maybe<VersionServiceVersionsConnectionEdge>>;
+  pageInfo: PageInfo;
+};
+
+export type VersionServiceVersionsConnectionEdge = {
+  __typename?: 'VersionServiceVersionsConnectionEdge';
+  cursor: Scalars['String'];
+  node: ServiceVersion;
+};
+
+export type ProjectsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProjectsQueryQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string, name: string }> };
+
+
+export const ProjectsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"projectsQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<ProjectsQueryQuery, ProjectsQueryQueryVariables>;

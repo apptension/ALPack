@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export $(egrep -v '^#' .env | xargs)
-
 API_URL="http://localhost:3000/api/graphql/"
 
 rm  -f ./__generated/types.ts
