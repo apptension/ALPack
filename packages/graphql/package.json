@@ -12,6 +12,7 @@
   "dependencies": {
     "@pothos/core": "^3.29.0",
     "@pothos/plugin-prisma": "^3.47.2",
+    "@pothos/plugin-relay": "^3.41.1",
     "@vm/prisma": "*",
     "graphql": "^16.6.0",
     "graphql-scalars": "^1.21.3"

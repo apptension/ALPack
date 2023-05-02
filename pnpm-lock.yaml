@@ -90,6 +90,7 @@ importers:
     specifiers:
       '@pothos/core': ^3.29.0
       '@pothos/plugin-prisma': ^3.47.2
+      '@pothos/plugin-relay': ^3.41.1
       '@types/node': 18.16.3
       '@vm/prisma': '*'
       graphql: ^16.6.0
@@ -98,6 +99,7 @@ importers:
     dependencies:
       '@pothos/core': 3.29.0_graphql@16.6.0
       '@pothos/plugin-prisma': 3.47.2_cknvtzxyraatp4c7jl3h2karr4
+      '@pothos/plugin-relay': 3.41.1_afzfa2yclnt4k6iuva2oo7g7bu
       '@vm/prisma': link:../prisma
       graphql: 16.6.0
       graphql-scalars: 1.21.3_graphql@16.6.0
@@ -1853,6 +1855,16 @@ packages:
       typescript: 5.0.4
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@pothos/plugin-relay/3.41.1_afzfa2yclnt4k6iuva2oo7g7bu:
+    resolution: {integrity: sha512-7HiPxRyZDb88EBpHSUvgwkXXzcsuhaGJGIWIrvf4PMwSGPZWRtWgHtBvYA2nFZwoqW72lvOeTZ1h4HxBr7YrhA==}
+    peerDependencies:
+      '@pothos/core': '*'
+      graphql: '>=15.1.0'
+    dependencies:
+      '@pothos/core': 3.29.0_graphql@16.6.0
+      graphql: 16.6.0
     dev: false
 
   /@prisma/client/4.13.0_prisma@4.13.0:
