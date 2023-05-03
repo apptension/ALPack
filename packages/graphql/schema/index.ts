@@ -1,3 +1,5 @@
+import { GraphQLSchema } from 'graphql/type';
+
 import { builder } from '../builder';
 import '../types';
 import './environment';
@@ -6,4 +8,5 @@ import './service';
 import './serviceVersion';
 import './version';
 
-export default builder.toSchema();
+const schema: GraphQLSchema = builder.toSchema();
+export default schema;
