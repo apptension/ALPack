@@ -6,7 +6,9 @@ builder.prismaNode('Version', {
   id: { field: 'id' },
   fields: (t) => ({
     name: t.exposeString('name'),
-    createdAt: t.exposeString('createdAt'),
+    createdAt: t.expose('createdAt', {
+      type: 'DateTime',
+    }),
     isCurrent: t.exposeBoolean('isCurrent'),
     environment: t.relation('environment'),
     serviceVersions: t.prismaConnection({
