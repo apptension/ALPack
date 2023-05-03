@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
     "declaration": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -21,9 +20,5 @@
     "jsx": "react-jsx"
   },
   "include": ["./**/*.ts", "./**/*.tsx"],
-  "exclude": [
-    "jest.config.ts",
-    "./**/*.spec.ts",
-    "./**/*.spec.tsx",
-  ]
+  "exclude": ["jest.config.ts", "./**/*.spec.ts", "./**/*.spec.tsx"]
 }

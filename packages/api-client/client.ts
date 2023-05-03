@@ -1,28 +1,22 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  Observable,
-  ServerError,
-  from,
-} from "@apollo/client";
-import { GraphQLErrors, NetworkError } from "@apollo/client/errors";
-import { FetchResult } from "@apollo/client/link/core";
+import { ApolloClient, InMemoryCache, Observable, ServerError, from } from '@apollo/client';
+import { GraphQLErrors, NetworkError } from '@apollo/client/errors';
+import { FetchResult } from '@apollo/client/link/core';
 // import { onError } from "@apollo/client/link/error";
-import { RetryLink } from "@apollo/client/link/retry";
+import { RetryLink } from '@apollo/client/link/retry';
 // import {
 //   relayStylePagination,
 // } from "@apollo/client/utilities";
-import { createUploadLink } from "apollo-upload-client";
+import { createUploadLink } from 'apollo-upload-client';
 
-import { apiURL } from "./helpers";
-import { Emitter } from "./utils/eventEmitter";
+import { apiURL } from './helpers';
+import { Emitter } from './utils/eventEmitter';
 
 const isLocalEnv = process.env.NODE_ENV !== 'production';
 
 export const emitter = new Emitter();
 
 const httpApiLink = createUploadLink({
-  uri: apiURL("/graphql"),
+  uri: apiURL('/graphql'),
 });
 
 // todo: add refresh login logic
