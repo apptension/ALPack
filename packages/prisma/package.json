@@ -6,6 +6,8 @@
   "scripts": {
     "migrate:dev": "npx prisma migrate dev",
     "lint": "eslint .",
+    "prisma": "prisma",
+    "prisma-pothos-types": "prisma-pothos-types",
     "type-check": "tsc --noEmit --project tsconfig.lib.json"
   },
   "keywords": [],
