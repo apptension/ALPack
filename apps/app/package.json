@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-build": "pnpm run build:prisma && next build",
+    "build:prisma": "cd ../../packages/prisma && prisma generate && prisma migrate deploy"
   },
   "dependencies": {
     "@apollo/client": "^3.7.13",
