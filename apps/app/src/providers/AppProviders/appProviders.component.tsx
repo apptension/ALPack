@@ -1,5 +1,6 @@
-import { ApolloProvider } from '@app/providers/ApolloProvider';
 import { ReactNode } from 'react';
+
+import { ApolloProvider } from '@app/providers/ApolloProvider';
 
 interface AppProvidersProps {
   children: ReactNode;
