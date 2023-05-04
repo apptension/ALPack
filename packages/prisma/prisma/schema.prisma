@@ -19,6 +19,7 @@ model Project {
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   services Service[]
+  @@unique(fields: [name], name: "uniqueProjectName")
 }
 
 model Service {
@@ -40,6 +41,7 @@ model Environment {
   versions Version[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+  @@unique(fields: [name, projectId], name: "uniqueEnvironmentName")
 }
 
 model Version {

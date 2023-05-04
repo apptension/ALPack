@@ -29,6 +29,17 @@ const ProjectInput = builder.inputType('ProjectInput', {
       required: true,
       validate: {
         maxLength: 255,
+        refine: [
+          async (val) => {
+            const count = await prismaClient.project.count({
+              where: {
+                name: val,
+              },
+            });
+            return count === 0;
+          },
+          { message: 'Project name must be unique' },
+        ],
       },
     }),
   }),
