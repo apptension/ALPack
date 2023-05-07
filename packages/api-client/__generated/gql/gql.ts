@@ -13,7 +13,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n    query projectsQuery {\n        projects {\n            id\n            name\n        }\n    }\n": types.ProjectsQueryDocument,
+    "\n  query projectQuery($id: ID!) {\n    project(id: $id) {\n      id\n      name\n      environments {\n        edges {\n          node {\n            id\n            name\n            currentVersion {\n              name\n              id\n              createdAt\n            }\n          }\n        }\n      }\n      services {\n        edges {\n          node {\n            name\n          }\n        }\n      }\n    }\n  }\n": types.ProjectQueryDocument,
+    "\n  fragment projectFragment on Project {\n    id\n    name\n    environments {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n": types.ProjectFragmentFragmentDoc,
+    "\n  mutation newProjectMutation($name: String!) {\n    createProject(input: { name: $name }) {\n      __typename\n      ... on ValidationError {\n        message\n        fieldErrors {\n          message\n          path\n        }\n      }\n      ... on MutationCreateProjectSuccess {\n        data {\n          ...projectFragment\n        }\n      }\n    }\n  }\n": types.NewProjectMutationDocument,
+    "\n  query projectsQuery {\n    projects {\n      id\n      ...projectFragment\n    }\n  }\n": types.ProjectsQueryDocument,
 };
 
 /**
@@ -33,7 +36,19 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query projectsQuery {\n        projects {\n            id\n            name\n        }\n    }\n"): (typeof documents)["\n    query projectsQuery {\n        projects {\n            id\n            name\n        }\n    }\n"];
+export function gql(source: "\n  query projectQuery($id: ID!) {\n    project(id: $id) {\n      id\n      name\n      environments {\n        edges {\n          node {\n            id\n            name\n            currentVersion {\n              name\n              id\n              createdAt\n            }\n          }\n        }\n      }\n      services {\n        edges {\n          node {\n            name\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query projectQuery($id: ID!) {\n    project(id: $id) {\n      id\n      name\n      environments {\n        edges {\n          node {\n            id\n            name\n            currentVersion {\n              name\n              id\n              createdAt\n            }\n          }\n        }\n      }\n      services {\n        edges {\n          node {\n            name\n          }\n        }\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  fragment projectFragment on Project {\n    id\n    name\n    environments {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment projectFragment on Project {\n    id\n    name\n    environments {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation newProjectMutation($name: String!) {\n    createProject(input: { name: $name }) {\n      __typename\n      ... on ValidationError {\n        message\n        fieldErrors {\n          message\n          path\n        }\n      }\n      ... on MutationCreateProjectSuccess {\n        data {\n          ...projectFragment\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation newProjectMutation($name: String!) {\n    createProject(input: { name: $name }) {\n      __typename\n      ... on ValidationError {\n        message\n        fieldErrors {\n          message\n          path\n        }\n      }\n      ... on MutationCreateProjectSuccess {\n        data {\n          ...projectFragment\n        }\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query projectsQuery {\n    projects {\n      id\n      ...projectFragment\n    }\n  }\n"): (typeof documents)["\n  query projectsQuery {\n    projects {\n      id\n      ...projectFragment\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

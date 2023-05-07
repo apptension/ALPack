@@ -1,8 +1,6 @@
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
 
-import { ProjectsComponent } from '../components/projects/projects.component';
-
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
@@ -105,7 +103,6 @@ export default function Home() {
           </p>
         </a>
       </div>
-      <ProjectsComponent />
     </main>
   );
 }

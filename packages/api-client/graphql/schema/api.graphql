@@ -1,3 +1,11 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar Date
+"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar DateTime
 type Environment implements Node {
   currentVersion: Version
   id: ID!
@@ -12,6 +20,24 @@ type EnvironmentVersionsConnection {
 type EnvironmentVersionsConnectionEdge {
   cursor: String!
   node: Version!
+}
+type Mutation {
+  createEnvironment(input: EnvironmentInput!): MutationCreateEnvironmentResult!
+  createProject(input: ProjectInput!): MutationCreateProjectResult!
+  createService(input: ServiceInput!): MutationCreateServiceResult!
+  createVersion(input: VersionInput!): MutationCreateVersionResult!
+}
+type MutationCreateEnvironmentSuccess {
+  data: Environment!
+}
+type MutationCreateProjectSuccess {
+  data: Project!
+}
+type MutationCreateServiceSuccess {
+  data: Service!
+}
+type MutationCreateVersionSuccess {
+  data: Version!
 }
 type PageInfo {
   endCursor: String
@@ -44,7 +70,7 @@ type ProjectServicesConnectionEdge {
 type Query {
   node(id: ID!): Node
   nodes(ids: [ID!]!): [Node]!
-  project(id: ID!): [Project!]!
+  project(id: ID!): Project!
   projects: [Project!]!
 }
 type Service implements Node {
@@ -55,7 +81,7 @@ type Service implements Node {
   versions(after: String, before: String, first: Int, last: Int): ServiceVersionsConnection!
 }
 type ServiceVersion implements Node {
-  createdAt: String!
+  createdAt: DateTime!
   id: ID!
   isCurrent: Boolean!
   name: String!
@@ -70,8 +96,16 @@ type ServiceVersionsConnectionEdge {
   cursor: String!
   node: ServiceVersion!
 }
+type ValidationError implements Error {
+  fieldErrors: [ValidationFieldError!]!
+  message: String!
+}
+type ValidationFieldError {
+  message: String!
+  path: [String!]!
+}
 type Version implements Node {
-  createdAt: String!
+  createdAt: DateTime!
   environment: Environment!
   id: ID!
   isCurrent: Boolean!
@@ -86,8 +120,31 @@ type VersionServiceVersionsConnectionEdge {
   cursor: String!
   node: ServiceVersion!
 }
+interface Error {
+  message: String!
+}
 interface Node {
   id: ID!
+}
+union MutationCreateEnvironmentResult = MutationCreateEnvironmentSuccess | ValidationError
+union MutationCreateProjectResult = MutationCreateProjectSuccess | ValidationError
+union MutationCreateServiceResult = MutationCreateServiceSuccess | ValidationError
+union MutationCreateVersionResult = MutationCreateVersionSuccess | ValidationError
+input EnvironmentInput {
+  name: String!
+  projectId: String!
+}
+input ProjectInput {
+  name: String!
+}
+input ServiceInput {
+  name: String!
+  projectId: String!
+}
+input VersionInput {
+  environmentId: String!
+  isCurrent: Boolean!
+  name: String!
 }
 "Exposes a URL that specifies the behavior of this scalar."
 directive @specifiedBy(

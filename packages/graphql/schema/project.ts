@@ -57,12 +57,12 @@ builder.queryField('projects', (t) =>
 
 builder.queryField('project', (t) =>
   t.prismaField({
-    type: ['Project'],
+    type: 'Project',
     args: {
       id: t.arg.globalID({ required: true }),
     },
     resolve: async (query, _parent, _args, _info) =>
-      prismaClient.project.findMany({
+      prismaClient.project.findFirstOrThrow({
         ...query,
         where: {
           id: String(_args.id.id),
