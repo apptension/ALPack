@@ -1,11 +1,8 @@
 import { GraphQLSchema } from 'graphql/type';
 
-import { builder } from '../builder';
-import '../types';
-import './environment';
-import './nodes';
-import './project';
-import './service';
+import { builder } from '../../builder';
+import '../../types';
+import '../nodes';
 import './version';
 
 const schema: GraphQLSchema = builder.toSchema();

@@ -2,7 +2,7 @@ import { ZodError } from 'zod';
 
 import prismaClient from '@vm/prisma/client';
 
-import { builder } from '../builder';
+import { builder } from '../../builder';
 
 const VersionInput = builder.inputType('VersionInput', {
   fields: (t) => ({
