@@ -40,19 +40,19 @@ export function graphql(source: string): unknown;
  */
 export function graphql(
   source: '\n  query getProfile($profileId: UUID!) {\n    profilesCollection(filter: { id: { eq: $profileId } }) {\n      edges {\n        node {\n          id\n          full_name\n          avatar_url\n          stripe_customer_id\n          subscription\n        }\n      }\n    }\n  }\n'
-): typeof documents['\n  query getProfile($profileId: UUID!) {\n    profilesCollection(filter: { id: { eq: $profileId } }) {\n      edges {\n        node {\n          id\n          full_name\n          avatar_url\n          stripe_customer_id\n          subscription\n        }\n      }\n    }\n  }\n'];
+): (typeof documents)['\n  query getProfile($profileId: UUID!) {\n    profilesCollection(filter: { id: { eq: $profileId } }) {\n      edges {\n        node {\n          id\n          full_name\n          avatar_url\n          stripe_customer_id\n          subscription\n        }\n      }\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
   source: '\n  mutation updateAvatar($input: profilesUpdateInput!) {\n    updateprofilesCollection(set: $input) {\n      records {\n        avatar_url\n      }\n    }\n  }\n'
-): typeof documents['\n  mutation updateAvatar($input: profilesUpdateInput!) {\n    updateprofilesCollection(set: $input) {\n      records {\n        avatar_url\n      }\n    }\n  }\n'];
+): (typeof documents)['\n  mutation updateAvatar($input: profilesUpdateInput!) {\n    updateprofilesCollection(set: $input) {\n      records {\n        avatar_url\n      }\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
   source: '\n  mutation updateProfile($input: profilesUpdateInput!) {\n    updateprofilesCollection(set: $input) {\n      records {\n        full_name\n      }\n    }\n  }\n'
-): typeof documents['\n  mutation updateProfile($input: profilesUpdateInput!) {\n    updateprofilesCollection(set: $input) {\n      records {\n        full_name\n      }\n    }\n  }\n'];
+): (typeof documents)['\n  mutation updateProfile($input: profilesUpdateInput!) {\n    updateprofilesCollection(set: $input) {\n      records {\n        full_name\n      }\n    }\n  }\n'];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

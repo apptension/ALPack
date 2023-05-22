@@ -1,0 +1,37 @@
+{
+  "name": "@vm/api-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "download-schema": "/bin/sh ./scripts/download-graphql-schema.sh",
+    "generate-types": "graphql-codegen -c ./graphql/codegen.ts",
+    "generate-types:watch": "graphql-codegen -w -c ./graphql/codegen.ts",
+    "graphql-codegen": "graphql-codegen",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit --project tsconfig.lib.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.7.13",
+    "apollo-upload-client": "^17.0.0",
+    "graphql": "^16.6.0",
+    "ramda": "^0.29.0"
+  },
+  "devDependencies": {
+    "@apollo/rover": "^0.14.0",
+    "@graphql-codegen/add": "^4.0.1",
+    "@graphql-codegen/cli": "^3.3.1",
+    "@graphql-codegen/client-preset": "^3.0.1",
+    "@graphql-codegen/import-types-preset": "^2.2.6",
+    "@graphql-codegen/typescript": "^3.0.4",
+    "@graphql-codegen/typescript-graphql-request": "^4.5.9",
+    "@graphql-codegen/typescript-operations": "^3.0.4",
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@types/apollo-upload-client": "^17.0.2",
+    "@types/node": "18.16.3",
+    "@types/ramda": "^0.29.1"
+  }
+}

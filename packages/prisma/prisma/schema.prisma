@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator pothos {
+  provider = "prisma-pothos-types"
+  output   = "../generated/types.ts"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id  String @id @default(uuid())
+  name String @db.VarChar(255)
+  environments Environment[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  services Service[]
+  @@unique(fields: [name], name: "uniqueProjectName")
+}
+
+model Service {
+  id  String @id @default(uuid())
+  name String @db.VarChar(255)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  versions ServiceVersion[]
+  projectId String
+  project Project @relation(fields: [projectId], references: [id])
+  @@unique([name, projectId])
+}
+
+model Environment {
+  id  String @id @default(uuid())
+  name String @db.VarChar(255)
+  projectId String
+  project Project @relation(fields: [projectId], references: [id])
+  versions Version[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  @@unique(fields: [name, projectId], name: "uniqueEnvironmentName")
+}
+
+model Version {
+  id  String @id @default(uuid())
+  name String @db.VarChar(255)
+  environmentId String
+  environment Environment @relation(fields: [environmentId], references: [id])
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  isCurrent Boolean @default(false)
+  serviceVersions ServiceVersion[]
+  @@unique([name, environmentId])
+}
+
+model ServiceVersion {
+  id  String @id @default(uuid())
+  name String @db.VarChar(255)
+  serviceId String
+  service Service @relation(fields: [serviceId], references: [id])
+  versionId String
+  version Version @relation(fields: [versionId], references: [id])
+  isCurrent Boolean @default(false)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  @@unique([name, serviceId])
+}
