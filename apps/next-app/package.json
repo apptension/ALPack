@@ -15,8 +15,14 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.12",
+    "@emotion/react": "^11.11.0",
+    "@emotion/server": "^11.11.0",
+    "@fontsource/nunito": "^5.0.1",
     "@graphql-typed-document-node/core": "^3.2.0",
     "@headlessui/react": "^1.7.14",
+    "@mantine/core": "^6.0.11",
+    "@mantine/hooks": "^6.0.11",
+    "@mantine/next": "^6.0.11",
     "@next/env": "^13.3.0",
     "@stripe/stripe-js": "^1.52.1",
     "@supabase/auth-helpers-nextjs": "^0.6.1",
@@ -25,10 +31,10 @@
     "@types/node": "18.15.11",
     "@types/react": "18.0.37",
     "@types/react-dom": "18.0.11",
-    "autoprefixer": "10.4.14",
-    "date-fns": "^2.29.3",
     "@vm/api-client": "*",
     "@vm/graphql": "*",
+    "autoprefixer": "10.4.14",
+    "date-fns": "^2.29.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "graphql": "^16.6.0",
@@ -46,6 +52,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^3.3.0",
     "@graphql-codegen/client-preset": "^3.0.0",
+    "@prisma/nextjs-monorepo-workaround-plugin": "^4.13.0",
     "@svgr/webpack": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -55,7 +62,6 @@
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "lint-staged": "^13.2.1",
-    "supabase": "^1.50.12",
-    "@prisma/nextjs-monorepo-workaround-plugin": "^4.13.0"
+    "supabase": "^1.50.12"
   }
 }
