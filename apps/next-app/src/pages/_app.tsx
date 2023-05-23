@@ -5,7 +5,6 @@ import { ReactElement, ReactNode, useState } from 'react';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { NextPage } from 'next';
 import { Layout } from 'shared/components/Layout';
-import { ROUTES } from 'constants/ROUTES';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -22,7 +21,7 @@ export default function App({
 }: CustomAppProps) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
-  const nonLayoutPages: string[] = [ROUTES.PROVIDER, ROUTES.REGISTER];
+  const nonLayoutPages: string[] = [];
 
   return (
     <SessionContextProvider
