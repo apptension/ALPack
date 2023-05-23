@@ -26,7 +26,9 @@ export const theme: MantineThemeOverride = {
         input: {
           backgroundColor: params.invalid
             ? theme.colors.red[0]
-            : theme.colors.gray[0],
+            : theme.colorScheme === 'light'
+            ? theme.colors.gray[0]
+            : undefined,
           ':focus': { backgroundColor: 'transparent' },
         },
       }),
