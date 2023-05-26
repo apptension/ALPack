@@ -8,6 +8,10 @@ import {
 export const theme: MantineThemeOverride = {
   primaryColor: 'violet',
   fontFamily: 'Nunito, sans-serif',
+  fontSizes: {
+    '2xl': '1.8rem',
+    '3xl': '2.5rem',
+  },
   defaultRadius: 'md',
   globalStyles: () => ({
     body: {

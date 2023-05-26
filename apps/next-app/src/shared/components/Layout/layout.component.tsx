@@ -1,8 +1,6 @@
 import {
-  ActionIcon,
   Burger,
   Button,
-  ColorScheme,
   ColorSchemeProvider,
   Drawer,
   Flex,
@@ -12,7 +10,7 @@ import {
   rem,
   useMantineColorScheme,
 } from '@mantine/core';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import Logo from 'assets/logo.svg';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
@@ -32,6 +30,10 @@ const useStyles = createStyles((theme) => ({
     zIndex: 9999,
     margin: 0,
     position: 'relative',
+  },
+  logoLink: {
+    textDecoration: 'none',
+    color: theme.colors.dark,
   },
 }));
 
@@ -56,10 +58,12 @@ export const Layout = ({ children }: LayoutProps) => {
           withBorder={opened ? true : false}
         >
           <Flex align="center" gap="md" justify="space-between">
-            <Flex align="center">
-              <Logo />
-              React Boilerplate
-            </Flex>
+            <Link href={ROUTES.HOME} className={classes.logoLink}>
+              <Flex align="center">
+                <Logo />
+                React Boilerplate
+              </Flex>
+            </Link>
             <Flex>
               <Button
                 variant="outline"

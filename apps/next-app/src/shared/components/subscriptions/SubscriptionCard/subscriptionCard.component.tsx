@@ -1,64 +1,107 @@
 import { SUBSCRIPTION_PLAN } from 'constants/SUBSCRIPTION_PLAN';
-import { Button } from 'shared/components/Button';
-import { Checkmark } from 'shared/components/Checkmark';
-import { Crossmark } from 'shared/components/Crossmark';
+import CheckmarkSVG from 'assets/check-mark.svg';
+import CrossmarkSVG from 'assets/cross-mark.svg';
 import { BASIC_FEATURES, FEATURES } from './subscriptionCard.constants';
+import {
+  Box,
+  Button,
+  Flex,
+  List,
+  Paper,
+  Text,
+  Title,
+  createStyles,
+} from '@mantine/core';
 
 interface ProCardProps {
   type: SUBSCRIPTION_PLAN;
   name: string;
   price: number;
   currency: string;
-  handleClick: () => Promise<void>;
 }
+
+const useStyles = createStyles((theme) => ({
+  listIcon: {
+    fill: theme.colors.violet,
+  },
+}));
 
 export const SubscriptionCard = ({
   type,
   name,
   price,
   currency,
-  handleClick,
 }: ProCardProps) => {
+  const { classes } = useStyles();
+
   return (
-    <div className="relative max-w-lg w-full rounded bg-neutral-800 py-8 px-8 shadow-lg">
+    <Paper shadow="xl" p="lg" pos="relative">
       {type === SUBSCRIPTION_PLAN.PRO && (
-        <div className="absolute -top-12 rounded-t-lg py-3 px-3 bg-indigo-500 w-full left-0 text-center text-lg uppercase">
-          Recommended
-        </div>
+        <Box
+          bg="violet.6"
+          w="100%"
+          pos="absolute"
+          top={-36}
+          sx={(theme) => ({
+            borderTopLeftRadius: theme.radius.md,
+            borderTopRightRadius: theme.radius.md,
+          })}
+          left={0}
+          right={0}
+          py="xs"
+        >
+          <Text transform="uppercase" size="lg" ta="center" color="white">
+            Recommended
+          </Text>
+        </Box>
       )}
-      <h2 className="text-4xl text-center mb-2">{name}</h2>
-      <p className="text-slate-400 mb-8 text-center">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit!
-      </p>
-      <div className="flex flex-col justify-center items-center gap-2 mb-6">
-        <span className="text-5xl text-center">
-          {currency} {price}
-        </span>
-        <span className="text-slate-400">/ per month</span>
-      </div>
+      <Flex direction="column" pos="relative" h="100%">
+        <Title size="h2" ta="center">
+          {name}
+        </Title>
+        <Text align="center" size="lg" color="gray.6" mb="md" mt="xs">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit!
+        </Text>
+        <Flex align="center" direction="column" justify="center">
+          <Text color="violet" size="3xl">
+            {currency} {price}
+          </Text>
+          <Text color="gray.6">/ per month</Text>
+        </Flex>
 
-      <ul className="max-w-md mb-12 space-y-1 text-gray-500 flex flex-col gap-3 list-inside dark:text-gray-400">
-        {type === SUBSCRIPTION_PLAN.BASIC
-          ? FEATURES.map((feature) => (
-              <li key={`basic-${feature}`} className="flex items-center">
-                {BASIC_FEATURES.includes(feature) ? (
-                  <Checkmark />
-                ) : (
-                  <Crossmark />
-                )}
-                {feature}
-              </li>
-            ))
-          : type === SUBSCRIPTION_PLAN.PRO &&
-            FEATURES.map((feature) => (
-              <li key={`pro-${feature}`} className="flex items-center">
-                <Checkmark />
-                {feature}
-              </li>
-            ))}
-      </ul>
+        <List
+          mt="xl"
+          spacing="sm"
+          size="md"
+          center
+          icon={<CheckmarkSVG width={24} className={classes.listIcon} />}
+        >
+          {type === SUBSCRIPTION_PLAN.BASIC
+            ? FEATURES.map((feature) => (
+                <List.Item
+                  {...(!BASIC_FEATURES.includes(feature) && {
+                    icon: (
+                      <CrossmarkSVG width={24} className={classes.listIcon} />
+                    ),
+                  })}
+                >
+                  {feature}
+                </List.Item>
+              ))
+            : type === SUBSCRIPTION_PLAN.PRO &&
+              FEATURES.map((feature) => <List.Item>{feature}</List.Item>)}
+        </List>
 
-      <Button onClick={handleClick}>Choose {name}</Button>
-    </div>
+        <Button
+          mt="xl"
+          size="md"
+          w={250}
+          sx={{ alignSelf: 'center' }}
+          onClick={() => {}}
+        >
+          Choose {name}
+        </Button>
+      </Flex>
+    </Paper>
   );
 };
