@@ -1,8 +1,6 @@
 import { ROUTES } from 'constants/ROUTES';
 import CrossmarkSVG from 'assets/cross-mark.svg';
 import Link from 'next/link';
-import { GetServerSidePropsContext } from 'next';
-import { handleUnactiveCheckoutRedirect } from 'utils/handleUnactiveCheckoutRedirect';
 
 const Cancel = () => {
   return (
@@ -37,7 +35,3 @@ const Cancel = () => {
 };
 
 export default Cancel;
-
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  return handleUnactiveCheckoutRedirect(ctx);
-};
