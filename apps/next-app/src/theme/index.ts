@@ -12,6 +12,12 @@ export const theme: MantineThemeOverride = {
     '2xl': '1.8rem',
     '3xl': '2.5rem',
   },
+  spacing: {
+    '2xl': '2rem',
+  },
+  colors: {
+    white: ['#fff'],
+  },
   defaultRadius: 'md',
   globalStyles: () => ({
     body: {
@@ -36,6 +42,21 @@ export const theme: MantineThemeOverride = {
           ':focus': { backgroundColor: 'transparent' },
         },
       }),
+    },
+    Avatar: {
+      sizes: {
+        lg: () => ({
+          root: {
+            width: '2.9rem',
+            minWidth: '2.9rem',
+            height: '2.9rem',
+            minHeight: '2.9rem',
+          },
+          placeholder: {
+            fontSize: 'calc(2.9rem / 2.5)',
+          },
+        }),
+      },
     },
     Button: {
       styles: (theme, params: ButtonStylesParams, { variant }) => ({

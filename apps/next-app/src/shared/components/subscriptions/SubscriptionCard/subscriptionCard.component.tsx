@@ -50,7 +50,7 @@ export const SubscriptionCard = ({
           right={0}
           py="xs"
         >
-          <Text transform="uppercase" size="lg" ta="center" color="white">
+          <Text transform="uppercase" size="lg" ta="center" color="gray.0">
             Recommended
           </Text>
         </Box>
