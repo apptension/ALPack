@@ -1,8 +1,6 @@
 import { ROUTES } from 'constants/ROUTES';
 import CheckmarkSVG from 'assets/check-mark.svg';
 import Link from 'next/link';
-import { GetServerSidePropsContext } from 'next';
-import { handleUnactiveCheckoutRedirect } from 'utils/handleUnactiveCheckoutRedirect';
 
 const Success = () => {
   return (
@@ -35,7 +33,3 @@ const Success = () => {
 };
 
 export default Success;
-
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  return handleUnactiveCheckoutRedirect(ctx);
-};

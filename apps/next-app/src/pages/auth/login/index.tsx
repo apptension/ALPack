@@ -1,28 +1,67 @@
-import { Button } from 'shared/components/Button';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { getRedirectURL } from 'utils/getRedirectURL';
+import {
+  Button,
+  Center,
+  Container,
+  Flex,
+  MediaQuery,
+  Text,
+  Title,
+  rem,
+} from '@mantine/core';
+import Link from 'next/link';
+import { ROUTES } from 'constants/ROUTES';
 
 const Login = () => {
-  const supabaseClient = useSupabaseClient();
-
   const handleLogin = async () => {
-    await supabaseClient.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: getRedirectURL() },
-    });
+    // TODO: ADD LOGIN LOGIC
   };
 
   return (
-    <div className="flex min-h-screen flex-col  justify-center p-24 max-w-2xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-5xl font-bold mb-2 text-left">Hello! 👋</h1>
-        <span className="text-xl text-slate-300 font-">
-          To access the app please log in with Google
-        </span>
-      </div>
+    <Container>
+      <Center mx="auto" mih={'100vh'}>
+        <Flex
+          pos="relative"
+          w="100%"
+          h="100%"
+          justify="center"
+          direction="column"
+          gap={rem(25)}
+          align="center"
+        >
+          <Flex maw={620} direction="column" gap="xl" w="60%">
+            <Flex direction="column" gap="xs" align="center">
+              <MediaQuery
+                smallerThan="xs"
+                styles={(theme) => ({
+                  fontSize: theme.headings.sizes.h2.fontSize,
+                })}
+              >
+                <Title size="h1">Hello! 👋</Title>
+              </MediaQuery>
 
-      <Button onClick={handleLogin}>Sign In With Google</Button>
-    </div>
+              <Text size="xl" color={'gray.6'}>
+                To access the app please log in with Google
+              </Text>
+            </Flex>
+
+            <Button size="lg" onClick={handleLogin}>
+              Sign In With Google
+            </Button>
+          </Flex>
+          <Text size="lg" color={'gray.6'}>
+            Don't have an account?{' '}
+            <Text
+              component={Link}
+              href={ROUTES.REGISTER}
+              color={'violet.5'}
+              weight="bold"
+            >
+              Sign up here
+            </Text>
+          </Text>
+        </Flex>
+      </Center>
+    </Container>
   );
 };
 

@@ -5,21 +5,13 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 
 export const ApolloProvider = ({ children }: any) => {
-  const supabaseClient = useSupabaseClient();
-
   const getHeaders = async () => {
     const headers: Record<string, string> = {
       apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     };
-
-    const { data } = await supabaseClient.auth.getSession();
-    if (data) {
-      headers['authorization'] = `Bearer ${data.session?.access_token}`;
-    }
 
     return headers;
   };

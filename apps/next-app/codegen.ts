@@ -6,6 +6,7 @@ loadEnvConfig(projectDir);
 
 const config: CodegenConfig = {
   schema: [
+    // TODO: NEEDS REPLACING
     {
       [`${process.env.NEXT_PUBLIC_SUPABASE_GRAPHQL_URL}`]: {
         headers: {
