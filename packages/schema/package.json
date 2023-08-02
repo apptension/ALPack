@@ -1,0 +1,34 @@
+{
+  "name": "@ab/schema",
+  "type": "commonjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test jest --watch",
+    "typeorm": "dotenv -- typeorm-ts-node-commonjs",
+    "db:migrate": "pnpm run typeorm migration:run -d ./data-source.ts",
+    "db:makemigrations": "pnpm run typeorm migration:generate -d ./data-source.ts --name",
+    "type-check": "tsc --noEmit --project tsconfig.lib.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.7.5",
+    "class-validator": "^0.14.0",
+    "graphql": "^16.6.0",
+    "pg": "8.9.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "2.0.0-beta.2",
+    "typedi": "^0.10.0",
+    "typeorm": "^0.3.16",
+    "typeorm-typedi-extensions": "^0.4.1"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.2.1",
+    "sqlite3": "^5.1.6"
+  }
+}

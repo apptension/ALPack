@@ -2,148 +2,20 @@ schema {
   query: Query
   mutation: Mutation
 }
-"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
-scalar Date
-"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
-scalar DateTime
-type Environment implements Node {
-  currentVersion: Version
+type Query {
+  photo(id: ID!): Photo!
+  "Return all photos in db"
+  allPhotos: [Photo!]!
+}
+type Photo {
   id: ID!
   name: String!
-  project: Project!
-  versions(after: String, before: String, first: Int, last: Int): EnvironmentVersionsConnection!
-}
-type EnvironmentVersionsConnection {
-  edges: [EnvironmentVersionsConnectionEdge]!
-  pageInfo: PageInfo!
-}
-type EnvironmentVersionsConnectionEdge {
-  cursor: String!
-  node: Version!
 }
 type Mutation {
-  createEnvironment(input: EnvironmentInput!): MutationCreateEnvironmentResult!
-  createProject(input: ProjectInput!): MutationCreateProjectResult!
-  createService(input: ServiceInput!): MutationCreateServiceResult!
-  createVersion(input: VersionInput!): MutationCreateVersionResult!
+  addPhoto(data: AddPhotoInput!): Photo!
 }
-type MutationCreateEnvironmentSuccess {
-  data: Environment!
-}
-type MutationCreateProjectSuccess {
-  data: Project!
-}
-type MutationCreateServiceSuccess {
-  data: Service!
-}
-type MutationCreateVersionSuccess {
-  data: Version!
-}
-type PageInfo {
-  endCursor: String
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-}
-type Project implements Node {
-  environments(after: String, before: String, first: Int, last: Int): ProjectEnvironmentsConnection!
-  id: ID!
-  name: String!
-  services(after: String, before: String, first: Int, last: Int): ProjectServicesConnection!
-}
-type ProjectEnvironmentsConnection {
-  edges: [ProjectEnvironmentsConnectionEdge]!
-  pageInfo: PageInfo!
-}
-type ProjectEnvironmentsConnectionEdge {
-  cursor: String!
-  node: Environment!
-}
-type ProjectServicesConnection {
-  edges: [ProjectServicesConnectionEdge]!
-  pageInfo: PageInfo!
-}
-type ProjectServicesConnectionEdge {
-  cursor: String!
-  node: Service!
-}
-type Query {
-  node(id: ID!): Node
-  nodes(ids: [ID!]!): [Node]!
-  project(id: ID!): Project!
-  projects: [Project!]!
-}
-type Service implements Node {
-  currentVersion: ServiceVersion
-  id: ID!
-  name: String!
-  project: Project!
-  versions(after: String, before: String, first: Int, last: Int): ServiceVersionsConnection!
-}
-type ServiceVersion implements Node {
-  createdAt: DateTime!
-  id: ID!
-  isCurrent: Boolean!
-  name: String!
-  service: Service!
-  version: Version!
-}
-type ServiceVersionsConnection {
-  edges: [ServiceVersionsConnectionEdge]!
-  pageInfo: PageInfo!
-}
-type ServiceVersionsConnectionEdge {
-  cursor: String!
-  node: ServiceVersion!
-}
-type ValidationError implements Error {
-  fieldErrors: [ValidationFieldError!]!
-  message: String!
-}
-type ValidationFieldError {
-  message: String!
-  path: [String!]!
-}
-type Version implements Node {
-  createdAt: DateTime!
-  environment: Environment!
-  id: ID!
-  isCurrent: Boolean!
-  name: String!
-  serviceVersions(after: String, before: String, first: Int, last: Int): VersionServiceVersionsConnection!
-}
-type VersionServiceVersionsConnection {
-  edges: [VersionServiceVersionsConnectionEdge]!
-  pageInfo: PageInfo!
-}
-type VersionServiceVersionsConnectionEdge {
-  cursor: String!
-  node: ServiceVersion!
-}
-interface Error {
-  message: String!
-}
-interface Node {
-  id: ID!
-}
-union MutationCreateEnvironmentResult = MutationCreateEnvironmentSuccess | ValidationError
-union MutationCreateProjectResult = MutationCreateProjectSuccess | ValidationError
-union MutationCreateServiceResult = MutationCreateServiceSuccess | ValidationError
-union MutationCreateVersionResult = MutationCreateVersionSuccess | ValidationError
-input EnvironmentInput {
-  name: String!
-  projectId: String!
-}
-input ProjectInput {
-  name: String!
-}
-input ServiceInput {
-  name: String!
-  projectId: String!
-}
-input VersionInput {
-  environmentId: String!
-  isCurrent: Boolean!
+"New photo data"
+input AddPhotoInput {
   name: String!
 }
 "Exposes a URL that specifies the behavior of this scalar."

@@ -1,16 +1,18 @@
-const { PrismaPlugin } = require('@prisma/nextjs-monorepo-workaround-plugin')
+const webpack = require('webpack');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@vm/prisma', '@vm/graphql'],
+  transpilePackages: ['@ab/schema', '@ab/api-client'],
   webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.plugins = [...config.plugins, new PrismaPlugin()]
-    }
+    // fix for: Can't resolve 'pg-native' issue
+    // https://github.com/vercel/next.js/issues/48223
+    config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^pg-native|sqlite3$/ }));
 
-    return config
+    config.experiments = { ...config.experiments, topLevelAwait: true };
+
+    return config;
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

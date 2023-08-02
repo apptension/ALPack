@@ -3,37 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "pnpm run db:migrate && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "type-check": "tsc --noEmit --project tsconfig.app.json",
-    "vercel-build": "pnpm run build:prisma && next build",
-    "build:prisma": "cd ../../packages/prisma && pnpm run prisma generate && pnpm run prisma migrate deploy"
+    "vercel-build": "next build && pnpm run db:migrate",
+    "db:migrate": "cd ../../packages/schema && pnpm run db:migrate"
   },
   "dependencies": {
+    "@ab/api-client": "*",
     "@apollo/client": "^3.7.13",
+    "@apollo/server": "^4.7.5",
+    "@as-integrations/next": "^2.0.1",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
-    "@vm/api-client": "*",
-    "@vm/graphql": "*",
     "autoprefixer": "10.4.14",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "graphql": "^16.6.0",
-    "graphql-yoga": "^3.9.1",
-    "next": "13.3.1",
+    "next": "13.4.5",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
-  },
-  "devDependencies": {
-    "@prisma/nextjs-monorepo-workaround-plugin": "^4.13.0"
+    "tailwindcss": "3.3.2"
   }
 }

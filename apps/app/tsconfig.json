@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2017",
     "useDefineForClassFields": true,
     "module": "ESNext",
     "strict": true,
@@ -18,8 +18,9 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
     "jsx": "preserve",
-    "incremental": true,
+    "incremental": true
   },
   "files": [],
   "references": [
@@ -39,7 +40,7 @@
   "extends": "../../tsconfig.base.json",
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ]
 }

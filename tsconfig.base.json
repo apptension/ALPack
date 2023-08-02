@@ -21,14 +21,14 @@
     "baseUrl": "./",
     "paths": {
       "@app/*": ["apps/app/src/*"],
-      "@vm/prisma/*": [
-        "packages/prisma/*"
-      ],
-      "@vm/graphql/*": [
-        "packages/graphql/*"
-      ],
-      "@vm/api-client/*": [
+      "@ab/api-client/*": [
         "packages/api-client/*"
+      ],
+      "@ab/schema/*": [
+        "packages/schema/*"
+      ],
+      "@ab/schema": [
+        "packages/schema/index.ts"
       ]
     }
   },

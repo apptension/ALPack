@@ -1,18 +1,8 @@
-import { createYoga } from 'graphql-yoga';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import schema from '@ab/schema';
+import { formatError } from '@ab/schema/utils/formatError';
+import { ApolloServer } from '@apollo/server';
+import { startServerAndCreateNextHandler } from '@as-integrations/next';
 
-import schema from '@vm/graphql/schema';
+const server = new ApolloServer({ schema, formatError });
 
-export default createYoga<{
-  req: NextApiRequest;
-  res: NextApiResponse;
-}>({
-  schema,
-  graphqlEndpoint: '/api/graphql',
-});
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export default startServerAndCreateNextHandler(server);

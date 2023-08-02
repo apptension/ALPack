@@ -1,5 +1,6 @@
 {
-  "name": "@vm/api-client",
+  "name": "@ab/api-client",
+  "type": "commonjs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
