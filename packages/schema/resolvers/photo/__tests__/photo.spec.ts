@@ -1,5 +1,5 @@
-import { testResolver } from '../../tests/utils/testResolver';
-import { PhotoResolver } from '../photo';
+import { testResolver } from '../../../tests/utils/testResolver';
+import { PhotoResolver } from '../../photo/photo.resolver';
 
 describe('Photo resolver', () => {
   describe('allPhotos query', () => {

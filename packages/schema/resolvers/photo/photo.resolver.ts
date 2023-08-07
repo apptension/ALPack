@@ -2,10 +2,11 @@ import { Arg, Resolver, Query, Mutation, ID, Authorized } from 'type-graphql';
 import { Repository } from 'typeorm';
 import { GraphQLError } from 'graphql';
 
-import { Photo } from '../entity';
-import { AppDataSource } from '../data-source';
-import { UserRole } from '../types';
-import { AddPhotoInput } from './inputs/addPhoto.input';
+import { Photo } from '../../entity';
+import { AppDataSource } from '../../data-source';
+import { AddPhotoInput } from './photo.input';
+import { UserRole } from '../../types';
+
 
 @Resolver(() => Photo)
 export class PhotoResolver {

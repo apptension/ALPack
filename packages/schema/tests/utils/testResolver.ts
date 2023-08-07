@@ -1,5 +1,7 @@
 import { GraphQLArgs, Source, graphql } from 'graphql';
 import { buildSchema } from 'type-graphql';
+import { DeleteResult } from '../../resolvers/types/returnTypes';
+
 
 export const testResolver = async (
   resolver: any,
@@ -9,6 +11,7 @@ export const testResolver = async (
   const schema = await buildSchema({
     resolvers: [resolver],
     validate: true,
+    orphanedTypes: [DeleteResult]
   });
 
   const result = await graphql({ ...options, schema, source });

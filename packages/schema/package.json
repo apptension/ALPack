@@ -10,7 +10,7 @@
     "test:watch": "NODE_ENV=test jest --watch",
     "typeorm": "dotenv -- typeorm-ts-node-commonjs",
     "db:migrate": "pnpm run typeorm migration:run -d ./data-source.ts",
-    "db:makemigrations": "pnpm run typeorm migration:generate -d ./data-source.ts --name",
+    "db:makemigrations": "pnpm run typeorm -d ./data-source.ts migration:generate",
     "type-check": "tsc --noEmit --project tsconfig.lib.json"
   },
   "keywords": [],
