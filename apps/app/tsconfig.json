@@ -20,7 +20,12 @@
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "files": [],
   "references": [
@@ -41,6 +46,7 @@
   "include": [
     "next-env.d.ts",
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
   ]
 }

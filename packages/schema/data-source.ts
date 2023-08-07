@@ -1,11 +1,11 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-import { Photo } from './entity';
+import { AccountEntity, Photo, SessionEntity, UserEntity, VerificationTokenEntity } from './entity';
 
 const commonDataSourceOptions = {
   // Cannot use glob for this (join(__dirname, 'entity/*[^index].ts')) because
   // of an issue with the nextjs that is not compiling entity files :(
-  entities: [Photo],
+  entities: [UserEntity, SessionEntity, AccountEntity, VerificationTokenEntity, Photo],
 };
 
 const appDataSourceOptions: DataSourceOptions = {
@@ -34,8 +34,7 @@ const testDataSourceOptions: DataSourceOptions = {
   ...commonDataSourceOptions,
 };
 
-const dataSourceOptions = process.env['NODE_ENV'] === 'test' ? testDataSourceOptions : appDataSourceOptions;
-console.log({ dataSourceOptions });
+export const dataSourceOptions = process.env['NODE_ENV'] === 'test' ? testDataSourceOptions : appDataSourceOptions;
 export const AppDataSource = new DataSource(dataSourceOptions);
 
 export const initializeDataSource = async () => {
