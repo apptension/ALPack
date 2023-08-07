@@ -5,6 +5,7 @@ import { SessionProvider } from 'next-auth/react';
 import { ReactNode } from 'react';
 
 import { ApolloProvider } from '@app/providers/ApolloProvider';
+import { MantineProvider } from '@app/providers/MantineProvider';
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -14,7 +15,9 @@ interface AppProvidersProps {
 export const AppProviders = ({ children, session }: AppProvidersProps) => {
   return (
     <SessionProvider session={session}>
-      <ApolloProvider>{children}</ApolloProvider>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <ApolloProvider>{children}</ApolloProvider>
+      </MantineProvider>
     </SessionProvider>
   );
 };
