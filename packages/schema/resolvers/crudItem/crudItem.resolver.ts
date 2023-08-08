@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 
 import { AppDataSource } from '../../data-source';
 import { CRUDItem } from '../../entity';
+import { DeleteResult } from '../types';
 import { AddCRUDItemInput, UpdateCRUDItemInput, DeleteCRUDItemInput } from './crudItem.input';
-import { DeleteResult } from '../types/returnTypes';
 
 @Resolver(() => CRUDItem)
 export class CRUDItemResolver {

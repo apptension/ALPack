@@ -3,7 +3,7 @@ import { AuthChecker } from 'type-graphql';
 import { ApiContextType, UserRole } from '../types';
 
 export const authChecker: AuthChecker<ApiContextType> = ({ context: { authSession } }, roles) => {
-  if (!authSession) {
+  if (!authSession || !authSession.user) {
     return false;
   }
 

@@ -1,7 +1,8 @@
 import { GraphQLArgs, Source, graphql } from 'graphql';
 import { buildSchema } from 'type-graphql';
-import { DeleteResult } from '../../resolvers/types/returnTypes';
 
+import { authChecker } from '../../auth/authChecker';
+import { DeleteResult } from '../../resolvers/types';
 
 export const testResolver = async (
   resolver: any,
@@ -11,10 +12,17 @@ export const testResolver = async (
   const schema = await buildSchema({
     resolvers: [resolver],
     validate: true,
-    orphanedTypes: [DeleteResult]
+    authChecker,
+    orphanedTypes: [DeleteResult],
   });
 
-  const result = await graphql({ ...options, schema, source });
+  const defaultContext = {
+    authSession: null,
+  };
+
+  const contextValue = options.contextValue || defaultContext;
+
+  const result = await graphql({ ...options, schema, source, contextValue });
 
   return { schema, result };
 };

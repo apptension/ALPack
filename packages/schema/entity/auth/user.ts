@@ -29,10 +29,6 @@ export class UserEntity {
   @OneToMany(() => AccountEntity, (account) => account.userId)
   accounts!: Relation<AccountEntity[]>;
 
-  @Column({
-    type: 'enum',
-    enum: UserRole,
-    default: UserRole.USER
-  })
+  @Column({ type: 'varchar', nullable: false, default: UserRole.USER })
   role: UserRole;
 }

@@ -1,1 +1,1 @@
-export * from './returnTypes'
+export * from './returnTypes';
