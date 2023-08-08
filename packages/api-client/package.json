@@ -10,7 +10,8 @@
     "generate-types:watch": "graphql-codegen -w -c ./graphql/codegen.ts",
     "graphql-codegen": "graphql-codegen",
     "lint": "eslint .",
-    "type-check": "tsc --noEmit --project tsconfig.lib.json"
+    "type-check": "tsc --noEmit --project tsconfig.lib.json",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",

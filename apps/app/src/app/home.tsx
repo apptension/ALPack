@@ -1,5 +1,4 @@
-import { Button } from '@app/components';
-import { LoginState } from '@app/components';
+import { Button, LoginState } from '@app/components';
 
 export function Home() {
   return (

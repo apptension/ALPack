@@ -4,8 +4,8 @@ import { GraphQLError } from 'graphql';
 
 import { Photo } from '../../entity';
 import { AppDataSource } from '../../data-source';
-import { AddPhotoInput } from './photo.input';
 import { UserRole } from '../../types';
+import { AddPhotoInput } from './photo.input';
 
 
 @Resolver(() => Photo)

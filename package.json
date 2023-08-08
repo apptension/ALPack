@@ -4,7 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "api-client:lint": "cd packages/api-client && pnpm run lint",
+    "api-client:type-check": "cd packages/api-client && pnpm run type-check",
+    "api-client:test": "cd packages/api-client && pnpm run test",
+    "schema:lint": "cd packages/schema && pnpm run lint",
+    "schema:type-check": "cd packages/schema && pnpm run type-check",
+    "schema:test": "cd packages/schema && pnpm run test",
+    "webapp:lint": "cd apps/app && pnpm run lint",
+    "webapp:type-check": "cd apps/app && pnpm run type-check",
+    "webapp:test": "cd apps/app && pnpm run test",
+    "webapp:build": "cd apps/app && pnpm run build"
   },
   "keywords": [],
   "author": "",

@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-env es6 */
 const { readFileSync } = require('fs');
 const { buildSchema } = require('graphql');
 

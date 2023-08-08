@@ -1,0 +1,86 @@
+clone:
+  depth: full
+
+definitions:
+  caches:
+    pnpmwebapp: $BITBUCKET_CLONE_DIR/.pnpm-store
+    pnpmapiclient: $BITBUCKET_CLONE_DIR/.pnpm-store
+    pnpmschema: $BITBUCKET_CLONE_DIR/.pnpm-store
+
+  scripts:
+    initializeStep: &initializeStep cp .env.example .env
+      && corepack enable
+      && corepack prepare pnpm@8.6.1 --activate
+      && export PNPM_HOME="/root/.local/share/pnpm"
+      && export PATH="$PNPM_HOME:$PATH"
+
+    installWebappDeps: &installWebappDeps pnpm install
+      --include-workspace-root
+      --frozen-lockfile
+      --filter=app...
+
+  steps:
+    - step: &webappTest
+        name: 'webapp: Lint & test'
+        image: atlassian/default-image:4
+        script:
+          - *initializeStep
+          - *installWebappDeps
+          - pnpm run webapp:lint
+          - pnpm run webapp:type-check
+#          - pnpm run webapp:test --watchAll=false --maxWorkers=20% --coverage
+        caches:
+          - pnpmwebapp
+    - step: &webappBuild
+        name: 'webapp: Build'
+        image: atlassian/default-image:4
+        script:
+          - *initializeStep
+          - *installWebappDeps
+          - pnpm run webapp:build
+        caches:
+          - pnpmwebapp
+    - step: &apiClientTest
+        name: 'api-client: Lint & test'
+        image: atlassian/default-image:4
+        script:
+          - *initializeStep
+          - pnpm install
+            --include-workspace-root
+            --frozen-lockfile
+            --filter=api-client...
+          - pnpm run api-client:lint
+          - pnpm run api-client:type-check
+          - pnpm run api-client:test --watchAll=false --maxWorkers=20% --coverage
+        caches:
+          - pnpmapiclient
+    - step: &schemaTest
+        name: 'schema: Lint & test'
+        image: atlassian/default-image:4
+        script:
+          - *initializeStep
+          - pnpm install
+            --include-workspace-root
+            --frozen-lockfile
+            --filter=schema...
+          - pnpm run schema:lint
+          - pnpm run schema:type-check
+          - pnpm run schema:test --watchAll=false --maxWorkers=20% --coverage
+        caches:
+          - pnpmschema
+
+pipelines:
+  default:
+    - parallel:
+        - step: *webappTest
+        - step: *webappBuild
+        - step: *apiClientTest
+        - step: *schemaTest
+
+  branches:
+    master:
+      - parallel:
+        - step: *webappTest
+        - step: *webappBuild
+        - step: *apiClientTest
+        - step: *schemaTest

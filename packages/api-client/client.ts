@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, Observable, ServerError, from } from '@apollo/client';
-import { GraphQLErrors, NetworkError } from '@apollo/client/errors';
-import { FetchResult } from '@apollo/client/link/core';
+// import { GraphQLErrors, NetworkError } from '@apollo/client/errors';
+// import { FetchResult } from '@apollo/client/link/core';
 // import { onError } from "@apollo/client/link/error";
 import { RetryLink } from '@apollo/client/link/retry';
 // import {
