@@ -1,10 +1,36 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
   "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [
+              "@app/**",
+              "@ab/core/**",
+              "@ab/api-client/**",
+              "@ab/schema",
+              "@ab/schema/**"
+            ],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
     {
       "files": ["*.ts", "*.tsx"],
       "extends": [
+        "plugin:@nx/typescript",
         "prettier",
         "plugin:@typescript-eslint/recommended",
         "plugin:import/errors",
@@ -16,6 +42,7 @@
     {
       "files": ["*.js", "*.jsx"],
       "extends": [
+        "plugin:@nx/javascript",
         "prettier",
         "plugin:import/errors",
         "plugin:import/warnings",

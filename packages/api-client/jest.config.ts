@@ -13,5 +13,5 @@ export default {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageReporters: ['lcov'],
   coveragePathIgnorePatterns: ['/node_modules/', '.*.svg'],
-  setupFilesAfterEnv: ['./tests/setupTests.ts'],
+  setupFilesAfterEnv: ['./src/tests/setupTests.ts'],
 };

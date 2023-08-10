@@ -19,10 +19,10 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx"
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": [
     "jest.config.ts",
-    "./**/*.spec.ts",
-    "./**/*.spec.tsx",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
   ]
 }

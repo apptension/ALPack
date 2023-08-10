@@ -1,0 +1,44 @@
+{
+  "name": "app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/app/src",
+  "projectType": "application",
+  "implicitDependencies": ["internal-tools"],
+  "targets": {
+    "setup": {
+      "executor": "@ab/internal-tools:setup",
+      "options": {
+        "cwd": "apps/app"
+      }
+    },
+    "graphql": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/app",
+        "color": true
+      },
+      "configurations": {
+        "generate-types": {
+          "commands": ["pnpm nx run api-client:graphql:generate-types"],
+          "parallel": false
+        },
+        "generate-types:watch": {
+          "commands": ["pnpm nx run api-client:graphql:generate-types:watch"]
+        },
+        "download-schema": {
+          "commands": ["pnpm nx run api-client:graphql:download-schema"]
+        }
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/app",
+        "color": true,
+        "commands": ["pnpm run db:migrate", "pnpm next dev"]
+      },
+      "dependsOn": ["setup", "graphql:generate-types"]
+    }
+  },
+  "tags": []
+}

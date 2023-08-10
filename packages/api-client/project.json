@@ -1,0 +1,31 @@
+{
+  "name": "api-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/api-client/src",
+  "projectType": "library",
+  "targets": {
+    "graphql": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/api-client",
+        "color": true
+      },
+      "configurations": {
+        "generate-types": {
+          "commands": ["pnpm run graphql-codegen -c ./graphql/codegen.ts"],
+          "parallel": false
+        },
+        "generate-types:watch": {
+          "commands": ["pnpm run graphql-codegen -w -c ./graphql/codegen.ts"]
+        },
+        "download-schema": {
+          "commands": [
+            "/bin/sh ./scripts/download-graphql-schema.sh",
+            "nx run api-client:graphql:generate-types"
+          ]
+        }
+      }
+    }
+  },
+  "tags": []
+}

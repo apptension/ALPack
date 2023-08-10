@@ -8,7 +8,7 @@ definitions:
     pnpmschema: $BITBUCKET_CLONE_DIR/.pnpm-store
 
   scripts:
-    initializeStep: &initializeStep cp .env.example .env
+    initializeStep: &initializeStep cp .env.shared .env
       && corepack enable
       && corepack prepare pnpm@8.6.1 --activate
       && export PNPM_HOME="/root/.local/share/pnpm"
@@ -26,8 +26,8 @@ definitions:
         script:
           - *initializeStep
           - *installWebappDeps
-          - pnpm run webapp:lint
-          - pnpm run webapp:type-check
+          - pnpm nx run app:lint
+          - pnpm nx run app:type-check
 #          - pnpm run webapp:test --watchAll=false --maxWorkers=20% --coverage
         caches:
           - pnpmwebapp
@@ -37,7 +37,7 @@ definitions:
         script:
           - *initializeStep
           - *installWebappDeps
-          - pnpm run webapp:build
+          - pnpm nx run app:build
         caches:
           - pnpmwebapp
     - step: &apiClientTest
@@ -49,9 +49,9 @@ definitions:
             --include-workspace-root
             --frozen-lockfile
             --filter=api-client...
-          - pnpm run api-client:lint
-          - pnpm run api-client:type-check
-          - pnpm run api-client:test --watchAll=false --maxWorkers=20% --coverage
+          - pnpm nx run api-client:lint
+          - pnpm nx run api-client:type-check
+          - pnpm nx run api-client:test --watchAll=false --maxWorkers=20% --coverage
         caches:
           - pnpmapiclient
     - step: &schemaTest
@@ -63,9 +63,9 @@ definitions:
             --include-workspace-root
             --frozen-lockfile
             --filter=schema...
-          - pnpm run schema:lint
-          - pnpm run schema:type-check
-          - pnpm run schema:test --watchAll=false --maxWorkers=20% --coverage
+          - pnpm nx run schema:lint
+          - pnpm nx run schema:type-check
+          - pnpm nx run schema:test --watchAll=false --maxWorkers=20% --coverage
         caches:
           - pnpmschema
 

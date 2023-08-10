@@ -21,14 +21,15 @@
     "baseUrl": "./",
     "paths": {
       "@app/*": ["apps/app/src/*"],
+      "@ab/internal-tools": ["packages/internal/internal-tools/src/index.ts"],
       "@ab/api-client/*": [
-        "packages/api-client/*"
+        "packages/api-client/src/*"
       ],
       "@ab/schema/*": [
-        "packages/schema/*"
+        "packages/schema/src/*"
       ],
       "@ab/schema": [
-        "packages/schema/index.ts"
+        "packages/schema/src/index.ts"
       ]
     }
   },

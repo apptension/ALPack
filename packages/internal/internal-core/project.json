@@ -1,0 +1,43 @@
+{
+  "name": "internal-core",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/internal/internal-core/src",
+  "projectType": "library",
+  "targets": {
+    "setup-env": {
+      "executor": "@ab/internal-tools:setup",
+      "options": {
+        "cwd": "./"
+      }
+    },
+    "docker-compose:up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "color": true,
+        "parallel": false,
+        "commands": [
+          "nx run-many --target=setup",
+          "docker-compose up --force-recreate -d"
+        ]
+      },
+      "dependsOn": ["setup-env"]
+    },
+    "docker-compose:down": {
+      "executor": "nx:run-commands",
+      "options": {
+        "color": true,
+        "parallel": false,
+        "commands": ["docker-compose down"]
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "color": true,
+        "commands": ["nx docker-compose:up", "nx run app:serve"],
+        "parallel": false
+      }
+    }
+  },
+  "tags": []
+}

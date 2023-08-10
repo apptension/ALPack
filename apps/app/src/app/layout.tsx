@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
-import React from 'react';
 
 import { authOptions } from '@app/app/api/auth/[...nextauth]/route';
 import { AppProviders } from '@app/providers/AppProviders';
