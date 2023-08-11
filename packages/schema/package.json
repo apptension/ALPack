@@ -30,6 +30,7 @@
     "typeorm-typedi-extensions": "^0.4.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "dotenv-cli": "^7.2.1",
     "sqlite3": "^5.1.6"
   }

@@ -1,133 +1,139 @@
+import { CrudItemFactory } from '../../../tests/factories';
 import { testResolver } from '../../../tests/utils/testResolver';
 import { CRUDItemResolver } from '../crudItem.resolver';
 
-const allQuerySource = `query allCRUDItems {
+const allQuerySource = /* GraphQL */ `
+  query allCRUDItems {
     allCrudItems {
-        id
-        name
+      id
+      name
     }
-}`;
+  }
+`;
 
-const oneQuerySource = `query crudItem($id: ID!) {
+const oneQuerySource = /* GraphQL */ `
+  query crudItem($id: ID!) {
     crudItem(id: $id) {
-        id
-        name
+      id
+      name
     }
-}`;
+  }
+`;
 
-const addMutationSource = `mutation addCrudItem($newCrudItemData: AddCRUDItemInput!) {
+const addMutationSource = /* GraphQL */ `
+  mutation addCrudItem($newCrudItemData: AddCRUDItemInput!) {
     addCrudItem(newCrudItemData: $newCrudItemData) {
-        id
-        name
+      id
+      name
     }
-}`;
+  }
+`;
 
-const updateMutationSource = `mutation updateCrudItem($updateCrudItemData: UpdateCRUDItemInput!) {
+const updateMutationSource = /* GraphQL */ `
+  mutation updateCrudItem($updateCrudItemData: UpdateCRUDItemInput!) {
     updateCrudItem(updateCrudItemData: $updateCrudItemData) {
-        name
+      name
     }
-}`
+  }
+`;
 
-const deleteMutationSource = `mutation deleteCrudItem($deleteCrudItemData: DeleteCRUDItemInput!) {
+const deleteMutationSource = /* GraphQL */ `
+  mutation deleteCrudItem($deleteCrudItemData: DeleteCRUDItemInput!) {
     deleteCrudItem(deleteCrudItemData: $deleteCrudItemData) {
-        affected
+      affected
     }
-}`
+  }
+`;
 
 describe('CRUDItem resolver', () => {
-    describe('allCrudItems query', () => {
-        it('should return empty list', async () => {
-            const { result } = await testResolver(CRUDItemResolver, allQuerySource);
-            expect((result.data?.['allCrudItems'] as []).length).toEqual(0);
-        });
+  describe('allCrudItems query', () => {
+    it('should return empty list', async () => {
+      const { result } = await testResolver(CRUDItemResolver, allQuerySource);
+      expect((result.data?.['allCrudItems'] as []).length).toEqual(0);
     });
 
-    describe('addCrudItem mutation', () => {
-        it('should add new crud item', async () => {
-            const crudItemName = "test"
-            const { result: addResult } = await testResolver(CRUDItemResolver, addMutationSource, {
-                variableValues: {
-                    newCrudItemData: {
-                        name: crudItemName
-                    }
-                }
-            });
-
-            expect((addResult.data?.['addCrudItem'] as { name: string }).name).toEqual(crudItemName);
-        });
+    it('should return not empty list', async () => {
+      await CrudItemFactory.saveMany(5);
+      const { result } = await testResolver(CRUDItemResolver, allQuerySource);
+      expect((result.data?.['allCrudItems'] as []).length).toEqual(5);
     });
+  });
 
+  describe('addCrudItem mutation', () => {
+    it('should add new crud item', async () => {
+      const crudItemName = 'test';
+      const { result: addResult } = await testResolver(CRUDItemResolver, addMutationSource, {
+        variableValues: {
+          newCrudItemData: {
+            name: crudItemName,
+          },
+        },
+      });
 
-    describe('updateCrudItem mutation', () => {
-        it('should add and update crud item', async () => {
-            const crudItemName = "test"
-
-            const { result: addResults } = await testResolver(CRUDItemResolver, addMutationSource, {
-                variableValues: {
-                    newCrudItemData: {
-                        name: crudItemName
-                    }
-                }
-            });
-
-            expect((addResults.data?.['addCrudItem'] as { name: string }).name).toEqual(crudItemName);
-
-            const newCrudItemName = 'newName'
-
-            const { result: updateResults } = await testResolver(CRUDItemResolver, updateMutationSource, {
-                variableValues: {
-                    updateCrudItemData: {
-                        id: (addResults.data?.['addCrudItem'] as { id: string }).id,
-                        name: newCrudItemName
-                    }
-                }
-            });
-
-            expect((updateResults.data?.['updateCrudItem'] as { name: string }).name).toEqual(newCrudItemName);
-        });
+      expect((addResult.data?.['addCrudItem'] as { name: string }).name).toEqual(crudItemName);
     });
+  });
 
-    describe('deleteCrudItem mutation', () => {
-        it('should add and delete crud item', async () => {
-            const crudItemName = "test"
+  describe('updateCrudItem mutation', () => {
+    it('should update crud item', async () => {
+      const item = await CrudItemFactory.save({
+        name: 'name to update',
+      });
 
-            const { result: addResults } = await testResolver(CRUDItemResolver, addMutationSource, {
-                variableValues: {
-                    newCrudItemData: {
-                        name: crudItemName
-                    }
-                }
-            });
+      const newCrudItemName = 'newName';
 
-            expect((addResults.data?.['addCrudItem'] as { name: string }).name).toEqual(crudItemName);
+      const { result: updateResults } = await testResolver(CRUDItemResolver, updateMutationSource, {
+        variableValues: {
+          updateCrudItemData: {
+            id: item.id,
+            name: newCrudItemName,
+          },
+        },
+      });
 
-            const addedItemId = (addResults.data?.['addCrudItem'] as { id: string }).id
-
-            const { result: oneResult } = await testResolver(CRUDItemResolver, oneQuerySource, {
-                variableValues: {
-                    id: addedItemId
-                }
-            });
-
-            expect((oneResult.data?.['crudItem'] as { id: string }).id).toEqual(addedItemId);
-
-            const { result: deleteResults } = await testResolver(CRUDItemResolver, deleteMutationSource, {
-                variableValues: {
-                    deleteCrudItemData: {
-                        id: addedItemId,
-                    }
-                }
-            });
-
-            expect((deleteResults.data?.['deleteCrudItem'] as { affected: number }).affected).toBe(1);
-
-            const { result: oneQueryResultAfterDelete } = await testResolver(CRUDItemResolver, oneQuerySource, {
-                variableValues: {
-                    id: addedItemId
-                }
-            });
-
-            expect((oneQueryResultAfterDelete.data?.['crudItem'])).toBeFalsy();
-        });
+      expect((updateResults.data?.['updateCrudItem'] as { name: string }).name).toEqual(newCrudItemName);
     });
+  });
+
+  describe('deleteCrudItem mutation', () => {
+    it('delete crud item', async () => {
+      const item = await CrudItemFactory.save({
+        name: 'test',
+      });
+
+      const { result: deleteResults } = await testResolver(CRUDItemResolver, deleteMutationSource, {
+        variableValues: {
+          deleteCrudItemData: {
+            id: item.id,
+          },
+        },
+      });
+
+      expect((deleteResults.data?.['deleteCrudItem'] as { affected: number }).affected).toBe(1);
+
+      const { result: oneQueryResultAfterDelete } = await testResolver(CRUDItemResolver, oneQuerySource, {
+        variableValues: {
+          id: item.id,
+        },
+      });
+
+      expect(oneQueryResultAfterDelete.data?.['crudItem']).toBeFalsy();
+    });
+  });
+
+  describe('crudItem query', () => {
+    it('return single crud item', async () => {
+      const item = await CrudItemFactory.save({
+        name: 'test',
+      });
+
+      const { result: oneQueryResultAfterDelete } = await testResolver(CRUDItemResolver, oneQuerySource, {
+        variableValues: {
+          id: item.id,
+        },
+      });
+
+      expect((oneQueryResultAfterDelete.data?.['crudItem'] as { name: string }).name).toEqual(item.name);
+    });
+  });
 });

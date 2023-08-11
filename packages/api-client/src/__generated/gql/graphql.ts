@@ -14,19 +14,58 @@ export type Scalars = {
   Float: number;
 };
 
+/** New crudItem data */
+export type AddCrudItemInput = {
+  name: Scalars['String'];
+};
+
 /** New photo data */
 export type AddPhotoInput = {
   name: Scalars['String'];
 };
 
+export type CrudItem = {
+  __typename?: 'CRUDItem';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
+/** Delete crudItem */
+export type DeleteCrudItemInput = {
+  id: Scalars['String'];
+};
+
+export type DeleteResult = {
+  __typename?: 'DeleteResult';
+  affected: Scalars['Float'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  addCrudItem: CrudItem;
   addPhoto: Photo;
+  deleteCrudItem: DeleteResult;
+  updateCrudItem: CrudItem;
+};
+
+
+export type MutationAddCrudItemArgs = {
+  newCrudItemData: AddCrudItemInput;
 };
 
 
 export type MutationAddPhotoArgs = {
   data: AddPhotoInput;
+};
+
+
+export type MutationDeleteCrudItemArgs = {
+  deleteCrudItemData: DeleteCrudItemInput;
+};
+
+
+export type MutationUpdateCrudItemArgs = {
+  updateCrudItemData: UpdateCrudItemInput;
 };
 
 export type Photo = {
@@ -37,14 +76,28 @@ export type Photo = {
 
 export type Query = {
   __typename?: 'Query';
+  /** Return all crudItems from db */
+  allCrudItems: Array<CrudItem>;
   /** Return all photos in db */
   allPhotos: Array<Photo>;
+  crudItem: CrudItem;
   photo: Photo;
+};
+
+
+export type QueryCrudItemArgs = {
+  id: Scalars['ID'];
 };
 
 
 export type QueryPhotoArgs = {
   id: Scalars['ID'];
+};
+
+/** Update crudItem data */
+export type UpdateCrudItemInput = {
+  id: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type PhotosQueryQueryVariables = Exact<{ [key: string]: never; }>;

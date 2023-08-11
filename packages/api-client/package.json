@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "download-schema": "/bin/sh ./scripts/download-graphql-schema.sh",
-    "generate-types": "graphql-codegen -c ./graphql/codegen.ts",
-    "generate-types:watch": "graphql-codegen -w -c ./graphql/codegen.ts",
+    "generate-types": "graphql-codegen -c ./src/graphql/codegen.ts",
+    "generate-types:watch": "graphql-codegen -w -c ./src/graphql/codegen.ts",
     "graphql-codegen": "graphql-codegen",
     "lint": "eslint .",
     "type-check": "tsc --noEmit --project tsconfig.lib.json",

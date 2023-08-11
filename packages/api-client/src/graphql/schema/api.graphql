@@ -6,17 +6,43 @@ type Query {
   photo(id: ID!): Photo!
   "Return all photos in db"
   allPhotos: [Photo!]!
+  crudItem(id: ID!): CRUDItem!
+  "Return all crudItems from db"
+  allCrudItems: [CRUDItem!]!
 }
 type Photo {
   id: ID!
   name: String!
 }
+type CRUDItem {
+  id: ID!
+  name: String!
+}
 type Mutation {
   addPhoto(data: AddPhotoInput!): Photo!
+  addCrudItem(newCrudItemData: AddCRUDItemInput!): CRUDItem!
+  updateCrudItem(updateCrudItemData: UpdateCRUDItemInput!): CRUDItem!
+  deleteCrudItem(deleteCrudItemData: DeleteCRUDItemInput!): DeleteResult!
+}
+type DeleteResult {
+  affected: Float!
 }
 "New photo data"
 input AddPhotoInput {
   name: String!
+}
+"New crudItem data"
+input AddCRUDItemInput {
+  name: String!
+}
+"Update crudItem data"
+input UpdateCRUDItemInput {
+  id: String!
+  name: String!
+}
+"Delete crudItem"
+input DeleteCRUDItemInput {
+  id: String!
 }
 "Exposes a URL that specifies the behavior of this scalar."
 directive @specifiedBy(

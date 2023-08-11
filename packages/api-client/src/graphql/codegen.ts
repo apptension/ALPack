@@ -4,13 +4,13 @@ const config: CodegenConfig = {
   overwrite: true,
   ignoreNoDocuments: true,
   generates: {
-    '__generated/gql/': {
+    'src/__generated/gql/': {
       schema: {
-        './graphql/schema/api.graphql': {
-          loader: './graphql/schema/loader.js',
+        './src/graphql/schema/api.graphql': {
+          loader: './src/graphql/schema/loader.js',
         },
       },
-      documents: ['../../apps/app/src/**/*.ts', '../../apps/app/src/**/*.tsx', '!./__generated/*'],
+      documents: ['../../apps/app/src/**/*.ts', '../../apps/app/src/**/*.tsx', '!./src/__generated/*'],
 
       config: {
         declarationKind: 'interface',
