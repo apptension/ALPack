@@ -22,6 +22,9 @@
     "paths": {
       "@app/*": ["apps/app/src/*"],
       "@ab/internal-tools": ["packages/internal/internal-tools/src/index.ts"],
+      "@ab/core/*": [
+        "packages/core/src/*"
+      ],
       "@ab/api-client/*": [
         "packages/api-client/src/*"
       ],

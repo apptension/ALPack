@@ -1,4 +1,6 @@
-import { Button, LoginState } from '@app/components';
+import { Button } from '@ab/core/components';
+
+import { LoginState } from '@app/components';
 
 export function Home() {
   return (

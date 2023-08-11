@@ -4,6 +4,7 @@ clone:
 definitions:
   caches:
     pnpmwebapp: $BITBUCKET_CLONE_DIR/.pnpm-store
+    pnpmcore: $BITBUCKET_CLONE_DIR/.pnpm-store
     pnpmapiclient: $BITBUCKET_CLONE_DIR/.pnpm-store
     pnpmschema: $BITBUCKET_CLONE_DIR/.pnpm-store
 
@@ -28,7 +29,7 @@ definitions:
           - *installWebappDeps
           - pnpm nx run app:lint
           - pnpm nx run app:type-check
-#          - pnpm run webapp:test --watchAll=false --maxWorkers=20% --coverage
+          - pnpm nx run app:test --watchAll=false --maxWorkers=20% --coverage
         caches:
           - pnpmwebapp
     - step: &webappBuild
@@ -40,6 +41,20 @@ definitions:
           - pnpm nx run app:build
         caches:
           - pnpmwebapp
+    - step: &coreTest
+        name: 'core: Lint & test'
+        image: atlassian/default-image:4
+        script:
+          - *initializeStep
+          - pnpm install
+            --include-workspace-root
+            --frozen-lockfile
+            --filter=core...
+          - pnpm nx run core:lint
+          - pnpm nx run core:type-check
+          - pnpm nx run core:test --watchAll=false --maxWorkers=20% --coverage
+        caches:
+          - pnpmcore
     - step: &apiClientTest
         name: 'api-client: Lint & test'
         image: atlassian/default-image:4
@@ -74,6 +89,7 @@ pipelines:
     - parallel:
         - step: *webappTest
         - step: *webappBuild
+        - step: *coreTest
         - step: *apiClientTest
         - step: *schemaTest
 
@@ -82,5 +98,6 @@ pipelines:
       - parallel:
         - step: *webappTest
         - step: *webappBuild
+        - step: *coreTest
         - step: *apiClientTest
         - step: *schemaTest

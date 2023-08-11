@@ -4,8 +4,8 @@ import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { ReactNode } from 'react';
 
-import { ApolloProvider } from '@app/providers/ApolloProvider';
-import { MantineProvider } from '@app/providers/MantineProvider';
+import { ApolloProvider } from '@ab/api-client/providers';
+import { MantineProvider } from '@ab/core/providers';
 
 interface AppProvidersProps {
   children: ReactNode;

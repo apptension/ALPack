@@ -3,7 +3,7 @@ const webpack = require('webpack');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@ab/schema', '@ab/api-client'],
+  transpilePackages: ['@ab/schema', '@ab/api-client', '@ab/core'],
   webpack: (config, { isServer }) => {
     // fix for: Can't resolve 'pg-native' issue
     // https://github.com/vercel/next.js/issues/48223
