@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 
 import { UserRole } from '@ab/schema/types';
 
+import { sessionProviderFactory } from '../../../tests/factories/sessionProviderFactory';
 import { render } from '../../../tests/utils/rendering';
 import { LoginState } from '../loginState.component';
 
@@ -10,12 +11,7 @@ describe('Home: Component', () => {
   describe('when logged in', () => {
     it('renders Sign Out', () => {
       render(<LoginState />, {
-        sessionProviderProps: {
-          session: {
-            user: { email: 'user@example.com', role: UserRole.USER, name: 'User name', image: null },
-            expires: '',
-          },
-        },
+        sessionProviderProps: sessionProviderFactory({ role: UserRole.USER }),
       });
 
       expect(screen.getByText(/Sign Out/i)).toBeInTheDocument();

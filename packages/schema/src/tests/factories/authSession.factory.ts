@@ -1,23 +1,24 @@
-import { DefaultSession, ISODateString, Session } from 'next-auth';
+import { DefaultSession } from 'next-auth';
 
-import { UserRole } from '../../types';
+import { ApiContextType, UserRole } from '../../types';
 
-export type User = { role: UserRole } & DefaultSession['user'];
+type RoleExtension = { role?: UserRole } | undefined;
+export type User = (RoleExtension & DefaultSession['user']) | undefined;
 
-export const authSessionFactory = (userData?: Partial<User>): Session => {
+export const authSessionFactory = (userData?: Partial<User>): ApiContextType['authSession'] => {
   const expiresDate = new Date();
   expiresDate.setDate(expiresDate.getDate() + 1);
 
-  const user: User | undefined = userData
+  const user: User = userData
     ? {
         role: UserRole.USER,
         name: null,
         email: null,
         image: null,
+        ...userData,
       }
     : undefined;
 
-  return new (class implements Session {
-    constructor(public expires: ISODateString, public user?: User) {}
-  })(expiresDate.toDateString(), user);
+  // @ts-ignore
+  return { expires: expiresDate.toDateString(), user };
 };

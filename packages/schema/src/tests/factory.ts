@@ -19,7 +19,7 @@ export const Factory = <T extends ObjectLiteral>(
   };
 
   const saveMany = async (count: number, defaults: Partial<T> = {}) => {
-    return Promise.all([...Array(count).keys()].map((i) => save(defaults)));
+    return Promise.all([...Array(count).keys()].map(() => save(defaults)));
   };
 
   return {

@@ -1,28 +1,35 @@
 import { StoryContext } from '@storybook/react';
 import { RenderOptions, render, renderHook } from '@testing-library/react';
-import { SessionProvider, SessionProviderProps, useSession } from 'next-auth/react';
+import { Session } from 'next-auth';
+import { SessionContext, SessionContextValue } from 'next-auth/react';
 import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } from 'react';
 
 import * as apiUtils from '@ab/api-client/tests/utils/rendering';
 
-jest.mock('next-auth/react', () => {
-  const originalModule = jest.requireActual('next-auth/react');
-  return {
-    ...originalModule,
-    useSession: jest.fn(),
-  };
-});
-
-const mockedUseSession = useSession as jest.MockedFunction<typeof useSession>;
-
 export { PLACEHOLDER_TEST_ID, PLACEHOLDER_CONTENT } from '@ab/core/tests/utils/rendering';
 
 export type AppTestProvidersProps = PropsWithChildren<{
-  sessionProviderProps?: Partial<SessionProviderProps>;
+  sessionProviderProps?: Pick<SessionContextValue, 'status'> & {
+    data: Session | null;
+  };
 }>;
 
-export function AppTestProviders({ children, sessionProviderProps }: AppTestProvidersProps) {
-  return <SessionProvider {...sessionProviderProps}>{children}</SessionProvider>;
+export function AppTestProviders({
+  children,
+  sessionProviderProps = { status: 'unauthenticated', data: null },
+}: AppTestProvidersProps) {
+  return (
+    <SessionContext.Provider
+      // @ts-ignore
+      value={{
+        // @ts-ignore
+        update: () => Promise.resolve(null),
+        ...sessionProviderProps,
+      }}
+    >
+      {children}
+    </SessionContext.Provider>
+  );
 }
 
 export type WrapperProps = apiUtils.WrapperProps & AppTestProvidersProps;
@@ -44,15 +51,9 @@ export function getWrapper(
   const wrapper = ({ children, ...props }: WrapperProps) => {
     const { sessionProviderProps = { session: null } } = wrapperProps;
 
-    // @ts-ignore
-    mockedUseSession.mockImplementation(() => {
-      return {
-        data: sessionProviderProps?.session,
-        status: sessionProviderProps?.session ? 'authenticated' : 'unauthenticated',
-      };
-    });
     return (
       <ApiWrapper {...props}>
+        {/*// @ts-ignore*/}
         <WrapperComponent {...props} sessionProviderProps={sessionProviderProps}>
           {children}
         </WrapperComponent>
