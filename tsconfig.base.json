@@ -20,6 +20,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
+      "@ab/api-client": ["packages/api-client/src/index.ts"],
       "@ab/api-client/*": ["packages/api-client/src/*"],
       "@ab/core/*": ["packages/core/src/*"],
       "@ab/internal-tools": ["packages/internal/internal-tools/src/index.ts"],

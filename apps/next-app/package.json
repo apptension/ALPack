@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@ab/api-client": "*",
-    "@apollo/client": "^3.7.12",
+    "@apollo/client": "^3.8.1",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
     "@fontsource/nunito": "^5.0.1",

@@ -1,7 +1,7 @@
-import { ApolloProvider as Provider } from '@apollo/client';
+import { ApolloNextAppProvider } from '@apollo/experimental-nextjs-app-support/ssr';
 
-import { client } from '../../client';
+import { makeClient } from '../../client';
 
 export const ApolloProvider = ({ children }: any) => {
-  return <Provider client={client}>{children}</Provider>;
+  return <ApolloNextAppProvider makeClient={makeClient}>{children}</ApolloNextAppProvider>;
 };
