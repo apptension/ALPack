@@ -1,18 +1,21 @@
 import { GraphQLArgs, Source, graphql } from 'graphql';
+import { applyMiddleware } from 'graphql-middleware';
+import { IRules, deny, shield } from 'graphql-shield';
 import { buildSchema } from 'type-graphql';
 
-import { authChecker } from '../../auth/authChecker';
+import { mergePermissions } from '../../auth';
 import { DeleteResult } from '../../resolvers/types';
 
-export const testResolver = async (
-  resolver: any,
-  source: string | Source,
-  options: Partial<Omit<GraphQLArgs, 'source'>> = {}
-) => {
+export type PermissionArgs = {
+  permissions?: IRules;
+};
+
+export type TestResolverOptions = Partial<Omit<GraphQLArgs, 'source'>> & PermissionArgs;
+
+export const testResolver = async (resolver: any, source: string | Source, options: TestResolverOptions = {}) => {
   const schema = await buildSchema({
     resolvers: [resolver],
     validate: true,
-    authChecker,
     orphanedTypes: [DeleteResult],
   });
 
@@ -20,9 +23,21 @@ export const testResolver = async (
     authSession: null,
   };
 
-  const contextValue = options.contextValue || defaultContext;
+  const { permissions = {}, contextValue = defaultContext, ...restOpts } = options;
 
-  const result = await graphql({ ...options, schema, source, contextValue });
+  const perms = mergePermissions(permissions);
+  const schemaWithPerms = applyMiddleware(
+    schema,
+    shield(perms, {
+      fallbackRule: deny,
+      allowExternalErrors: true,
+    })
+  );
 
-  return { schema, result };
+  const result = await graphql({ ...restOpts, schema: schemaWithPerms, source, contextValue });
+
+  return {
+    schema: schemaWithPerms,
+    result,
+  };
 };

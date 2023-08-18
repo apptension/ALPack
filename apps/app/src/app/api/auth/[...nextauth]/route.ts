@@ -1,9 +1,10 @@
-import { UserRole } from '@ab/schema';
-import { dataSourceOptions, initializeDataSource } from '@ab/schema/data-source';
-import * as entities from '@ab/schema/entity/auth';
 import { TypeORMAdapter } from '@auth/typeorm-adapter';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+
+import { dataSourceOptions, initializeDataSource } from '@ab/schema/data-source';
+import * as entities from '@ab/schema/entity/auth';
+import { UserRole } from '@ab/schema/types';
 
 export const initialized = await initializeDataSource();
 
@@ -26,6 +27,11 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
+    jwt({ token, user }) {
+      // save role in JWT
+      if (user) token.role = user.role;
+      return token;
+    },
     session({ session, token }) {
       session.user.role = token.role as UserRole;
       return session;

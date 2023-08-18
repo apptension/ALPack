@@ -1,9 +1,10 @@
-import schema, { ApiContextType } from '@ab/schema';
-import { formatError } from '@ab/schema/utils/formatError';
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { getServerSession } from 'next-auth';
 import { NextRequest } from 'next/server';
+
+import schema, { ApiContextType } from '@ab/schema';
+import { formatError } from '@ab/schema/utils/formatError';
 
 import { authOptions } from '../auth/[...nextauth]/route';
 
