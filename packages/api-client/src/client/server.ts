@@ -1,17 +1,24 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, from } from '@apollo/client';
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc';
 
+import { RetryLink } from '@apollo/client/link/retry';
 import { apiURL } from '../helpers';
+
+
+const maxRetryAttempts = 5;
+
+const retryLink = new RetryLink({
+  delay: () => 1000,
+  attempts: (count, operation, error) => {
+    return !!error && count < maxRetryAttempts;
+  },
+});
 
 export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
-    link: new HttpLink({
-      // this needs to be an absolute url, as relative urls cannot be used in SSR
-      uri: apiURL('/graphql'),
-      // you can disable result caching here if you want to
-      // (this does not work if you are rendering your page with `export const dynamic = "force-static"`)
-      // fetchOptions: { cache: "no-store" },
-    }),
+    link: from([retryLink, new HttpLink({
+      uri: apiURL('/graphql')
+    })])
   });
 });
