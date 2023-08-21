@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -552,6 +552,9 @@ importers:
       '@mantine/modals':
         specifier: ^6.0.17
         version: 6.0.17(@mantine/core@6.0.11)(@mantine/hooks@6.0.11)(react-dom@18.2.0)(react@18.2.0)
+      '@tabler/icons-react':
+        specifier: ^2.30.0
+        version: 2.30.0(react@18.2.0)
       next:
         specifier: ^13.4.18
         version: 13.4.18(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)

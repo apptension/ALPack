@@ -2,10 +2,13 @@
 
 import { ApolloQueryResult } from '@apollo/client';
 import { SimpleGrid, Skeleton } from '@mantine/core';
+import { IconPlus } from '@tabler/icons-react';
 
 import { CrudItem as CrudItemType } from '@ab/api-client';
+import { Link } from '@ab/core/components';
 
 import { CrudItem } from '@app/components/crudItem';
+import { RoutesConfig } from '@app/config/routes';
 
 export interface CrudListProps {
   result: ApolloQueryResult<{
@@ -28,10 +31,23 @@ export const CrudList = ({ result }: CrudListProps) => {
   if (loading) return renderSkeleton();
 
   return (
-    <SimpleGrid cols={4} spacing="sm" verticalSpacing="xs">
-      {data.allCrudItems.map((item: CrudItemType) => (
-        <CrudItem key={item.id} crudItem={item} />
-      ))}
-    </SimpleGrid>
+    <>
+      <Link
+        linkProps={{
+          href: RoutesConfig.crudAdd,
+        }}
+        buttonProps={{
+          mb: 'md',
+          leftIcon: <IconPlus />,
+        }}
+      >
+        Add new CRUD item
+      </Link>
+      <SimpleGrid cols={4} spacing="sm" verticalSpacing="xs">
+        {data.allCrudItems.map((item: CrudItemType) => (
+          <CrudItem key={item.id} crudItem={item} />
+        ))}
+      </SimpleGrid>
+    </>
   );
 };

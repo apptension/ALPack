@@ -16,6 +16,7 @@
     "@mantine/form": "^6.0.17",
     "@mantine/hooks": "^6.0.11",
     "@mantine/modals": "^6.0.17",
+    "@tabler/icons-react": "^2.30.0",
     "next": "^13.4.18"
   },
   "devDependencies": {
