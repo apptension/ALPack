@@ -6,7 +6,7 @@ import { NextRequest } from 'next/server';
 import schema, { ApiContextType } from '@ab/schema';
 import { formatError } from '@ab/schema/utils/formatError';
 
-import { authOptions } from '../auth/[...nextauth]/route';
+import { authOptions } from '@app/config/auth';
 
 const server = new ApolloServer({ schema, formatError });
 

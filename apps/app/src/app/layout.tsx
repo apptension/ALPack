@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 
-import { authOptions } from '@app/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@app/config/auth';
 import { AppProviders } from '@app/providers/AppProviders';
 
 export const metadata: Metadata = {
