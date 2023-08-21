@@ -1,6 +1,6 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-import { AccountEntity, Photo, SessionEntity, UserEntity, VerificationTokenEntity, CRUDItem } from './entity';
+import { AccountEntity, CRUDItem, Photo, SessionEntity, UserEntity, VerificationTokenEntity } from './entity';
 
 const commonDataSourceOptions = {
   // Cannot use glob for this (join(__dirname, 'entity/*[^index].ts')) because
@@ -19,7 +19,7 @@ const appDataSourceOptions: DataSourceOptions = {
   synchronize: false,
   logging: true,
   subscribers: [],
-  migrations: ['migrations/*.ts'],
+  migrations: ['src/migrations/*.ts'],
   migrationsTableName: 'migrations',
   migrationsRun: true,
   ...commonDataSourceOptions,
@@ -44,7 +44,7 @@ export const initializeDataSource = async () => {
     .then((db) => {
       // here you can start to work with your database
       console.log('Data source initialized');
-      return db
+      return db;
     })
     .catch((error) => console.log('DataSource init ERROR:', error));
 };
