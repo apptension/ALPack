@@ -4,8 +4,8 @@
 
 ## Features
 
-* GraphQL API
-* Authentication and authorization
+- GraphQL API
+- Authentication and authorization
 
 ## Tech stack
 
@@ -54,40 +54,56 @@ Infrastructure:
 ## Commands
 
 ### Run the app locally
+
 Start docker containers
+
 ```bash
 docker compose up -d
 ```
 
 Start the Next.js app
+
 ```bash
 pnpm nx run app:serve
 ```
 
 Run storybooks
+
 ```bash
 pnpm nx run app:storybook
 ```
 
 ### Run tests
+
 > todo
 
 ### Migrations
+
 Create new migration
+
 ```bash
 packages/schema > pnpm run db:createmigration migrations/[migration_name]
 ```
 
 Generate new migration based on the db changes
+
 ```bash
 packages/schema > pnpm run db:makemigrations migrations/[migration_name]
 ```
 
 Call migrations
+
 ```bash
 packages/schema > pnpm run db:migrate
 ```
 
 ## Deployment instructions
 
-> TODO
+1. Go to [Vercel](https://vercel.com/) and create a team
+2. Create a Postgres Database storage. Make sure to use `POSTGRES` environment variables prefix.
+3. Create a project with:
+   - Root directory set to: `apps/app`
+   - `Next.js` set up as `Framework preset`
+4. Create a Google OAuth credentials with the correct redirect url (`https://{VERCEL_DOMAIN}/api/auth/callback/google`)
+5. Add environment variables to in the app `Settings` tab
+6. Assign the postgres storage to the project
