@@ -8,6 +8,7 @@ import { MouseEvent } from 'react';
 import { CrudItem as CrudItemType } from '@ab/api-client';
 import { Link } from '@ab/core/components';
 
+import { allCrudItemsQuery } from '../../app/crud/crud.graphql';
 import { deleteCrudItemMutation } from './crudItem.graphql';
 
 export interface CrudItemProps {
@@ -22,6 +23,25 @@ export const CrudItem = ({ crudItem }: CrudItemProps) => {
     commitDeleteMutation({
       variables: {
         deleteCrudItemData: { id: crudItem.id },
+      },
+      update(cache, { data }) {
+        if (!data.deleteCrudItem?.affected) {
+          return;
+        }
+
+        const { allCrudItems = [] } = cache.readQuery({ query: allCrudItemsQuery }) ?? {};
+        const refItem = allCrudItems.find((item: CrudItemType) => item.id === crudItem.id);
+        if (!refItem) {
+          return;
+        }
+
+        cache.modify({
+          fields: {
+            allCrudItems(existingItems = []) {
+              return existingItems.filter((item: CrudItemType) => item.id !== refItem.id);
+            },
+          },
+        });
       },
     });
   };

@@ -1,9 +1,8 @@
 import { ApolloClient, HttpLink, InMemoryCache, from } from '@apollo/client';
+import { RetryLink } from '@apollo/client/link/retry';
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc';
 
-import { RetryLink } from '@apollo/client/link/retry';
 import { apiURL } from '../helpers';
-
 
 const maxRetryAttempts = 5;
 
@@ -17,8 +16,11 @@ const retryLink = new RetryLink({
 export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
-    link: from([retryLink, new HttpLink({
-      uri: apiURL('/graphql')
-    })])
+    link: from([
+      retryLink,
+      new HttpLink({
+        uri: apiURL('/graphql'),
+      }),
+    ]),
   });
 });

@@ -12,11 +12,11 @@
       },
       "configurations": {
         "generate-types": {
-          "commands": ["pnpm run graphql-codegen -c ./graphql/codegen.ts"],
+          "commands": ["pnpm run graphql-codegen -c ./src/graphql/codegen.ts"],
           "parallel": false
         },
         "generate-types:watch": {
-          "commands": ["pnpm run graphql-codegen -w -c ./graphql/codegen.ts"]
+          "commands": ["pnpm run graphql-codegen -w -c ./src/graphql/codegen.ts"]
         },
         "download-schema": {
           "commands": [

@@ -1,10 +1,10 @@
-import { gql } from "@apollo/client";
+import { gql } from '@ab/api-client';
 
-export const addCRUDItemMutation = gql`
-    mutation AddCrudItem($newCrudItemData: AddCRUDItemInput!) {
-        addCrudItem(newCrudItemData: $newCrudItemData) {
-            id
-            name
-        }
+export const addCRUDItemMutation = gql(/* GraphQL */ `
+  mutation AddCrudItem($newCrudItemData: AddCRUDItemInput!) {
+    addCrudItem(newCrudItemData: $newCrudItemData) {
+      id
+      name
     }
-`
+  }
+`);

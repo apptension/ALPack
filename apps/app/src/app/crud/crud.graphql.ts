@@ -1,11 +1,10 @@
-import { gql } from "@apollo/client";
+import { gql } from '@ab/api-client';
 
-
-export const allCrudItemsQuery = gql`
+export const allCrudItemsQuery = gql(/* GraphQL */ `
   query AllCrudItems {
     allCrudItems {
       id
       name
     }
   }
-`;
+`);
