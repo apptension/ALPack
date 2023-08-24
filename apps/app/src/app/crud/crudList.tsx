@@ -37,7 +37,7 @@ export const CrudList = () => {
         Add new CRUD item
       </Link>
       <SimpleGrid cols={4} spacing="sm" verticalSpacing="xs">
-        {data.allCrudItems.map((item: CrudItemType) => (
+        {data?.allCrudItems.map((item: CrudItemType) => (
           <CrudItem key={item.id} crudItem={item} />
         ))}
       </SimpleGrid>

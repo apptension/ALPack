@@ -1,6 +1,12 @@
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 
+import { UserRole } from '@ab/schema/types';
+
+import { withAppProviders } from '../../../.storybook/decorators';
 import { CrudItem, CrudItemProps } from './crudItem.component';
+
+import { sessionProviderFactory } from '@app/tests/factories/sessionProviderFactory';
+
 
 type Story = StoryObj<typeof CrudItem>;
 
@@ -23,6 +29,16 @@ export const Default: Story = {
       name: 'default name',
     },
   },
+  decorators: [
+    withAppProviders({
+      sessionProviderProps: sessionProviderFactory({ role: UserRole.USER }),
+    }),
+  ],
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
 };
 
 export const ShortName: Story = {
@@ -33,6 +49,16 @@ export const ShortName: Story = {
       name: 'name',
     },
   },
+  decorators: [
+    withAppProviders({
+      sessionProviderProps: sessionProviderFactory({ role: UserRole.USER }),
+    }),
+  ],
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
 };
 
 export const LongName: Story = {
@@ -41,6 +67,16 @@ export const LongName: Story = {
     crudItem: {
       id: '3',
       name: 'Long long long long name',
+    },
+  },
+  decorators: [
+    withAppProviders({
+      sessionProviderProps: sessionProviderFactory({ role: UserRole.USER }),
+    }),
+  ],
+  parameters: {
+    nextjs: {
+      appDirectory: true,
     },
   },
 };

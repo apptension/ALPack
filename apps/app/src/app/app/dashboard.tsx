@@ -1,11 +1,11 @@
 'use client';
 
-import { useQuery } from '@apollo/experimental-nextjs-app-support/ssr';
+import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 
 import { testQueryGraphql } from './testQuery.graphql';
 
 export function Dashboard() {
-  const { data } = useQuery(testQueryGraphql);
+  const { data } = useSuspenseQuery(testQueryGraphql);
 
   console.log({ data });
 

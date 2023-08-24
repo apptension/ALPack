@@ -105,6 +105,13 @@ export type TestQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TestQueryQuery = { __typename?: 'Query', allPhotos: Array<{ __typename?: 'Photo', id: string, name: string }> };
 
+export type CrudItemDetailsQueryVariables = Exact<{
+  crudItemId: Scalars['ID'];
+}>;
+
+
+export type CrudItemDetailsQuery = { __typename?: 'Query', crudItem: { __typename?: 'CRUDItem', id: string, name: string } };
+
 export type AddCrudItemMutationVariables = Exact<{
   newCrudItemData: AddCrudItemInput;
 }>;
@@ -116,6 +123,13 @@ export type AllCrudItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AllCrudItemsQuery = { __typename?: 'Query', allCrudItems: Array<{ __typename?: 'CRUDItem', id: string, name: string }> };
+
+export type UpdateCrudItemMutationVariables = Exact<{
+  updateCrudItemData: UpdateCrudItemInput;
+}>;
+
+
+export type UpdateCrudItemMutation = { __typename?: 'Mutation', updateCrudItem: { __typename?: 'CRUDItem', id: string, name: string } };
 
 export type DeleteCrudItemMutationVariables = Exact<{
   deleteCrudItemData: DeleteCrudItemInput;
@@ -131,7 +145,9 @@ export type PhotosQueryQuery = { __typename?: 'Query', allPhotos: Array<{ __type
 
 
 export const TestQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"testQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allPhotos"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<TestQueryQuery, TestQueryQueryVariables>;
+export const CrudItemDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CrudItemDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"crudItemId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"crudItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"crudItemId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CrudItemDetailsQuery, CrudItemDetailsQueryVariables>;
 export const AddCrudItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddCrudItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newCrudItemData"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddCRUDItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addCrudItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"newCrudItemData"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newCrudItemData"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<AddCrudItemMutation, AddCrudItemMutationVariables>;
 export const AllCrudItemsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllCrudItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allCrudItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<AllCrudItemsQuery, AllCrudItemsQueryVariables>;
+export const UpdateCrudItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateCrudItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCrudItemData"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCRUDItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCrudItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCrudItemData"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCrudItemData"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<UpdateCrudItemMutation, UpdateCrudItemMutationVariables>;
 export const DeleteCrudItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteCrudItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"deleteCrudItemData"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteCRUDItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteCrudItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"deleteCrudItemData"},"value":{"kind":"Variable","name":{"kind":"Name","value":"deleteCrudItemData"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"affected"}}]}}]}}]} as unknown as DocumentNode<DeleteCrudItemMutation, DeleteCrudItemMutationVariables>;
 export const PhotosQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"photosQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allPhotos"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<PhotosQueryQuery, PhotosQueryQueryVariables>;

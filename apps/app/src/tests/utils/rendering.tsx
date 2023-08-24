@@ -6,17 +6,23 @@ import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } fr
 
 import * as apiUtils from '@ab/api-client/tests/utils/rendering';
 
+import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from '../providers';
+
 export { PLACEHOLDER_TEST_ID, PLACEHOLDER_CONTENT } from '@ab/core/tests/utils/rendering';
 
 export type AppTestProvidersProps = PropsWithChildren<{
   sessionProviderProps?: Pick<SessionContextValue, 'status'> & {
     data: Session | null;
   };
+  routerProps?: Omit<AppRouterContextProviderMockProps, 'children'>;
 }>;
+
+const defaultRouterProps = { router: {} };
 
 export function AppTestProviders({
   children,
   sessionProviderProps = { status: 'unauthenticated', data: null },
+  routerProps = defaultRouterProps,
 }: AppTestProvidersProps) {
   return (
     <SessionContext.Provider
@@ -27,7 +33,7 @@ export function AppTestProviders({
         ...sessionProviderProps,
       }}
     >
-      {children}
+      <AppRouterContextProviderMock {...routerProps}>{children}</AppRouterContextProviderMock>
     </SessionContext.Provider>
   );
 }
@@ -49,12 +55,11 @@ export function getWrapper(
     storyContext
   );
   const wrapper = ({ children, ...props }: WrapperProps) => {
-    const { sessionProviderProps = { session: null } } = wrapperProps;
+    const { sessionProviderProps, routerProps = defaultRouterProps } = wrapperProps;
 
     return (
       <ApiWrapper {...props}>
-        {/*// @ts-ignore*/}
-        <WrapperComponent {...props} sessionProviderProps={sessionProviderProps}>
+        <WrapperComponent routerProps={routerProps} {...props} sessionProviderProps={sessionProviderProps}>
           {children}
         </WrapperComponent>
       </ApiWrapper>

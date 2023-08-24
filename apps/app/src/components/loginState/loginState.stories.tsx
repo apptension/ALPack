@@ -19,7 +19,6 @@ export const Default: Story = {
   render: () => <LoginState />,
   decorators: [withAppProviders()],
 };
-
 export const LoggedIn: Story = {
   render: () => <LoginState />,
   decorators: [

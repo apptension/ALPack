@@ -14,11 +14,10 @@ export type CrudDemoItemFormProps = {
   error?: ApolloError;
 };
 
-export const CrudItemForm = ({ loading, onSubmit }: CrudDemoItemFormProps) => {
+export const CrudItemForm = ({ loading, onSubmit, initialData }: CrudDemoItemFormProps) => {
+  const initialForm = initialData ? initialData : { name: '' };
   const form = useForm({
-    initialValues: {
-      name: '',
-    },
+    initialValues: initialForm,
     validate: {
       name: (value) => (/^[\s\w.]{1,255}$/.test(value) ? null : 'Invalid name'),
     },

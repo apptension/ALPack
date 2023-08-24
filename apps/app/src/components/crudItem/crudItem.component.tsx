@@ -1,22 +1,28 @@
 'use client';
 
 import { useMutation } from '@apollo/client';
-import { ActionIcon, Card, Group, Text } from '@mantine/core';
-import { IconTrashX } from '@tabler/icons-react';
+import { ActionIcon, Card, Flex, Text } from '@mantine/core';
+import { IconEdit, IconTrashX } from '@tabler/icons-react';
+import { useRouter } from 'next/navigation';
 import { MouseEvent } from 'react';
 
 import { CrudItem as CrudItemType } from '@ab/api-client';
 import { Link } from '@ab/core/components';
 
-import { allCrudItemsQuery } from '../../app/crud/crud.graphql';
 import { deleteCrudItemMutation } from './crudItem.graphql';
+import { allCrudItemsQuery } from '@app/app/crud/crud.graphql';
+
 
 export interface CrudItemProps {
   crudItem: CrudItemType;
 }
 
 export const CrudItem = ({ crudItem }: CrudItemProps) => {
-  const [commitDeleteMutation, { loading }] = useMutation(deleteCrudItemMutation);
+  const { push } = useRouter();
+
+  const [commitDeleteMutation, { loading }] = useMutation(deleteCrudItemMutation, {
+    refetchQueries: () => [allCrudItemsQuery],
+  });
 
   const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -25,7 +31,7 @@ export const CrudItem = ({ crudItem }: CrudItemProps) => {
         deleteCrudItemData: { id: crudItem.id },
       },
       update(cache, { data }) {
-        if (!data.deleteCrudItem?.affected) {
+        if (!data?.deleteCrudItem?.affected) {
           return;
         }
 
@@ -46,9 +52,14 @@ export const CrudItem = ({ crudItem }: CrudItemProps) => {
     });
   };
 
+  const handleUpdateRedirect = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    push(`/crud/update/${crudItem.id}`);
+  };
+
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Group position="apart" mt="md" mb="xs">
+      <Flex w="100%" justify="center" align="center">
         <Link
           linkProps={{
             href: `/crud/${crudItem.id}`,
@@ -59,10 +70,14 @@ export const CrudItem = ({ crudItem }: CrudItemProps) => {
         >
           <Text weight={500}>{crudItem.name}</Text>
         </Link>
+        <ActionIcon onClick={handleUpdateRedirect} variant="subtle">
+          <IconEdit />
+        </ActionIcon>
+
         <ActionIcon disabled={loading} onClick={handleDelete} variant="subtle">
           <IconTrashX />
         </ActionIcon>
-      </Group>
+      </Flex>
     </Card>
   );
 };
