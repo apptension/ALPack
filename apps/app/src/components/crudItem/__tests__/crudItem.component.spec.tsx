@@ -10,7 +10,13 @@ describe('CrudItem: Component', () => {
       id: '1',
       name: 'test-name',
     };
-    render(<CrudItem crudItem={crudItem} />);
+    render(<CrudItem crudItem={crudItem} />, {
+      routerProps: {
+        router: {
+          push: jest.fn(),
+        },
+      },
+    });
 
     expect(screen.getByText(crudItem.name)).toBeInTheDocument();
   });

@@ -7,14 +7,14 @@ import { useForm } from '@mantine/form';
 export type CrudItemFormFields = {
   name: string;
 };
-export type CrudDemoItemFormProps = {
+export type CrudItemFormProps = {
   onSubmit: (formData: CrudItemFormFields) => void;
   loading: boolean;
   initialData?: CrudItemFormFields | null;
   error?: ApolloError;
 };
 
-export const CrudItemForm = ({ loading, onSubmit, initialData }: CrudDemoItemFormProps) => {
+export const CrudItemForm = ({ loading, onSubmit, initialData }: CrudItemFormProps) => {
   const initialForm = initialData ? initialData : { name: '' };
   const form = useForm({
     initialValues: initialForm,
@@ -26,7 +26,7 @@ export const CrudItemForm = ({ loading, onSubmit, initialData }: CrudDemoItemFor
   return (
     <Box maw={300}>
       <form onSubmit={form.onSubmit(onSubmit)}>
-        <TextInput withAsterisk label="Name" {...form.getInputProps('name')} />
+        <TextInput withAsterisk label="Name" placeholder="Name" {...form.getInputProps('name')} />
         <Group position="right" mt="md">
           <Button loading={loading} type="submit">
             Submit

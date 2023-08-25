@@ -1,7 +1,7 @@
 'use client';
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
-import { SimpleGrid, Skeleton } from '@mantine/core';
+import { SimpleGrid } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 
 import { CrudItem as CrudItemType } from '@ab/api-client';
@@ -10,15 +10,6 @@ import { Link } from '@ab/core/components';
 import { allCrudItemsQuery } from '@app/app/crud/crud.graphql';
 import { CrudItem } from '@app/components/crudItem';
 import { RoutesConfig } from '@app/config/routes';
-
-export const LoadingSkeleton = () => (
-  <SimpleGrid cols={4} spacing="sm" verticalSpacing="xs">
-    <Skeleton height={96} />
-    <Skeleton height={96} />
-    <Skeleton height={96} />
-    <Skeleton height={96} />
-  </SimpleGrid>
-);
 
 export const CrudList = () => {
   const { data } = useSuspenseQuery(allCrudItemsQuery);

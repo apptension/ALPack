@@ -13,7 +13,6 @@ export default function Page({ params }: { params: { id: string } }) {
       crudItemId: params.id,
     },
   });
-
   return (
     <PageLayout>
       <PageHeadline header="Details about item" hasBackButton />

@@ -2,13 +2,18 @@ import { Queries, queries } from '@testing-library/dom';
 import { RenderOptions, RenderResult, render, renderHook } from '@testing-library/react';
 import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } from 'react';
 
-import { MantineProvider } from '@ab/core/providers';
+import { MantineProvider } from '../../providers/MantineProvider';
+import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from '../providers';
 
 /**
  * A set of properties that are passed to [`CoreTestProviders`](#coretestproviders) component to override the initial
  * state of providers
  */
-export type CoreTestProvidersProps = PropsWithChildren;
+export type CoreTestProvidersProps = PropsWithChildren<{
+  routerProps?: Omit<AppRouterContextProviderMockProps, 'children'>;
+}>;
+
+const defaultRouterProps = { router: {} };
 
 /**
  * Component that renders a set of providers used in tests globally like: `Mantine`, `LocalesProvider`, etc...
@@ -17,8 +22,12 @@ export type CoreTestProvidersProps = PropsWithChildren;
  * @param children
  * @constructor
  */
-export function CoreTestProviders({ children }: CoreTestProvidersProps) {
-  return <MantineProvider>{children}</MantineProvider>;
+export function CoreTestProviders({ children, routerProps = defaultRouterProps }: CoreTestProvidersProps) {
+  return (
+    <MantineProvider>
+      <AppRouterContextProviderMock {...routerProps}>{children}</AppRouterContextProviderMock>
+    </MantineProvider>
+  );
 }
 
 export type WrapperProps = Partial<CoreTestProvidersProps>;
