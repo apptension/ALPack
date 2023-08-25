@@ -2,14 +2,14 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { UserRole } from '@ab/schema/types';
 
-import { withAppProviders } from '../../../.storybook/decorators';
-import { sessionProviderFactory } from '../../tests/factories/sessionProviderFactory';
+import { withAppProviders } from '../../../../.storybook/decorators';
+import { sessionProviderFactory } from '../../../tests/factories/sessionProviderFactory';
 import { LoginState } from './loginState.component';
 
 type Story = StoryObj<typeof LoginState>;
 
 const meta: Meta<typeof LoginState> = {
-  title: 'App/Components/LoginState',
+  title: 'Homepage/Components/LoginState',
   component: LoginState,
 };
 
@@ -24,6 +24,18 @@ export const LoggedIn: Story = {
   decorators: [
     withAppProviders({
       sessionProviderProps: sessionProviderFactory({ role: UserRole.USER }),
+    }),
+  ],
+};
+
+export const Loading: Story = {
+  render: () => <LoginState />,
+  decorators: [
+    withAppProviders({
+      sessionProviderProps: {
+        data: null,
+        status: 'loading',
+      },
     }),
   ],
 };

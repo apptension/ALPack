@@ -5,11 +5,11 @@ import { render } from '../../tests/utils/rendering';
 import { Home } from '../home';
 
 describe('Home: Component', () => {
-  it('renders sample button', () => {
+  it('renders home button', () => {
     render(<Home />);
 
-    const heading = screen.getByText(/Sample button/i);
+    const homeBtn = screen.getByText(/Home/i);
 
-    expect(heading).toBeInTheDocument();
+    expect(homeBtn).toBeInTheDocument();
   });
 });

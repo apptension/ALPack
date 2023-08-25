@@ -1,16 +1,17 @@
-import { Button } from '@ab/core/components';
+import { Features, Footer, HeaderResponsive, Hero } from '@app/components/homepage';
 
-import { LoginState } from '@app/components';
+const links = [
+  { link: '#', label: 'Home' },
+  { link: `#features`, label: 'Features' },
+];
 
 export function Home() {
   return (
-    <main>
-      <div>
-        <p>
-          <LoginState />
-        </p>
-      </div>
-      <Button>Sample button</Button>
-    </main>
+    <>
+      <HeaderResponsive links={links} />
+      <Hero />
+      <Features title="Features" description="Awesome tech included:" />
+      <Footer data={[{ title: 'About', links: [{ label: 'GitHub', link: '#' }] }]} />
+    </>
   );
 }

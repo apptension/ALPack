@@ -25,15 +25,7 @@ export const CrudList = () => {
 
   return (
     <>
-      <Link
-        linkProps={{
-          href: RoutesConfig.crudAdd,
-        }}
-        buttonProps={{
-          mb: 'md',
-          leftIcon: <IconPlus />,
-        }}
-      >
+      <Link href={RoutesConfig.crudAdd} mb="md" leftIcon={<IconPlus />}>
         Add new CRUD item
       </Link>
       <SimpleGrid cols={4} spacing="sm" verticalSpacing="xs">

@@ -3,23 +3,23 @@ import { screen } from '@testing-library/react';
 
 import { UserRole } from '@ab/schema/types';
 
-import { sessionProviderFactory } from '../../../tests/factories/sessionProviderFactory';
-import { render } from '../../../tests/utils/rendering';
+import { sessionProviderFactory } from '../../../../tests/factories/sessionProviderFactory';
+import { render } from '../../../../tests/utils/rendering';
 import { LoginState } from '../loginState.component';
 
-describe('Home: Component', () => {
+describe('Homepage: LoginState', () => {
   describe('when logged in', () => {
-    it('renders Sign Out', () => {
+    it('renders `Go to app` button', () => {
       render(<LoginState />, {
         sessionProviderProps: sessionProviderFactory({ role: UserRole.USER }),
       });
 
-      expect(screen.getByText(/Sign Out/i)).toBeInTheDocument();
+      expect(screen.getByText(/Go to app/i)).toBeInTheDocument();
     });
   });
 
   describe('when not logged in', () => {
-    it('renders Sign In', () => {
+    it('renders `Sign In` button', () => {
       render(<LoginState />);
 
       expect(screen.getByText(/Sign In/i)).toBeInTheDocument();
