@@ -1,6 +1,6 @@
 export const RoutesConfig = {
-    crudList: '/crud',
-    crudDetails: '/crud/:id',
-    crudEdit: '/crud/edit/:id',
-    crudAdd: '/crud/add',
+  crudList: '/app/crud',
+  crudDetails: '/app/crud/:id',
+  crudEdit: '/app/crud/edit/:id',
+  crudAdd: '/app/crud/add',
 };

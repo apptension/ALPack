@@ -7,9 +7,9 @@ import { IconPlus } from '@tabler/icons-react';
 import { CrudItem as CrudItemType } from '@ab/api-client';
 import { Link } from '@ab/core/components';
 
-import { allCrudItemsQuery } from '@app/app/crud/crud.graphql';
-import { CrudItem } from '@app/components/crudItem';
-import { RoutesConfig } from '@app/config/routes';
+import { CrudItem } from '../../../components/crudItem';
+import { RoutesConfig } from '../../../config/routes';
+import { allCrudItemsQuery } from './crud.graphql';
 
 export const CrudList = () => {
   const { data } = useSuspenseQuery(allCrudItemsQuery);

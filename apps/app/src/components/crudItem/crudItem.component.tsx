@@ -9,9 +9,8 @@ import { MouseEvent } from 'react';
 import { CrudItem as CrudItemType } from '@ab/api-client';
 import { Link } from '@ab/core/components';
 
+import { allCrudItemsQuery } from '../../app/app/crud/crud.graphql';
 import { deleteCrudItemMutation } from './crudItem.graphql';
-import { allCrudItemsQuery } from '@app/app/crud/crud.graphql';
-
 
 export interface CrudItemProps {
   crudItem: CrudItemType;
@@ -54,13 +53,13 @@ export const CrudItem = ({ crudItem }: CrudItemProps) => {
 
   const handleUpdateRedirect = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    push(`/crud/update/${crudItem.id}`);
+    push(`/app/crud/update/${crudItem.id}`);
   };
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Flex w="100%" justify="center" align="center">
-        <Link href={`/crud/${crudItem.id}`} variant="white">
+        <Link href={`/app/crud/${crudItem.id}`} variant="white">
           <Text weight={500}>{crudItem.name}</Text>
         </Link>
         <ActionIcon onClick={handleUpdateRedirect} variant="subtle">
