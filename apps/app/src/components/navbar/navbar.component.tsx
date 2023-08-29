@@ -40,7 +40,7 @@ export function Navbar({ opened }: NavbarProps) {
       </NavbarBase.Section>
 
       <NavbarBase.Section className={classes.footer}>
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <a href="/app/profile" className={classes.link}>
           <IconUser className={classes.linkIcon} stroke={1.5} />
           <span>Your profile</span>
         </a>

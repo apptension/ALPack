@@ -9,6 +9,7 @@ type Query {
   photo(id: ID!): Photo!
   "Return all photos in db"
   allPhotos: [Photo!]!
+  me: UserEntity!
 }
 type CRUDItem {
   id: ID!
@@ -18,11 +19,17 @@ type Photo {
   id: ID!
   name: String!
 }
+type UserEntity {
+  id: ID!
+  name: String!
+  email: String!
+}
 type Mutation {
   addCrudItem(newCrudItemData: AddCRUDItemInput!): CRUDItem!
   updateCrudItem(updateCrudItemData: UpdateCRUDItemInput!): CRUDItem!
   deleteCrudItem(deleteCrudItemData: DeleteCRUDItemInput!): DeleteResult!
   addPhoto(data: AddPhotoInput!): Photo!
+  updateProfile(updateProfileData: UpdateProfileInput!): UserEntity!
 }
 type DeleteResult {
   affected: Float!
@@ -42,6 +49,10 @@ input DeleteCRUDItemInput {
 }
 "New photo data"
 input AddPhotoInput {
+  name: String!
+}
+"Update profile data"
+input UpdateProfileInput {
   name: String!
 }
 "Exposes a URL that specifies the behavior of this scalar."

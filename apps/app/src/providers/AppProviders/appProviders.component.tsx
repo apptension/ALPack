@@ -1,5 +1,6 @@
 'use client';
 
+import { Notifications } from '@mantine/notifications';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { ReactNode } from 'react';
@@ -18,7 +19,10 @@ export const AppProviders = ({ children, session, apolloClientOpts }: AppProvide
   return (
     <SessionProvider session={session}>
       <MantineProvider withGlobalStyles withNormalizeCSS>
-        <ApolloProvider clientOpts={apolloClientOpts}>{children}</ApolloProvider>
+        <ApolloProvider clientOpts={apolloClientOpts}>
+          <Notifications />
+          {children}
+        </ApolloProvider>
       </MantineProvider>
     </SessionProvider>
   );

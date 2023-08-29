@@ -7,9 +7,10 @@ import { permissions } from './auth/permissions';
 import { initializeDataSource } from './data-source';
 import { CRUDItemResolver } from './resolvers/crudItem/crudItem.resolver';
 import { PhotoResolver } from './resolvers/photo/photo.resolver';
+import { UserResolver } from './resolvers/user/user.resolver';
 
 const schema = await buildSchema({
-  resolvers: [PhotoResolver, CRUDItemResolver],
+  resolvers: [UserResolver, PhotoResolver, CRUDItemResolver],
   validate: true,
   orphanedTypes: [DeleteResult],
 });

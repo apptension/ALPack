@@ -46,6 +46,7 @@ export type Mutation = {
   addPhoto: Photo;
   deleteCrudItem: DeleteResult;
   updateCrudItem: CrudItem;
+  updateProfile: UserEntity;
 };
 
 
@@ -68,6 +69,11 @@ export type MutationUpdateCrudItemArgs = {
   updateCrudItemData: UpdateCrudItemInput;
 };
 
+
+export type MutationUpdateProfileArgs = {
+  updateProfileData: UpdateProfileInput;
+};
+
 export type Photo = {
   __typename?: 'Photo';
   id: Scalars['ID'];
@@ -81,6 +87,7 @@ export type Query = {
   /** Return all photos in db */
   allPhotos: Array<Photo>;
   crudItem: CrudItem;
+  me: UserEntity;
   photo: Photo;
 };
 
@@ -100,10 +107,17 @@ export type UpdateCrudItemInput = {
   name: Scalars['String'];
 };
 
-export type TestQueryQueryVariables = Exact<{ [key: string]: never; }>;
+/** Update profile data */
+export type UpdateProfileInput = {
+  name: Scalars['String'];
+};
 
-
-export type TestQueryQuery = { __typename?: 'Query', allPhotos: Array<{ __typename?: 'Photo', id: string, name: string }> };
+export type UserEntity = {
+  __typename?: 'UserEntity';
+  email: Scalars['String'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
 
 export type CrudItemDetailsQueryVariables = Exact<{
   crudItemId: Scalars['ID'];
@@ -131,6 +145,18 @@ export type UpdateCrudItemMutationVariables = Exact<{
 
 export type UpdateCrudItemMutation = { __typename?: 'Mutation', updateCrudItem: { __typename?: 'CRUDItem', id: string, name: string } };
 
+export type UserProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UserProfileQuery = { __typename?: 'Query', me: { __typename?: 'UserEntity', id: string, name: string } };
+
+export type UpdateProfileMutationVariables = Exact<{
+  updateProfileData: UpdateProfileInput;
+}>;
+
+
+export type UpdateProfileMutation = { __typename?: 'Mutation', updateProfile: { __typename?: 'UserEntity', id: string, name: string } };
+
 export type DeleteCrudItemMutationVariables = Exact<{
   deleteCrudItemData: DeleteCrudItemInput;
 }>;
@@ -144,10 +170,11 @@ export type PhotosQueryQueryVariables = Exact<{ [key: string]: never; }>;
 export type PhotosQueryQuery = { __typename?: 'Query', allPhotos: Array<{ __typename?: 'Photo', id: string }> };
 
 
-export const TestQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"testQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allPhotos"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<TestQueryQuery, TestQueryQueryVariables>;
 export const CrudItemDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CrudItemDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"crudItemId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"crudItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"crudItemId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CrudItemDetailsQuery, CrudItemDetailsQueryVariables>;
 export const AddCrudItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddCrudItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newCrudItemData"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddCRUDItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addCrudItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"newCrudItemData"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newCrudItemData"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<AddCrudItemMutation, AddCrudItemMutationVariables>;
 export const AllCrudItemsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllCrudItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allCrudItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<AllCrudItemsQuery, AllCrudItemsQueryVariables>;
 export const UpdateCrudItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateCrudItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCrudItemData"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCRUDItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCrudItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCrudItemData"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCrudItemData"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<UpdateCrudItemMutation, UpdateCrudItemMutationVariables>;
+export const UserProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"UserProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<UserProfileQuery, UserProfileQueryVariables>;
+export const UpdateProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProfileData"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateProfileInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProfile"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateProfileData"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProfileData"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<UpdateProfileMutation, UpdateProfileMutationVariables>;
 export const DeleteCrudItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteCrudItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"deleteCrudItemData"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteCRUDItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteCrudItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"deleteCrudItemData"},"value":{"kind":"Variable","name":{"kind":"Name","value":"deleteCrudItemData"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"affected"}}]}}]}}]} as unknown as DocumentNode<DeleteCrudItemMutation, DeleteCrudItemMutationVariables>;
 export const PhotosQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"photosQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allPhotos"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<PhotosQueryQuery, PhotosQueryQueryVariables>;

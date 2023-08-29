@@ -13,11 +13,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query testQuery {\n    allPhotos {\n      id\n      name\n    }\n  }\n": types.TestQueryDocument,
     "\n    query CrudItemDetails($crudItemId: ID!) {\n        crudItem(id: $crudItemId) {\n        id\n        name\n        }\n    }\n": types.CrudItemDetailsDocument,
     "\n  mutation AddCrudItem($newCrudItemData: AddCRUDItemInput!) {\n    addCrudItem(newCrudItemData: $newCrudItemData) {\n      id\n      name\n    }\n  }\n": types.AddCrudItemDocument,
     "\n  query AllCrudItems {\n    allCrudItems {\n      id\n      name\n    }\n  }\n": types.AllCrudItemsDocument,
     "\n    mutation UpdateCrudItem($updateCrudItemData: UpdateCRUDItemInput!) {\n        updateCrudItem(updateCrudItemData: $updateCrudItemData) {\n        id\n        name\n        }\n    }\n": types.UpdateCrudItemDocument,
+    "\n  query UserProfile {\n    me {\n      id\n      name\n    }\n  }\n": types.UserProfileDocument,
+    "\n  mutation UpdateProfile($updateProfileData: UpdateProfileInput!) {\n    updateProfile(updateProfileData: $updateProfileData) {\n      id\n      name\n    }\n  }\n": types.UpdateProfileDocument,
     "\nmutation DeleteCrudItem($deleteCrudItemData: DeleteCRUDItemInput!) {\n    deleteCrudItem(deleteCrudItemData: $deleteCrudItemData) {\n      affected\n    }\n  }\n": types.DeleteCrudItemDocument,
     "\n  query photosQuery {\n    allPhotos {\n      id\n    }\n  }\n": types.PhotosQueryDocument,
 };
@@ -39,10 +40,6 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query testQuery {\n    allPhotos {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  query testQuery {\n    allPhotos {\n      id\n      name\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function gql(source: "\n    query CrudItemDetails($crudItemId: ID!) {\n        crudItem(id: $crudItemId) {\n        id\n        name\n        }\n    }\n"): (typeof documents)["\n    query CrudItemDetails($crudItemId: ID!) {\n        crudItem(id: $crudItemId) {\n        id\n        name\n        }\n    }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -56,6 +53,14 @@ export function gql(source: "\n  query AllCrudItems {\n    allCrudItems {\n     
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n    mutation UpdateCrudItem($updateCrudItemData: UpdateCRUDItemInput!) {\n        updateCrudItem(updateCrudItemData: $updateCrudItemData) {\n        id\n        name\n        }\n    }\n"): (typeof documents)["\n    mutation UpdateCrudItem($updateCrudItemData: UpdateCRUDItemInput!) {\n        updateCrudItem(updateCrudItemData: $updateCrudItemData) {\n        id\n        name\n        }\n    }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query UserProfile {\n    me {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  query UserProfile {\n    me {\n      id\n      name\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation UpdateProfile($updateProfileData: UpdateProfileInput!) {\n    updateProfile(updateProfileData: $updateProfileData) {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateProfile($updateProfileData: UpdateProfileInput!) {\n    updateProfile(updateProfileData: $updateProfileData) {\n      id\n      name\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
