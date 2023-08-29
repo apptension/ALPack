@@ -16,7 +16,14 @@ export function Header({ opened, toggleOpen }: MobileHeaderProps) {
     <HeaderBase height={HEADER_HEIGHT} p="md">
       <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-          <Burger opened={opened} onClick={toggleOpen} size="sm" color={theme.colors.gray[6]} mr="xl" />
+          <Burger
+            opened={opened}
+            onClick={toggleOpen}
+            size="sm"
+            color={theme.colors.gray[6]}
+            mr="xl"
+            data-testid="toggle-button"
+          />
         </MediaQuery>
         <Image src={Logo} alt="Apptension" height={28} />
       </div>

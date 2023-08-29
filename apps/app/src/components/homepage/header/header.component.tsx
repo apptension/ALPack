@@ -1,6 +1,6 @@
 'use client';
 
-import { Burger, Container, Divider, Group, Header, Paper, Transition } from '@mantine/core';
+import { Burger, Container, Divider, Group, Header as HeaderBase, Paper, Transition } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -13,7 +13,7 @@ interface HeaderResponsiveProps {
   links: { link: string; label: string }[];
 }
 
-export function HeaderResponsive({ links }: HeaderResponsiveProps) {
+export function Header({ links }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
@@ -34,7 +34,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} className={classes.root}>
+    <HeaderBase height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
         <Image src={LogoBlack} height={50} alt="Apptension" />
         <Group spacing={5} className={classes.links}>
@@ -51,6 +51,6 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
           )}
         </Transition>
       </Container>
-    </Header>
+    </HeaderBase>
   );
 }
