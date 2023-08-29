@@ -17,7 +17,8 @@
     "@mantine/hooks": "^6.0.11",
     "@mantine/modals": "^6.0.17",
     "@tabler/icons-react": "^2.30.0",
-    "next": "^13.4.18"
+    "next": "^13.4.18",
+    "react-intl": "^6.4.4"
   },
   "devDependencies": {
     "@testing-library/dom": "^9.3.1",

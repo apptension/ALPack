@@ -9,7 +9,7 @@ import { MouseEvent } from 'react';
 import { CrudItem as CrudItemType } from '@ab/api-client';
 import { Link } from '@ab/core/components';
 
-import { allCrudItemsQuery } from '../../app/app/crud/crud.graphql';
+import { allCrudItemsQuery } from '../../app/[lang]/app/crud/crud.graphql';
 import { deleteCrudItemMutation } from './crudItem.graphql';
 
 export interface CrudItemProps {
@@ -65,7 +65,6 @@ export const CrudItem = ({ crudItem }: CrudItemProps) => {
         <ActionIcon onClick={handleUpdateRedirect} variant="subtle">
           <IconEdit />
         </ActionIcon>
-
         <ActionIcon disabled={loading} onClick={handleDelete} variant="subtle">
           <IconTrashX />
         </ActionIcon>

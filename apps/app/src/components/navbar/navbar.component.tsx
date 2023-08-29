@@ -5,6 +5,7 @@ import { IconDashboard, IconLogout, IconStar, IconUser } from '@tabler/icons-rea
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FormattedMessage } from 'react-intl';
 
 import { useStyles } from './navbar.styles';
 
@@ -42,12 +43,16 @@ export function Navbar({ opened }: NavbarProps) {
       <NavbarBase.Section className={classes.footer}>
         <a href="/app/profile" className={classes.link}>
           <IconUser className={classes.linkIcon} stroke={1.5} />
-          <span>Your profile</span>
+          <span>
+            <FormattedMessage defaultMessage="Your Profile" id="Navbar / Profile" />
+          </span>
         </a>
 
         <a href="#" className={classes.link} onClick={() => signOut()}>
           <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span>Logout</span>
+          <span>
+            <FormattedMessage defaultMessage="Logout" id="Navbar / Logout" />
+          </span>
         </a>
       </NavbarBase.Section>
     </NavbarBase>

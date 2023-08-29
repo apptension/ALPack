@@ -1,8 +1,11 @@
 import { Queries, queries } from '@testing-library/dom';
 import { RenderOptions, RenderResult, render, renderHook } from '@testing-library/react';
 import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } from 'react';
+import { IntlProvider } from 'react-intl';
 
+import { DEFAULT_LOCALE, Locale, TranslationMessages, translationMessages } from '../../config/i18n';
 import { MantineProvider } from '../../providers/MantineProvider';
+import { LocalesProvider } from '../../providers/localesProvider';
 import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from '../providers';
 
 /**
@@ -11,6 +14,8 @@ import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from 
  */
 export type CoreTestProvidersProps = PropsWithChildren<{
   routerProps?: Omit<AppRouterContextProviderMockProps, 'children'>;
+  intlLocale: Locale;
+  intlMessages: TranslationMessages;
 }>;
 
 const defaultRouterProps = { router: {} };
@@ -22,10 +27,21 @@ const defaultRouterProps = { router: {} };
  * @param children
  * @constructor
  */
-export function CoreTestProviders({ children, routerProps = defaultRouterProps }: CoreTestProvidersProps) {
+export function CoreTestProviders({
+  children,
+  routerProps = defaultRouterProps,
+  intlLocale,
+  intlMessages,
+}: CoreTestProvidersProps) {
   return (
     <MantineProvider>
-      <AppRouterContextProviderMock {...routerProps}>{children}</AppRouterContextProviderMock>
+      <AppRouterContextProviderMock {...routerProps}>
+        <LocalesProvider>
+          <IntlProvider locale={intlLocale} messages={intlMessages}>
+            {children}
+          </IntlProvider>
+        </LocalesProvider>
+      </AppRouterContextProviderMock>
     </MantineProvider>
   );
 }
@@ -40,7 +56,14 @@ export function getWrapper(
   wrapper: ComponentType<WrapperProps>;
 } {
   const wrapper = (props: PropsWithChildren<WrapperProps>) => {
-    return <WrapperComponent {...props} {...(wrapperProps ?? {})} />;
+    return (
+      <WrapperComponent
+        intlLocale={DEFAULT_LOCALE}
+        intlMessages={translationMessages[DEFAULT_LOCALE]}
+        {...props}
+        {...(wrapperProps ?? {})}
+      />
+    );
   };
 
   return {

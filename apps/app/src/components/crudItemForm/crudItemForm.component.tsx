@@ -3,6 +3,7 @@
 import { ApolloError } from '@apollo/client';
 import { Box, Button, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { FormattedMessage } from 'react-intl';
 
 export type CrudItemFormFields = {
   name: string;
@@ -29,7 +30,7 @@ export const CrudItemForm = ({ loading, onSubmit, initialData }: CrudItemFormPro
         <TextInput withAsterisk label="Name" placeholder="Name" {...form.getInputProps('name')} />
         <Group position="right" mt="md">
           <Button loading={loading} type="submit">
-            Submit
+            <FormattedMessage defaultMessage="Submit" id="CrudItemForm / Submit Button" />
           </Button>
         </Group>
       </form>

@@ -3,8 +3,10 @@ import { RenderOptions, render, renderHook } from '@testing-library/react';
 import { Session } from 'next-auth';
 import { SessionContext, SessionContextValue } from 'next-auth/react';
 import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } from 'react';
+import { IntlProvider } from 'react-intl';
 
 import * as apiUtils from '@ab/api-client/tests/utils/rendering';
+import { DEFAULT_LOCALE, Locale, TranslationMessages, translationMessages } from '@ab/core/config/i18n';
 
 import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from '../providers';
 
@@ -15,6 +17,8 @@ export type AppTestProvidersProps = PropsWithChildren<{
     data: Session | null;
   };
   routerProps?: Omit<AppRouterContextProviderMockProps, 'children'>;
+  intlLocale: Locale;
+  intlMessages: TranslationMessages;
 }>;
 
 const defaultRouterProps = { router: {} };
@@ -23,6 +27,8 @@ export function AppTestProviders({
   children,
   sessionProviderProps = { status: 'unauthenticated', data: null },
   routerProps = defaultRouterProps,
+  intlLocale,
+  intlMessages,
 }: AppTestProvidersProps) {
   return (
     <SessionContext.Provider
@@ -33,12 +39,16 @@ export function AppTestProviders({
         ...sessionProviderProps,
       }}
     >
-      <AppRouterContextProviderMock {...routerProps}>{children}</AppRouterContextProviderMock>
+      <AppRouterContextProviderMock {...routerProps}>
+        <IntlProvider locale={intlLocale} messages={intlMessages}>
+          {children}
+        </IntlProvider>
+      </AppRouterContextProviderMock>
     </SessionContext.Provider>
   );
 }
 
-export type WrapperProps = apiUtils.WrapperProps & AppTestProvidersProps;
+export type WrapperProps = apiUtils.WrapperProps & Partial<AppTestProvidersProps>;
 
 /** @ignore */
 export function getWrapper(
@@ -59,7 +69,13 @@ export function getWrapper(
 
     return (
       <ApiWrapper {...props}>
-        <WrapperComponent routerProps={routerProps} {...props} sessionProviderProps={sessionProviderProps}>
+        <WrapperComponent
+          routerProps={routerProps}
+          {...props}
+          sessionProviderProps={sessionProviderProps}
+          intlLocale={DEFAULT_LOCALE}
+          intlMessages={translationMessages[DEFAULT_LOCALE]}
+        >
           {children}
         </WrapperComponent>
       </ApiWrapper>
