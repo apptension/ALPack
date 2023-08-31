@@ -1,19 +1,19 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { withProviders } from '../../utils';
-import { GenericError } from './';
+import { ThemeToggler } from './';
 
-type Story = StoryObj<typeof GenericError>;
+type Story = StoryObj<typeof ThemeToggler>;
 
-const meta: Meta<typeof GenericError> = {
-  title: 'Core/GenericError',
-  component: GenericError,
+const meta: Meta<typeof ThemeToggler> = {
+  title: 'Core/ThemeToggler',
+  component: ThemeToggler,
 };
 
 export default meta;
 
 export const Default: Story = {
-  render: () => <GenericError />,
+  render: () => <ThemeToggler />,
   parameters: {
     nextjs: {
       appDirectory: true,

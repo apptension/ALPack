@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { withProviders } from '../../utils';
 import { BackButton } from './';
 
 type Story = StoryObj<typeof BackButton>;
@@ -18,4 +19,5 @@ export const Default: Story = {
       appDirectory: true,
     },
   },
+  decorators: [withProviders()],
 };

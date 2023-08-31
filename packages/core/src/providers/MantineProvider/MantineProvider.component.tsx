@@ -1,5 +1,11 @@
 import { CacheProvider } from '@emotion/react';
-import { MantineProvider as DefaultMantineProvider, useEmotionCache } from '@mantine/core';
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider as DefaultMantineProvider,
+  useEmotionCache,
+} from '@mantine/core';
+import { useColorScheme, useLocalStorage } from '@mantine/hooks';
 import { useServerInsertedHTML } from 'next/navigation';
 
 export const MantineProvider = ({ children }: any) => {
@@ -15,11 +21,24 @@ export const MantineProvider = ({ children }: any) => {
     />
   ));
 
+  const preferredColorScheme = useColorScheme();
+
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'mantine-color-scheme',
+    defaultValue: preferredColorScheme,
+    getInitialValueInEffect: true,
+  });
+
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
   return (
     <CacheProvider value={cache}>
-      <DefaultMantineProvider withGlobalStyles withNormalizeCSS>
-        {children}
-      </DefaultMantineProvider>
+      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+        <DefaultMantineProvider theme={{ colorScheme: colorScheme }} withGlobalStyles withNormalizeCSS>
+          {children}
+        </DefaultMantineProvider>
+      </ColorSchemeProvider>
     </CacheProvider>
   );
 };
