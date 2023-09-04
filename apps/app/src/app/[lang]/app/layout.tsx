@@ -13,6 +13,9 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       navbar={<Navbar opened={opened} />}
       navbarOffsetBreakpoint="sm"
       header={<Header opened={opened} toggleOpen={() => setOpened(!opened)} />}
+      styles={(theme) => ({
+        main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.white },
+      })}
     >
       {children}
     </AppShell>

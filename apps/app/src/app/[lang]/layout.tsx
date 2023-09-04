@@ -1,8 +1,10 @@
+import { ColorScheme } from '@mantine/core';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
-import { headers } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 
 import { Locale, i18n } from '@ab/core/config/i18n';
+import { COLOR_SCHEME_COOKIE_NAME } from '@ab/core/providers/MantineProvider/MantineProvider.const';
 
 import { authOptions } from '@app/config/auth';
 import { AppProviders } from '@app/providers/AppProviders';
@@ -25,6 +27,8 @@ export default async function Root({ children, params }: { children: React.React
   const authHeaders = {
     COOKIE: headers().get('COOKIE') || '',
   };
+  const cookieStore = cookies();
+  const colorSchemeValue = cookieStore.get(COLOR_SCHEME_COOKIE_NAME);
   return (
     <html lang={params.lang}>
       <body>
@@ -34,6 +38,7 @@ export default async function Root({ children, params }: { children: React.React
             authHeaders,
           }}
           lang={params.lang}
+          defaultColorScheme={colorSchemeValue ? (colorSchemeValue.value as ColorScheme) : undefined}
         >
           {children}
         </AppProviders>

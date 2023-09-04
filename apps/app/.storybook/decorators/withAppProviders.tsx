@@ -1,4 +1,5 @@
 import { StoryFn } from '@storybook/react';
+import { useDarkMode } from 'storybook-dark-mode';
 
 import { AppTestProviders, WrapperProps, getWrapper } from '../../src/tests/utils/rendering';
 
@@ -22,7 +23,16 @@ import { AppTestProviders, WrapperProps, getWrapper } from '../../src/tests/util
 export function withAppProviders(wrapperProps: WrapperProps = {}) {
   // eslint-disable-next-line react/display-name
   return (StoryComponent: StoryFn, storyContext: any) => {
-    const { wrapper: WrapperComponent } = getWrapper(AppTestProviders, wrapperProps, storyContext) as any;
+    const { wrapper: WrapperComponent } = getWrapper(
+      AppTestProviders,
+      {
+        ...wrapperProps,
+        mantineProps: {
+          defaultColorScheme: useDarkMode() ? 'dark' : 'light',
+        },
+      },
+      storyContext
+    ) as any;
 
     return (
       <WrapperComponent {...wrapperProps}>

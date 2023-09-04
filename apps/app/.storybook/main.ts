@@ -6,7 +6,7 @@ const config: StorybookConfig = {
     '../src/components/**/*.stories.@(js|jsx|ts|tsx|mdx)',
     '../../../packages/**/src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
   ],
-  addons: ['@storybook/addon-essentials'],
+  addons: ['@storybook/addon-essentials', 'storybook-dark-mode'],
   framework: {
     name: '@storybook/nextjs',
     options: {},

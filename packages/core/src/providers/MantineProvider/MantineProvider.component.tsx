@@ -1,14 +1,21 @@
-import { CacheProvider } from '@emotion/react';
 import {
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider as DefaultMantineProvider,
   useEmotionCache,
 } from '@mantine/core';
-import { useColorScheme, useLocalStorage } from '@mantine/hooks';
+import { useColorScheme } from '@mantine/hooks';
+import { getCookie, setCookie } from 'cookies-next';
 import { useServerInsertedHTML } from 'next/navigation';
+import { PropsWithChildren, useCallback, useState } from 'react';
 
-export const MantineProvider = ({ children }: any) => {
+import { COLOR_SCHEME_COOKIE_NAME } from './MantineProvider.const';
+
+export interface MantineProviderProps {
+  defaultColorScheme?: ColorScheme;
+}
+
+export const MantineProvider = ({ children, defaultColorScheme }: PropsWithChildren<MantineProviderProps>) => {
   const cache = useEmotionCache();
   cache.compat = true;
 
@@ -21,24 +28,25 @@ export const MantineProvider = ({ children }: any) => {
     />
   ));
 
-  const preferredColorScheme = useColorScheme();
+  const preferredColorScheme =
+    defaultColorScheme ?? (getCookie(COLOR_SCHEME_COOKIE_NAME) as ColorScheme | undefined) ?? useColorScheme();
 
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: 'mantine-color-scheme',
-    defaultValue: preferredColorScheme,
-    getInitialValueInEffect: true,
-  });
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(preferredColorScheme);
 
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+  const toggleColorScheme = useCallback(
+    (value?: ColorScheme) => {
+      const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+      setColorScheme(nextColorScheme);
+      setCookie(COLOR_SCHEME_COOKIE_NAME, nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
+    },
+    [setColorScheme, setCookie, colorScheme]
+  );
 
   return (
-    <CacheProvider value={cache}>
-      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <DefaultMantineProvider theme={{ colorScheme: colorScheme }} withGlobalStyles withNormalizeCSS>
-          {children}
-        </DefaultMantineProvider>
-      </ColorSchemeProvider>
-    </CacheProvider>
+    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+      <DefaultMantineProvider theme={{ colorScheme }} emotionCache={cache} withGlobalStyles withNormalizeCSS>
+        {children}
+      </DefaultMantineProvider>
+    </ColorSchemeProvider>
   );
 };

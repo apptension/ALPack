@@ -4,7 +4,7 @@ import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } fr
 import { IntlProvider } from 'react-intl';
 
 import { DEFAULT_LOCALE, Locale, TranslationMessages, translationMessages } from '../../config/i18n';
-import { MantineProvider } from '../../providers/MantineProvider';
+import { MantineProvider, MantineProviderProps } from '../../providers/MantineProvider';
 import { LocalesProvider } from '../../providers/localesProvider';
 import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from '../providers';
 
@@ -16,6 +16,7 @@ export type CoreTestProvidersProps = PropsWithChildren<{
   routerProps?: Omit<AppRouterContextProviderMockProps, 'children'>;
   intlLocale: Locale;
   intlMessages: TranslationMessages;
+  mantineProps?: MantineProviderProps;
 }>;
 
 const defaultRouterProps = { router: {} };
@@ -32,9 +33,10 @@ export function CoreTestProviders({
   routerProps = defaultRouterProps,
   intlLocale,
   intlMessages,
+  mantineProps,
 }: CoreTestProvidersProps) {
   return (
-    <MantineProvider>
+    <MantineProvider defaultColorScheme="light" {...mantineProps}>
       <AppRouterContextProviderMock {...routerProps}>
         <LocalesProvider>
           <IntlProvider locale={intlLocale} messages={intlMessages}>
