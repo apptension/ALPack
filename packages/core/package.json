@@ -29,7 +29,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-testing-library": "^5.10.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "peerDependencies": {
     "react": "18.2.0",

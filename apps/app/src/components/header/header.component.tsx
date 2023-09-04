@@ -1,6 +1,7 @@
 import { Burger, Flex, Header as HeaderBase, MediaQuery, rem, useMantineTheme } from '@mantine/core';
 import Image from 'next/image';
 
+import { LanguageSwitch } from '@ab/core/components';
 import { ThemeToggler } from '@ab/core/components';
 
 import Logo from '../../../public/logo-black.png';
@@ -30,7 +31,10 @@ export function Header({ opened, toggleOpen }: MobileHeaderProps) {
           </MediaQuery>
           <Image src={Logo} alt="Apptension" height={28} />
         </>
-        <ThemeToggler />
+        <Flex align="center" h="100%" gap="md">
+          <ThemeToggler />
+          <LanguageSwitch />
+        </Flex>
       </Flex>
     </HeaderBase>
   );

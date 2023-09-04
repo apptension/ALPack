@@ -2,12 +2,7 @@ import { withAuth } from 'next-auth/middleware'
 
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-
 import { i18n } from '@ab/core/config/i18n'
-
-
-import { match as matchLocale } from '@formatjs/intl-localematcher'
-import Negotiator from 'negotiator';
 
 const privatePages = ['/app/:path*', '/admin/:path*']
 
@@ -17,17 +12,11 @@ function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string> = {}
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value))
 
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales
 
-  // Use negotiator and intl-localematcher to get best locale
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales
-  )
+  const language =
+    request.cookies.get('NEXT_LOCALE')?.value ?? getBrowserLanguage(request) ?? i18n.defaultLocale;
 
-  const locale = matchLocale(languages, locales, i18n.defaultLocale)
-
-  return locale
+  return language
 }
 
 const authMiddleware = withAuth(
@@ -62,7 +51,6 @@ export function intlMiddleware(request: NextRequest) {
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   )
-
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request)
@@ -96,3 +84,21 @@ export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
+
+
+const getBrowserLanguage = (req: NextRequest) => {
+  return req.headers
+    .get("accept-language")
+    ?.split(",")
+    .map((i) => i.split(";"))
+    ?.reduce(
+      (ac: { code: string; priority: string }[], lang) => [
+        ...ac,
+        { code: lang[0], priority: lang[1] },
+      ],
+      []
+    )
+    ?.sort((a, b) => (a.priority > b.priority ? -1 : 1))
+    ?.find((i) => (i18n.locales as readonly string[]).includes(i.code.substring(0, 2)))
+    ?.code?.substring(0, 2);
+};
