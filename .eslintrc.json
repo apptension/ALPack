@@ -72,6 +72,9 @@
         "alwaysTryTypes": true,
         "project": "tsconfig.base.json"
       }
+    },
+    "next": {
+      "rootDir": "apps/app"
     }
   }
 }

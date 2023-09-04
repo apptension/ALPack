@@ -1,8 +1,7 @@
 import { Burger, Flex, Header as HeaderBase, MediaQuery, rem, useMantineTheme } from '@mantine/core';
 import Image from 'next/image';
 
-import { LanguageSwitch } from '@ab/core/components';
-import { ThemeToggler } from '@ab/core/components';
+import { LanguageSwitch, ThemeToggler } from '@ab/core/components';
 
 import Logo from '../../../public/logo-black.png';
 

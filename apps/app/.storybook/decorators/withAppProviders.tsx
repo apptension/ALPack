@@ -20,6 +20,7 @@ import { AppTestProviders, WrapperProps, getWrapper } from '../../src/tests/util
  * ```
  */
 export function withAppProviders(wrapperProps: WrapperProps = {}) {
+  // eslint-disable-next-line react/display-name
   return (StoryComponent: StoryFn, storyContext: any) => {
     const { wrapper: WrapperComponent } = getWrapper(AppTestProviders, wrapperProps, storyContext) as any;
 
