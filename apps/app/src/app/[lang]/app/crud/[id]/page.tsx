@@ -5,8 +5,8 @@ import { useIntl } from 'react-intl';
 
 import { PageHeadline, PageLayout } from '@ab/core/components';
 
+import { detailsCrudItemQuery } from '../../../../../graphql';
 import { CrudDetails } from './crudDetails';
-import { detailsCrudItemQuery } from './details.graphql';
 
 export default function Page({ params }: { params: { id: string } }) {
   const { formatMessage } = useIntl();

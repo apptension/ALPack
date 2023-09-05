@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 
 import { CrudItem } from '@ab/api-client';
 
-import { CrudItemForm, CrudItemFormFields } from '../../../../../components/crudItemForm/crudItemForm.component';
-import { RoutesConfig } from '../../../../../config/routes';
-import { addCRUDItemMutation } from './add.graphql';
+import { CrudItemForm, CrudItemFormFields } from '@app/components/crudItemForm/crudItemForm.component';
+import { RoutesConfig } from '@app/config/routes';
+import { addCRUDItemMutation } from '@app/graphql';
 
 export const AddCrudItem = () => {
   const { push } = useRouter();

@@ -6,16 +6,9 @@ type Query {
   crudItem(id: ID!): CRUDItem!
   "Return all crudItems from db"
   allCrudItems: [CRUDItem!]!
-  photo(id: ID!): Photo!
-  "Return all photos in db"
-  allPhotos: [Photo!]!
   me: UserEntity!
 }
 type CRUDItem {
-  id: ID!
-  name: String!
-}
-type Photo {
   id: ID!
   name: String!
 }
@@ -28,7 +21,6 @@ type Mutation {
   addCrudItem(newCrudItemData: AddCRUDItemInput!): CRUDItem!
   updateCrudItem(updateCrudItemData: UpdateCRUDItemInput!): CRUDItem!
   deleteCrudItem(deleteCrudItemData: DeleteCRUDItemInput!): DeleteResult!
-  addPhoto(data: AddPhotoInput!): Photo!
   updateProfile(updateProfileData: UpdateProfileInput!): UserEntity!
 }
 type DeleteResult {
@@ -46,10 +38,6 @@ input UpdateCRUDItemInput {
 "Delete crudItem"
 input DeleteCRUDItemInput {
   id: String!
-}
-"New photo data"
-input AddPhotoInput {
-  name: String!
 }
 "Update profile data"
 input UpdateProfileInput {

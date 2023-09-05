@@ -1,1 +1,1 @@
-export * from './projects.graphql';
+export * from './crud.graphql';

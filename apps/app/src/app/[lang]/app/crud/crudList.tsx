@@ -8,9 +8,9 @@ import { FormattedMessage } from 'react-intl';
 import { CrudItem as CrudItemType } from '@ab/api-client';
 import { Link } from '@ab/core/components';
 
-import { CrudItem } from '../../../../components/crudItem';
-import { RoutesConfig } from '../../../../config/routes';
-import { allCrudItemsQuery } from './crud.graphql';
+import { CrudItem } from '@app/components/crudItem';
+import { RoutesConfig } from '@app/config/routes';
+import { allCrudItemsQuery } from '@app/graphql';
 
 export const CrudList = () => {
   const { data } = useSuspenseQuery(allCrudItemsQuery);

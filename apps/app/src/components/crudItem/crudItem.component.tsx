@@ -9,8 +9,7 @@ import { MouseEvent } from 'react';
 import { CrudItem as CrudItemType } from '@ab/api-client';
 import { Link } from '@ab/core/components';
 
-import { allCrudItemsQuery } from '../../app/[lang]/app/crud/crud.graphql';
-import { deleteCrudItemMutation } from './crudItem.graphql';
+import { allCrudItemsQuery, deleteCrudItemMutation } from '@app/graphql';
 
 export interface CrudItemProps {
   crudItem: CrudItemType;

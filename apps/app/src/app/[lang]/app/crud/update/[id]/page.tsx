@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { PageHeadline, PageLayout } from '@ab/core/components';
 
-import { detailsCrudItemQuery } from '../../[id]/details.graphql';
+import { detailsCrudItemQuery } from '../../../../../../graphql';
 import { EditCrudItem } from './updateCrudItem';
 
 export default function Page({ params }: { params: { id: string } }) {
