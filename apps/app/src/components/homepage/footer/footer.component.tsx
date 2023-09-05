@@ -4,7 +4,7 @@ import { ActionIcon, Container, Group, Text } from '@mantine/core';
 import { IconBrandBitbucket, IconBrandGithub, IconBrandInstagram } from '@tabler/icons-react';
 import Image from 'next/image';
 
-import Logo from '../../../../public/logo-black.png';
+import Logo from '../../../../public/logo-dark.png';
 import { useStyles } from './footer.styles';
 
 interface FooterLinksProps {

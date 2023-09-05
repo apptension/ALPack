@@ -1,11 +1,21 @@
 'use client';
 
-import { Burger, Container, Divider, Group, Header as HeaderBase, Paper, Transition } from '@mantine/core';
+import {
+  Burger,
+  Container,
+  Divider,
+  Group,
+  Header as HeaderBase,
+  Paper,
+  Transition,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import LogoBlack from '../../../../public/logo-black.png';
+import LogoDark from '../../../../public/logo-dark.png';
+import LogoLight from '../../../../public/logo-light.png';
 import { LoginState } from '../loginState';
 import { HEADER_HEIGHT, useStyles } from './header.styles';
 
@@ -17,6 +27,7 @@ export function Header({ links }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
+  const { colorScheme } = useMantineColorScheme();
 
   const items = links.map((link) => (
     <a
@@ -36,7 +47,7 @@ export function Header({ links }: HeaderResponsiveProps) {
   return (
     <HeaderBase height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
-        <Image src={LogoBlack} height={50} alt="Apptension" />
+        <Image src={colorScheme === 'dark' ? LogoLight : LogoDark} height={50} alt="Apptension" />
         <Group spacing={5} className={classes.links}>
           {items}
           <Divider orientation="vertical" mx={10} />
