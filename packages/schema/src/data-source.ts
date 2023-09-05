@@ -1,11 +1,11 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-import { AccountEntity, CRUDItem, Photo, SessionEntity, UserEntity, VerificationTokenEntity } from './entity';
+import { AccountEntity, CRUDItem, SessionEntity, UserEntity, VerificationTokenEntity } from './entity';
 
 const commonDataSourceOptions = {
   // Cannot use glob for this (join(__dirname, 'entity/*[^index].ts')) because
   // of an issue with the nextjs that is not compiling entity files :(
-  entities: [UserEntity, SessionEntity, AccountEntity, VerificationTokenEntity, Photo, CRUDItem],
+  entities: [UserEntity, SessionEntity, AccountEntity, VerificationTokenEntity, CRUDItem],
 };
 
 const appDataSourceOptions: DataSourceOptions = {

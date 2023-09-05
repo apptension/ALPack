@@ -1,7 +1,6 @@
 import { IRules, deny, shield } from 'graphql-shield';
 
 import { crudItemPermissions } from '../resolvers/crudItem/crudItem.permissions';
-import { photoPermissions } from '../resolvers/photo/photo.permissions';
 import { userPermissions } from '../resolvers/user/user.permissions';
 import { isAuthenticated } from './rules';
 
@@ -33,7 +32,7 @@ export const mergePermissions = (...perms: IRules[]): IRules => {
   );
 };
 
-export const permissions = shield(mergePermissions(userPermissions, photoPermissions, crudItemPermissions), {
+export const permissions = shield(mergePermissions(userPermissions, crudItemPermissions), {
   fallbackRule: deny,
   allowExternalErrors: true,
 });

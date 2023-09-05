@@ -82,19 +82,25 @@ pnpm nx run app:storybook
 Create new migration
 
 ```bash
-packages/schema > pnpm run db:createmigration migrations/[migration_name]
+packages/schema > pnpm run db:createmigration src/migrations/[migration_name]
 ```
 
 Generate new migration based on the db changes
 
 ```bash
-packages/schema > pnpm run db:makemigrations migrations/[migration_name]
+packages/schema > pnpm run db:makemigrations src/migrations/[migration_name]
 ```
 
 Call migrations
 
 ```bash
 packages/schema > pnpm run db:migrate
+```
+
+Create initial migration:
+
+```bash
+packages/schema > pnpm run typeorm migration:generate -d ./src/data-source.ts src/migrations/init
 ```
 
 ## Deployment instructions
