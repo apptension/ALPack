@@ -28,8 +28,9 @@ export const MantineProvider = ({ children, defaultColorScheme }: PropsWithChild
     />
   ));
 
+  const mantineColorScheme = useColorScheme();
   const preferredColorScheme =
-    defaultColorScheme ?? (getCookie(COLOR_SCHEME_COOKIE_NAME) as ColorScheme | undefined) ?? useColorScheme();
+    defaultColorScheme ?? (getCookie(COLOR_SCHEME_COOKIE_NAME) as ColorScheme | undefined) ?? mantineColorScheme;
 
   const [colorScheme, setColorScheme] = useState<ColorScheme>(preferredColorScheme);
 
