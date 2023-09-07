@@ -26,6 +26,8 @@
       "@ab/internal-tools": ["packages/internal/internal-tools/src/index.ts"],
       "@ab/schema": ["packages/schema/src/index.ts"],
       "@ab/schema/*": ["packages/schema/src/*"],
+      "@ab/emails": ["packages/emails/src/index.ts"],
+      "@ab/emails/*": ["packages/emails/src/*"],
       "@app/*": ["apps/app/src/*"]
     }
   },

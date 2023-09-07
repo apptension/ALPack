@@ -103,6 +103,14 @@ Create initial migration:
 packages/schema > pnpm run typeorm migration:generate -d ./src/data-source.ts src/migrations/init
 ```
 
+### Emails
+
+Run emails [local development server](https://react.email/docs/cli#email-dev)
+
+```bash
+packages/emails > pnpm dev
+```
+
 ## Deployment instructions
 
 1. Go to [Vercel](https://vercel.com/) and create a team

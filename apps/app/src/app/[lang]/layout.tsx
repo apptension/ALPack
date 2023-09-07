@@ -4,10 +4,10 @@ import { getServerSession } from 'next-auth';
 import { cookies, headers } from 'next/headers';
 
 import { Locale, i18n } from '@ab/core/config/i18n';
-import { COLOR_SCHEME_COOKIE_NAME } from '@ab/core/providers/MantineProvider/MantineProvider.const';
+import { COLOR_SCHEME_COOKIE_NAME } from '@ab/core/providers/mantineProvider/MantineProvider.const';
 
 import { authOptions } from '@app/config/auth';
-import { AppProviders } from '@app/providers/AppProviders';
+import { AppProviders } from '@app/providers/appProviders';
 
 export const metadata: Metadata = {
   title: 'Home',

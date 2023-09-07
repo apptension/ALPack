@@ -9,10 +9,7 @@ import { ReactNode } from 'react';
 import { MakeClientOpts } from '@ab/api-client/client';
 import { ApolloProvider } from '@ab/api-client/providers';
 import { Locale } from '@ab/core/config/i18n';
-import { MantineProvider } from '@ab/core/providers';
-import { LocalesProvider } from '@ab/core/providers/localesProvider';
-
-import { IntlProvider } from '../IntlProvider';
+import { IntlProvider, LocalesProvider, MantineProvider } from '@ab/core/providers';
 
 interface AppProvidersProps {
   children: ReactNode;

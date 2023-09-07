@@ -4,8 +4,8 @@ import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } fr
 import { IntlProvider } from 'react-intl';
 
 import { DEFAULT_LOCALE, Locale, TranslationMessages, translationMessages } from '../../config/i18n';
-import { MantineProvider, MantineProviderProps } from '../../providers/MantineProvider';
 import { LocalesProvider } from '../../providers/localesProvider';
+import { MantineProvider, MantineProviderProps } from '../../providers/mantineProvider';
 import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from '../providers';
 
 /**
