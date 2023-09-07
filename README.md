@@ -25,6 +25,7 @@
 - [NX](https://github.com/nrwl/nx)
 - [pnpm](https://pnpm.io/)
 - Postgres
+- [react email](https://react.email/)
 
 Infrastructure:
 
