@@ -6,6 +6,7 @@
 
 - GraphQL API
 - Authentication and authorization
+- Emails in React
 
 ## Tech stack
 
@@ -43,6 +44,7 @@ Infrastructure:
 ├── packages                # Directory for all shared packages
 │   ├── api-client          # Package with the Apollo Client and schema for FE configuration
 │   ├── core                # Package with core components and providers
+│   ├── emails              # Package with react-email components
 │   ├── internal            # Directory for internal packages
 │   └── schema              # Package containing ORM models and GraphQL API schema
 └── ...
@@ -50,7 +52,20 @@ Infrastructure:
 
 ## Getting started
 
-> TODO
+1. Clone repository
+2. Create Google OAuth credentials (default correct authorized URL should be set to: `http://localhost:3000/api/auth/callback/google`)
+3. Prepare `.env` and `apps/app/.env` files based on the `.env.shared` examples.
+4. Start docker containers: `docker compose up -d`
+5. Start the Next.js app: `pnpm nx run app:serve`
+6. Open app in browser: https://localhost:3000
+7. Start coding!
+
+Useful links:
+
+- [NEXT.js docs](https://nextjs.org/docs)
+- [NextAuth.js docs](https://next-auth.js.org/getting-started/introduction)
+- [TypeORM docs](https://typeorm.io/)
+- [TypeGraphQL docs](https://typegraphql.com/docs/getting-started.html)
 
 ## Commands
 
@@ -76,7 +91,8 @@ pnpm nx run app:storybook
 
 ### Run tests
 
-> todo
+Each package (apps including) has two (p)npm scripts defined in the `package.json`: `test` and `test:watch`.
+You can run them using `npm`, `pnpm` or `nx` as you like.
 
 ### Migrations
 
@@ -107,6 +123,10 @@ packages/schema > pnpm run typeorm migration:generate -d ./src/data-source.ts sr
 ### Emails
 
 Run emails [local development server](https://react.email/docs/cli#email-dev)
+
+> :warning: Be aware that command below might fail for a first time in your pnpm workspace according to the
+> [react-email GitHub issue](https://github.com/resendlabs/react-email/issues/881).
+> To solve it you might need to run `yarn install` in the `packages/emails/.react-email` directory.
 
 ```bash
 packages/emails > pnpm dev
