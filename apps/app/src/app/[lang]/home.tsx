@@ -21,7 +21,12 @@ export function Home() {
       footerData: [
         {
           title: intl.formatMessage({ defaultMessage: 'About', id: 'Footer / About / Title ' }),
-          links: [{ label: intl.formatMessage({ defaultMessage: 'GitHub', id: 'Footer / About / Link' }), link: '#' }],
+          links: [
+            {
+              label: intl.formatMessage({ defaultMessage: 'Bitbucket repository', id: 'Footer / About / Link' }),
+              link: 'https://bitbucket.org/apptension/rnd-app-boilerplate',
+            },
+          ],
         },
       ],
       featuresData: {

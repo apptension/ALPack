@@ -22,7 +22,7 @@ export function Features({ title, description, data }: FeaturesGridProps) {
       <Title className={classes.title}>{title}</Title>
 
       <Container size={560} p={0}>
-        <Text size="sm" className={classes.description}>
+        <Text size="m" color="dimmed" className={classes.description}>
           {description}
         </Text>
       </Container>

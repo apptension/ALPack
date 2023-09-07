@@ -19,13 +19,7 @@ export function Footer({ data }: FooterLinksProps) {
 
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
-      <Text<'a'>
-        key={index}
-        className={classes.link}
-        component="a"
-        href={link.link}
-        onClick={(event) => event.preventDefault()}
-      >
+      <Text<'a'> key={index} className={classes.link} component="a" target="_blank" href={link.link}>
         {link.label}
       </Text>
     ));
@@ -55,13 +49,18 @@ export function Footer({ data }: FooterLinksProps) {
         </Text>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon size="lg">
+          <ActionIcon
+            size="lg"
+            component="a"
+            href="https://bitbucket.org/apptension/rnd-app-boilerplate"
+            target="_blank"
+          >
             <IconBrandBitbucket size="1.05rem" stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon size="lg" component="a" href="https://github.com/apptension" target="_blank">
             <IconBrandGithub size="1.05rem" stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon size="lg" component="a" href="https://www.instagram.com/apptension" target="_blank">
             <IconBrandInstagram size="1.05rem" stroke={1.5} />
           </ActionIcon>
         </Group>

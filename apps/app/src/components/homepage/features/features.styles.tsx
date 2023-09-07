@@ -21,6 +21,7 @@ export const useStyles = createStyles((theme) => ({
   },
 
   description: {
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     textAlign: 'center',
 
     [theme.fn.smallerThan('sm')]: {
