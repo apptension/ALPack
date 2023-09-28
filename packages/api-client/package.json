@@ -29,6 +29,6 @@
     "@graphql-codegen/typescript-graphql-request": "^4.5.9",
     "@graphql-codegen/typescript-operations": "^3.0.4",
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@types/apollo-upload-client": "^17.0.2"
+    "@types/apollo-upload-client": "^17.0.3"
   }
 }

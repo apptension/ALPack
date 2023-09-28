@@ -20,9 +20,9 @@
     "@react-email/preview": "^0.0.6",
     "@react-email/render": "^0.0.7",
     "nodemailer": "^6.9.5",
-    "react-email": "^1.9.4"
+    "react-email": "^1.9.5"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.10"
+    "@types/nodemailer": "^6.4.11"
   }
 }
