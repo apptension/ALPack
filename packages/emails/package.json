@@ -19,11 +19,11 @@
     "@react-email/html": "^0.0.4",
     "@react-email/preview": "^0.0.6",
     "@react-email/render": "^0.0.7",
-    "nodemailer": "^6.9.4",
+    "nodemailer": "^6.9.5",
     "react-email": "^1.9.4"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.9",
+    "@types/nodemailer": "^6.4.10",
     "eslint-plugin-react-hooks": "^4.6.0"
   }
 }

@@ -7,13 +7,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "ramda": "^0.28.0"
+    "ramda": "^0.29.0"
   },
   "devDependencies": {
-    "@types/prompts": "^2.4.2",
-    "@types/ramda": "^0.28.22",
-    "plop": "^2.7.4",
-    "ts-node": "^9.1.1"
+    "@types/ramda": "^0.29.4",
+    "ts-node": "^10.9.1"
   },
   "nx": {}
 }

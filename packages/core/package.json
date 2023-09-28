@@ -20,14 +20,11 @@
     "@tabler/icons-react": "^2.30.0",
     "cookies-next": "^3.0.0",
     "next": "^13.4.18",
-    "react-intl": "^6.4.4"
+    "react-intl": "^6.4.7"
   },
   "devDependencies": {
-    "@testing-library/dom": "^9.3.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^8.0.1",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/testing-library__jest-dom": "^5.14.5",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-testing-library": "^5.10.3",
     "react": "18.2.0",
