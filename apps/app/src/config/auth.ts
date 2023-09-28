@@ -3,9 +3,9 @@ import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
 import { WelcomeEmail, sendEmail } from '@ab/emails';
-import { dataSourceOptions } from '@ab/schema/data-source';
-import * as entities from '@ab/schema/entity/auth';
-import { UserRole } from '@ab/schema/types';
+import { dataSourceOptions } from '@ab/graphql-api/data-source';
+import * as entities from '@ab/graphql-api/entity/auth';
+import { UserRole } from '@ab/graphql-api/types';
 
 export const authOptions: NextAuthOptions = {
   // @ts-ignore

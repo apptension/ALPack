@@ -3,7 +3,7 @@ const webpack = require('webpack');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@ab/schema', '@ab/api-client', '@ab/core'],
+  transpilePackages: ['@ab/graphql-api', '@ab/api-client', '@ab/core'],
   experimental: {
     serverComponentsExternalPackages: ['typeorm'],
   },

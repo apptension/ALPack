@@ -5,7 +5,7 @@ import { GraphQLError } from 'graphql';
 import { UserEntity } from '../../entity';
 import { AppDataSource } from '../../data-source';
 import type { ApiContextType } from '../../types/context';
-import { UpdateProfileInput } from '@ab/schema/resolvers/user/user.inputs';
+import { UpdateProfileInput } from '../../resolvers/user/user.inputs';
 
 @Resolver(() => UserEntity)
 export class UserResolver {

@@ -6,7 +6,7 @@ definitions:
     pnpmwebapp: $BITBUCKET_CLONE_DIR/.pnpm-store
     pnpmcore: $BITBUCKET_CLONE_DIR/.pnpm-store
     pnpmapiclient: $BITBUCKET_CLONE_DIR/.pnpm-store
-    pnpmschema: $BITBUCKET_CLONE_DIR/.pnpm-store
+    pnpmgraphqlapi: $BITBUCKET_CLONE_DIR/.pnpm-store
 
   scripts:
     initializeStep: &initializeStep cp .env.shared .env
@@ -69,20 +69,20 @@ definitions:
           - pnpm nx run api-client:test --watchAll=false --maxWorkers=20% --coverage
         caches:
           - pnpmapiclient
-    - step: &schemaTest
-        name: 'schema: Lint & test'
+    - step: &graphqlApiTest
+        name: 'graphql-api: Lint & test'
         image: atlassian/default-image:4
         script:
           - *initializeStep
           - pnpm install
             --include-workspace-root
             --frozen-lockfile
-            --filter=schema...
-          - pnpm nx run schema:lint
-          - pnpm nx run schema:type-check
-          - pnpm nx run schema:test --watchAll=false --maxWorkers=20% --coverage
+            --filter=graphql-api...
+          - pnpm nx run graphql-api:lint
+          - pnpm nx run graphql-api:type-check
+          - pnpm nx run graphql-api:test --watchAll=false --maxWorkers=20% --coverage
         caches:
-          - pnpmschema
+          - pnpmgraphqlapi
 
 pipelines:
   default:
@@ -91,7 +91,7 @@ pipelines:
         - step: *webappBuild
         - step: *coreTest
         - step: *apiClientTest
-        - step: *schemaTest
+        - step: *graphqlApiTest
 
   branches:
     master:
@@ -100,4 +100,4 @@ pipelines:
         - step: *webappBuild
         - step: *coreTest
         - step: *apiClientTest
-        - step: *schemaTest
+        - step: *graphqlApiTest

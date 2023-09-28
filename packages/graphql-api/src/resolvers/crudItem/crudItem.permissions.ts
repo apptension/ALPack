@@ -1,6 +1,6 @@
 import { IRules } from 'graphql-shield';
 
-import { isAdmin, isAuthenticated } from '@ab/schema/auth/rules';
+import { isAdmin, isAuthenticated } from '../../auth/rules';
 
 export const crudItemPermissions = {
   Query: {

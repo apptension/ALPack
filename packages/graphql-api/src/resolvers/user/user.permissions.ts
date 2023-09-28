@@ -1,6 +1,6 @@
 import { IRules } from 'graphql-shield';
 
-import { isAuthenticated } from '@ab/schema/auth/rules';
+import { isAuthenticated } from '../../auth/rules';
 
 export const userPermissions = {
   Query: {

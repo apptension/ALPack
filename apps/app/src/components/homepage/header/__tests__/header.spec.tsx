@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
 
-import { UserRole } from '@ab/schema/types';
+import { UserRole } from '@ab/graphql-api/types';
 
 import { sessionProviderFactory } from '../../../../tests/factories/sessionProviderFactory';
 import { render } from '../../../../tests/utils/rendering';

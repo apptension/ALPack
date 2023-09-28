@@ -14,8 +14,8 @@
               "@app/**",
               "@ab/core/**",
               "@ab/api-client/**",
-              "@ab/schema",
-              "@ab/schema/**"
+              "@ab/graphql-api",
+              "@ab/graphql-api/**"
             ],
             "depConstraints": [
               {

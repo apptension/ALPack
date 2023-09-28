@@ -24,8 +24,8 @@
       "@ab/api-client/*": ["packages/api-client/src/*"],
       "@ab/core/*": ["packages/core/src/*"],
       "@ab/internal-tools": ["packages/internal/internal-tools/src/index.ts"],
-      "@ab/schema": ["packages/schema/src/index.ts"],
-      "@ab/schema/*": ["packages/schema/src/*"],
+      "@ab/graphql-api": ["packages/graphql-api/src/index.ts"],
+      "@ab/graphql-api/*": ["packages/graphql-api/src/*"],
       "@ab/emails": ["packages/emails/src/index.ts"],
       "@ab/emails/*": ["packages/emails/src/*"],
       "@app/*": ["apps/app/src/*"]

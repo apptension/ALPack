@@ -12,7 +12,7 @@
     "test:watch": "jest --watch",
     "type-check": "tsc --noEmit --project tsconfig.app.json",
     "vercel-build": "next build && pnpm run db:migrate",
-    "db:migrate": "cd ../../packages/schema && pnpm run db:migrate"
+    "db:migrate": "cd ../../packages/graphql-api && pnpm run db:migrate"
   },
   "dependencies": {
     "@ab/api-client": "*",
