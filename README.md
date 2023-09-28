@@ -54,11 +54,13 @@ Infrastructure:
 
 1. Clone repository
 2. Create Google OAuth credentials (default correct authorized URL should be set to: `http://localhost:3000/api/auth/callback/google`)
-3. Prepare `.env` and `apps/app/.env` files based on the `.env.shared` examples.
-4. Start docker containers: `docker compose up -d`
-5. Start the Next.js app: `pnpm nx run app:serve`
-6. Open app in browser: https://localhost:3000
-7. Start coding!
+3. Prepare `.env` and `apps/app/.env` files based on the `.env.shared` examples. Use previously created Google OAuth
+   credentials to fill `OAUTH_GOOGLE_CLIENT_ID` and `OAUTH_GOOGLE_SECRET` in `apps/app/.env`.
+4. Install node dependencies by: `pnpm install`
+5. Start docker containers: `docker compose up -d`
+6. Start the Next.js app: `pnpm nx run app:serve`
+7. Open app in browser: https://localhost:3000
+8. Start coding!
 
 Useful links:
 
