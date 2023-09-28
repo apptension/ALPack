@@ -6,12 +6,7 @@
   "scripts": {
     "lint": "eslint ."
   },
-  "dependencies": {
-    "ramda": "^0.29.0"
-  },
-  "devDependencies": {
-    "@types/ramda": "^0.29.4",
-    "ts-node": "^10.9.1"
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "nx": {}
 }

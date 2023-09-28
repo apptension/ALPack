@@ -23,7 +23,6 @@
     "react-email": "^1.9.4"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.10",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "@types/nodemailer": "^6.4.10"
   }
 }

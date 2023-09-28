@@ -12,27 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "^11.11.0",
-    "@mantine/core": "^6.0.11",
-    "@mantine/form": "^6.0.17",
-    "@mantine/hooks": "^6.0.11",
-    "@mantine/modals": "^6.0.17",
-    "@tabler/icons-react": "^2.30.0",
-    "cookies-next": "^3.0.0",
-    "next": "^13.4.18",
-    "react-intl": "^6.4.7"
+    "cookies-next": "^3.0.0"
   },
   "devDependencies": {
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/react-hooks": "^8.0.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-testing-library": "^5.10.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
     "resize-observer-polyfill": "^1.5.1"
-  },
-  "peerDependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
   }
 }
