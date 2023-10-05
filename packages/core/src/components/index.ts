@@ -6,3 +6,4 @@ export * from './pageHeadline';
 export * from './genericError';
 export * from './languageSwitch';
 export * from './themeToggler';
+export * from './tooltip';
