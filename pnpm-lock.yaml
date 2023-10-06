@@ -66,6 +66,9 @@ importers:
       '@ab/internal-core':
         specifier: '*'
         version: link:packages/internal/internal-core
+      '@faker-js/faker':
+        specifier: ^8.0.2
+        version: 8.0.2
       '@nx/devkit':
         specifier: ^16.9.1
         version: 16.9.1(nx@16.9.1)
@@ -389,9 +392,6 @@ importers:
         specifier: 2.0.0-beta.2
         version: 2.0.0-beta.2(class-validator@0.14.0)(graphql@16.6.0)
     devDependencies:
-      '@faker-js/faker':
-        specifier: ^8.0.2
-        version: 8.0.2
       dotenv-cli:
         specifier: ^7.2.1
         version: 7.2.1

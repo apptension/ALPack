@@ -2,7 +2,7 @@ import { StoryContext } from '@storybook/react';
 import { RenderOptions, render, renderHook } from '@testing-library/react';
 import { Session } from 'next-auth';
 import { SessionContext, SessionContextValue } from 'next-auth/react';
-import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } from 'react';
+import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement, ReactNode, Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import * as apiUtils from '@ab/api-client/tests/utils/rendering';
@@ -19,6 +19,7 @@ export type AppTestProvidersProps = PropsWithChildren<{
   routerProps?: Omit<AppRouterContextProviderMockProps, 'children'>;
   intlLocale: Locale;
   intlMessages: TranslationMessages;
+  suspenseFallback?: ReactNode;
 }>;
 
 const defaultRouterProps = { router: {} };
@@ -65,7 +66,11 @@ export function getWrapper(
     storyContext
   );
   const wrapper = ({ children, ...props }: WrapperProps) => {
-    const { sessionProviderProps, routerProps = defaultRouterProps } = wrapperProps;
+    const {
+      sessionProviderProps,
+      routerProps = defaultRouterProps,
+      suspenseFallback = 'Tree is loading...',
+    } = wrapperProps;
 
     return (
       <ApiWrapper {...props}>
@@ -76,7 +81,7 @@ export function getWrapper(
           intlLocale={DEFAULT_LOCALE}
           intlMessages={translationMessages[DEFAULT_LOCALE]}
         >
-          {children}
+          <Suspense fallback={suspenseFallback}>{children}</Suspense>
         </WrapperComponent>
       </ApiWrapper>
     );

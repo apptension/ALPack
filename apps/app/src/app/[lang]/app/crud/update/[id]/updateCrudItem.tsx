@@ -9,11 +9,11 @@ import { CrudItemForm, CrudItemFormFields } from '@app/components/crudItemForm/c
 import { RoutesConfig } from '@app/config/routes';
 import { updateCRUDItemMutation } from '@app/graphql';
 
-export interface EditCrudItemProps {
+export interface UpdateCrudItemProps {
   crudItem: CrudItem;
 }
 
-export const EditCrudItem = ({ crudItem }: EditCrudItemProps) => {
+export const UpdateCrudItem = ({ crudItem }: UpdateCrudItemProps) => {
   const { push } = useRouter();
 
   const [commitUpdateCrudItem, { error, loading: loadingMutation }] = useMutation(updateCRUDItemMutation, {

@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@ab/internal-core": "*",
+    "@faker-js/faker": "^8.0.2",
     "@nx/devkit": "^16.9.1",
     "@nx/eslint-plugin": "^16.9.1",
     "@nx/jest": "^16.9.1",

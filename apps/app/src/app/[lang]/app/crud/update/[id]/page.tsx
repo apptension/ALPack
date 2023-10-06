@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import { PageHeadline, PageLayout } from '@ab/core/components';
 
 import { detailsCrudItemQuery } from '../../../../../../graphql';
-import { EditCrudItem } from './updateCrudItem';
+import { UpdateCrudItem } from './updateCrudItem';
 
 export default function Page({ params }: { params: { id: string } }) {
   const { formatMessage } = useIntl();
@@ -22,7 +22,7 @@ export default function Page({ params }: { params: { id: string } }) {
         hasBackButton
         header={formatMessage({ defaultMessage: 'Update CRUD Item', id: 'Update CRUD item / Page / Headline' })}
       />
-      <EditCrudItem crudItem={data?.crudItem} />
+      <UpdateCrudItem crudItem={data?.crudItem} />
     </PageLayout>
   );
 }
