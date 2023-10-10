@@ -45,8 +45,8 @@ Infrastructure:
 │   ├── api-client          # Package with the Apollo Client and schema for FE configuration
 │   ├── core                # Package with core components and providers
 │   ├── emails              # Package with react-email components
-│   ├── internal            # Directory for internal packages
-│   └── schema              # Package containing ORM models and GraphQL API schema
+│   ├── graphql-api         # Package containing ORM models and GraphQL API schema
+│   └── internal            # Directory for internal packages
 └── ...
 ```
 
