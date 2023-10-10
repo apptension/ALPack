@@ -6,7 +6,7 @@
   "implicitDependencies": ["internal-tools"],
   "targets": {
     "setup": {
-      "executor": "@ab/internal-tools:setup",
+      "executor": "@alp/internal-tools:setup",
       "options": {
         "cwd": "apps/app"
       }

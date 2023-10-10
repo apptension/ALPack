@@ -3,7 +3,7 @@
 import { useMutation } from '@apollo/client';
 import { notifications } from '@mantine/notifications';
 
-import { UserEntity } from '@ab/graphql-api/entity';
+import { UserEntity } from '@alp/graphql-api/entity';
 
 import { ProfileForm, ProfileFormFields } from '../../../../components/profileForm';
 import { updateProfileMutation } from './profile.graphql';

@@ -1,7 +1,7 @@
 import { Faker, faker } from '@faker-js/faker';
 import { mergeDeepRight } from 'ramda';
 
-import { DeepPartial } from '@ab/core/utils/types';
+import { DeepPartial } from '@alp/core/utils/types';
 
 export const createFactory =
   <T>(creator: () => T) =>

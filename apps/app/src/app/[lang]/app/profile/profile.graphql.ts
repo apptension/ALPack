@@ -1,4 +1,4 @@
-import { gql } from '@ab/api-client';
+import { gql } from '@alp/api-client';
 
 export const userProfileQuery = gql(/* GraphQL */ `
   query UserProfile {

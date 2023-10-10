@@ -1,5 +1,5 @@
-import { User, authSessionFactory } from '@ab/graphql-api/tests/factories/authSession.factory';
-import { UserRole } from '@ab/graphql-api/types';
+import { User, authSessionFactory } from '@alp/graphql-api/tests/factories/authSession.factory';
+import { UserRole } from '@alp/graphql-api/types';
 
 import { AppTestProvidersProps } from '@app/tests/utils/rendering';
 

@@ -2,7 +2,7 @@ import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-import { i18n } from '@ab/core/config/i18n';
+import { i18n } from '@alp/core/config/i18n';
 
 const privatePages = ['/app/:path*', '/admin/:path*'];
 

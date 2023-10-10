@@ -1,12 +1,12 @@
 import { times } from 'ramda';
 
-import { AddCrudItemMutation, CrudItem, UpdateCrudItemMutation } from '@ab/api-client';
+import { AddCrudItemMutation, CrudItem, UpdateCrudItemMutation } from '@alp/api-client';
 import {
   composeMockedListQueryResult,
   composeMockedQueryResult,
   createDeepFactory,
   makeId,
-} from '@ab/api-client/tests/utils';
+} from '@alp/api-client/tests/utils';
 
 import { addCRUDItemMutation, allCrudItemsQuery, detailsCrudItemQuery, updateCRUDItemMutation } from '@app/graphql';
 

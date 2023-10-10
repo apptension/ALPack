@@ -5,12 +5,12 @@ import { SessionContext, SessionContextValue } from 'next-auth/react';
 import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement, ReactNode, Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 
-import * as apiUtils from '@ab/api-client/tests/utils/rendering';
-import { DEFAULT_LOCALE, Locale, TranslationMessages, translationMessages } from '@ab/core/config/i18n';
+import * as apiUtils from '@alp/api-client/tests/utils/rendering';
+import { DEFAULT_LOCALE, Locale, TranslationMessages, translationMessages } from '@alp/core/config/i18n';
 
 import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from '../providers';
 
-export { PLACEHOLDER_TEST_ID, PLACEHOLDER_CONTENT } from '@ab/core/tests/utils/rendering';
+export { PLACEHOLDER_TEST_ID, PLACEHOLDER_CONTENT } from '@alp/core/tests/utils/rendering';
 
 export type AppTestProvidersProps = PropsWithChildren<{
   sessionProviderProps?: Pick<SessionContextValue, 'status'> & {

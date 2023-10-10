@@ -1,4 +1,4 @@
-import { UserRole } from '@ab/graphql-api/types';
+import { UserRole } from '@alp/graphql-api/types';
 
 import { useUserRole } from '../';
 import { sessionProviderFactory } from '../../../tests/factories/sessionProviderFactory';

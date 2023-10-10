@@ -2,7 +2,7 @@
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 
-import { PageHeadline, PageLayout } from '@ab/core/components';
+import { PageHeadline, PageLayout } from '@alp/core/components';
 
 import { userProfileQuery } from './profile.graphql';
 import { UpdateProfile } from './updateProfile';

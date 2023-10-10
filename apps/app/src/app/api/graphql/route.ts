@@ -3,8 +3,8 @@ import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { getServerSession } from 'next-auth';
 import { NextRequest } from 'next/server';
 
-import schema, { ApiContextType } from '@ab/graphql-api';
-import { formatError } from '@ab/graphql-api/utils/formatError';
+import schema, { ApiContextType } from '@alp/graphql-api';
+import { formatError } from '@alp/graphql-api/utils/formatError';
 
 import { authOptions } from '@app/config/auth';
 

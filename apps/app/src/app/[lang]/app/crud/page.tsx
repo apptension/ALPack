@@ -2,7 +2,7 @@
 
 import { useIntl } from 'react-intl';
 
-import { PageHeadline, PageLayout } from '@ab/core/components';
+import { PageHeadline, PageLayout } from '@alp/core/components';
 
 import { CrudList } from './crudList';
 

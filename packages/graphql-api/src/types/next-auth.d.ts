@@ -1,6 +1,6 @@
 import { DefaultSession } from 'next-auth';
 
-import { UserRole } from '@ab/graphql-api';
+import { UserRole } from '@alp/graphql-api';
 
 declare module 'next-auth' {
   /**

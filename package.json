@@ -1,5 +1,5 @@
 {
-  "name": "rnd-app-boilerplate",
+  "name": "alpack",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@ab/internal-core": "*",
+    "@alp/internal-core": "*",
     "@faker-js/faker": "^8.0.2",
     "@nx/devkit": "^16.9.1",
     "@nx/eslint-plugin": "^16.9.1",

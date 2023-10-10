@@ -4,8 +4,8 @@ import { Queries, queries } from '@testing-library/dom';
 import { RenderOptions, RenderResult, render, renderHook, waitFor } from '@testing-library/react';
 import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } from 'react';
 
-import * as coreUtils from '@ab/core/tests/utils/rendering';
-import { CoreTestProviders, CoreTestProvidersProps } from '@ab/core/tests/utils/rendering';
+import * as coreUtils from '@alp/core/tests/utils/rendering';
+import { CoreTestProviders, CoreTestProvidersProps } from '@alp/core/tests/utils/rendering';
 
 /**
  * A set of properties that will be passed to Apollo's

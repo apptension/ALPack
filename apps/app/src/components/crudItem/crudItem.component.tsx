@@ -6,8 +6,8 @@ import { IconEdit, IconTrashX } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 import { MouseEvent } from 'react';
 
-import { CrudItem as CrudItemType } from '@ab/api-client';
-import { Link } from '@ab/core/components';
+import { CrudItem as CrudItemType } from '@alp/api-client';
+import { Link } from '@alp/core/components';
 
 import { allCrudItemsQuery, deleteCrudItemMutation } from '@app/graphql';
 

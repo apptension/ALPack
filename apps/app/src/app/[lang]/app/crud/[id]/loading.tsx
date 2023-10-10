@@ -2,7 +2,7 @@
 
 import { Flex, Skeleton, Space } from '@mantine/core';
 
-import { PageLayout } from '@ab/core/components';
+import { PageLayout } from '@alp/core/components';
 
 export default function Loading() {
   return (

@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 
-import { initializeDataSource } from '@ab/graphql-api/data-source';
+import { initializeDataSource } from '@alp/graphql-api/data-source';
 
 import { authOptions } from '@app/config/auth';
 

@@ -1,5 +1,5 @@
 {
-  "name": "@ab/internal-tools",
+  "name": "@alp/internal-tools",
   "version": "0.1.0",
   "main": "src/index.js",
   "executors": "./executors.json",

@@ -6,10 +6,10 @@ import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { ReactNode } from 'react';
 
-import { MakeClientOpts } from '@ab/api-client/client';
-import { ApolloProvider } from '@ab/api-client/providers';
-import { Locale } from '@ab/core/config/i18n';
-import { IntlProvider, LocalesProvider, MantineProvider } from '@ab/core/providers';
+import { MakeClientOpts } from '@alp/api-client/client';
+import { ApolloProvider } from '@alp/api-client/providers';
+import { Locale } from '@alp/core/config/i18n';
+import { IntlProvider, LocalesProvider, MantineProvider } from '@alp/core/providers';
 
 interface AppProvidersProps {
   children: ReactNode;

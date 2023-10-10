@@ -9,7 +9,7 @@ import {
 } from '@mantine/core';
 import Image from 'next/image';
 
-import { LanguageSwitch, ThemeToggler } from '@ab/core/components';
+import { LanguageSwitch, ThemeToggler } from '@alp/core/components';
 
 import LogoDark from '../../../public/logo-dark.png';
 import LogoLight from '../../../public/logo-light.png';

@@ -3,7 +3,7 @@
   "npmScope": "ab",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@ab/internal-core/custom-task-runner",
+      "runner": "@alp/internal-core/custom-task-runner",
       "options": {
         "cacheableOperations": ["setup", "lint", "test", "build-storybook"]
       }

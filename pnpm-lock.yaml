@@ -63,7 +63,7 @@ importers:
         specifier: ^3.21.4
         version: 3.21.4
     devDependencies:
-      '@ab/internal-core':
+      '@alp/internal-core':
         specifier: '*'
         version: link:packages/internal/internal-core
       '@faker-js/faker':
@@ -231,10 +231,10 @@ importers:
 
   apps/app:
     dependencies:
-      '@ab/api-client':
+      '@alp/api-client':
         specifier: '*'
         version: link:../../packages/api-client
-      '@ab/core':
+      '@alp/core':
         specifier: '*'
         version: link:../../packages/core
       '@as-integrations/next':
