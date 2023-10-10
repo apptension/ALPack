@@ -1,11 +1,10 @@
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 
-import { UserRole } from '@ab/graphql-api/types';
-
+import { UserRole } from '@alp/graphql-api/types';
 
 import { withAppProviders } from '../../../.storybook/decorators';
+import { sessionProviderFactory } from '../../tests/factories/sessionProviderFactory';
 import { CrudItem, CrudItemProps } from './crudItem.component';
-import { sessionProviderFactory } from '@app/tests/factories/sessionProviderFactory';
 
 type Story = StoryObj<typeof CrudItem>;
 

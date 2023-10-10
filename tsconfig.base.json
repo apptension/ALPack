@@ -20,14 +20,14 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
-      "@ab/api-client": ["packages/api-client/src/index.ts"],
-      "@ab/api-client/*": ["packages/api-client/src/*"],
-      "@ab/core/*": ["packages/core/src/*"],
-      "@ab/internal-tools": ["packages/internal/internal-tools/src/index.ts"],
-      "@ab/graphql-api": ["packages/graphql-api/src/index.ts"],
-      "@ab/graphql-api/*": ["packages/graphql-api/src/*"],
-      "@ab/emails": ["packages/emails/src/index.ts"],
-      "@ab/emails/*": ["packages/emails/src/*"],
+      "@alp/api-client": ["packages/api-client/src/index.ts"],
+      "@alp/api-client/*": ["packages/api-client/src/*"],
+      "@alp/core/*": ["packages/core/src/*"],
+      "@alp/internal-tools": ["packages/internal/internal-tools/src/index.ts"],
+      "@alp/graphql-api": ["packages/graphql-api/src/index.ts"],
+      "@alp/graphql-api/*": ["packages/graphql-api/src/*"],
+      "@alp/emails": ["packages/emails/src/index.ts"],
+      "@alp/emails/*": ["packages/emails/src/*"],
       "@app/*": ["apps/app/src/*"]
     }
   },

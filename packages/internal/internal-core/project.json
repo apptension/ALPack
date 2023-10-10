@@ -5,7 +5,7 @@
   "projectType": "library",
   "targets": {
     "setup-env": {
-      "executor": "@ab/internal-tools:setup",
+      "executor": "@alp/internal-tools:setup",
       "options": {
         "cwd": "./"
       }

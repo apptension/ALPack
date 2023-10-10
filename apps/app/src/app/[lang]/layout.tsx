@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { cookies, headers } from 'next/headers';
 
-import { Locale, i18n } from '@ab/core/config/i18n';
-import { COLOR_SCHEME_COOKIE_NAME } from '@ab/core/providers/mantineProvider/MantineProvider.const';
+import { Locale, i18n } from '@alp/core/config/i18n';
+import { COLOR_SCHEME_COOKIE_NAME } from '@alp/core/providers/mantineProvider/MantineProvider.const';
 
 import { authOptions } from '@app/config/auth';
 import { AppProviders } from '@app/providers/appProviders';

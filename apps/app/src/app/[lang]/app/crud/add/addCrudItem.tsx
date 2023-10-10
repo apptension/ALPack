@@ -3,7 +3,7 @@
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 
-import { CrudItem } from '@ab/api-client';
+import { CrudItem } from '@alp/api-client';
 
 import { CrudItemForm, CrudItemFormFields } from '@app/components/crudItemForm/crudItemForm.component';
 import { RoutesConfig } from '@app/config/routes';

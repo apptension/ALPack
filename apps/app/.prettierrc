@@ -6,7 +6,7 @@
   "importOrder": [
     "^(path|dns|fs)/?",
     "<THIRD_PARTY_MODULES>",
-    "@ab",
+    "@alp",
     "@app",
     "^(__generated__|__generated|@types|app|contexts|emails|fonts|images|mocks|modules|routes|shared|tests|theme|translations)/?",
     "^[./]"

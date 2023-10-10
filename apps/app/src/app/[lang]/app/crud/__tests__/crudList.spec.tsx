@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import { append, times } from 'ramda';
 import { Suspense } from 'react';
 
-import { UserRole } from '@ab/graphql-api/types';
+import { UserRole } from '@alp/graphql-api/types';
 
 import { crudItemFactory, fillCRUDListQuery } from '../../../../../tests/factories/crudItem';
 import { sessionProviderFactory } from '../../../../../tests/factories/sessionProviderFactory';

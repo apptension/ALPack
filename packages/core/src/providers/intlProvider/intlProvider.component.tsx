@@ -3,8 +3,8 @@
 import { PropsWithChildren, useEffect } from 'react';
 import { IntlProvider as Provider } from 'react-intl';
 
-import { Locale, translationMessages } from '@ab/core/config/i18n';
-import { useLocales } from '@ab/core/hooks';
+import { Locale, translationMessages } from '@alp/core/config/i18n';
+import { useLocales } from '@alp/core/hooks';
 
 export interface IntlProviderProps {
   lang: Locale;

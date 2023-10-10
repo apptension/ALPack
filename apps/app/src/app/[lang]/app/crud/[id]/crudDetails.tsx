@@ -3,7 +3,7 @@
 import { Box, Text } from '@mantine/core';
 import { FormattedMessage } from 'react-intl';
 
-import { CrudItem as CrudItemType } from '@ab/api-client';
+import { CrudItem as CrudItemType } from '@alp/api-client';
 
 export interface CrudDetailsProps {
   crudItem: CrudItemType;

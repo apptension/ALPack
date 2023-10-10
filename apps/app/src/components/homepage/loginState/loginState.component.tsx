@@ -3,7 +3,7 @@
 import { Avatar, Button, Flex, Skeleton } from '@mantine/core';
 import { signIn, useSession } from 'next-auth/react';
 
-import { Link } from '@ab/core/components';
+import { Link } from '@alp/core/components';
 
 export const LoginState = () => {
   const { data: session, status } = useSession();

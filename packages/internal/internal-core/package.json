@@ -1,5 +1,5 @@
 {
-  "name": "@ab/internal-core",
+  "name": "@alp/internal-core",
   "version": "0.1.0",
   "devDependencies": {
     "dotenv": "^16.3.1",

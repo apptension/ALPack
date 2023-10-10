@@ -4,7 +4,7 @@ import { userEvent } from '@testing-library/user-event';
 import { append } from 'ramda';
 import { Suspense } from 'react';
 
-import { CrudItem, UpdateCrudItemMutation } from '@ab/api-client';
+import { CrudItem, UpdateCrudItemMutation } from '@alp/api-client';
 
 import { RoutesConfig } from '../../../../../../../config/routes';
 import { fillUpdateCRUDItemQuery } from '../../../../../../../tests/factories/crudItem';

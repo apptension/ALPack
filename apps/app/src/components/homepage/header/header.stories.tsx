@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { UserRole } from '@ab/graphql-api/types';
+import { UserRole } from '@alp/graphql-api/types';
 
 import { withAppProviders } from '../../../../.storybook/decorators';
 import { sessionProviderFactory } from '../../../tests/factories/sessionProviderFactory';

@@ -5,9 +5,9 @@ import { SimpleGrid } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { CrudItem as CrudItemType } from '@ab/api-client';
-import { Link, Tooltip } from '@ab/core/components';
-import { UserRole } from '@ab/graphql-api/types';
+import { CrudItem as CrudItemType } from '@alp/api-client';
+import { Link, Tooltip } from '@alp/core/components';
+import { UserRole } from '@alp/graphql-api/types';
 
 import { CrudItem } from '@app/components/crudItem';
 import { RoutesConfig } from '@app/config/routes';

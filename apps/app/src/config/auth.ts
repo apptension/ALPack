@@ -2,10 +2,10 @@ import { TypeORMAdapter } from '@auth/typeorm-adapter';
 import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { WelcomeEmail, sendEmail } from '@ab/emails';
-import { dataSourceOptions } from '@ab/graphql-api/data-source';
-import * as entities from '@ab/graphql-api/entity/auth';
-import { UserRole } from '@ab/graphql-api/types';
+import { WelcomeEmail, sendEmail } from '@alp/emails';
+import { dataSourceOptions } from '@alp/graphql-api/data-source';
+import * as entities from '@alp/graphql-api/entity/auth';
+import { UserRole } from '@alp/graphql-api/types';
 
 export const authOptions: NextAuthOptions = {
   // @ts-ignore
