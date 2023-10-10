@@ -1,6 +1,14 @@
 'use client';
 
-import { IconBrandGraphql, IconBrandReact, IconBrandVercel, IconDatabase, IconUsers } from '@tabler/icons-react';
+import {
+  IconBrandGraphql,
+  IconBrandMantine,
+  IconBrandReact,
+  IconBrandVercel,
+  IconDatabase,
+  IconUsers,
+  IconWorld,
+} from '@tabler/icons-react';
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -23,8 +31,8 @@ export function Home() {
           title: intl.formatMessage({ defaultMessage: 'About', id: 'Footer / About / Title ' }),
           links: [
             {
-              label: intl.formatMessage({ defaultMessage: 'Bitbucket repository', id: 'Footer / About / Link' }),
-              link: 'https://bitbucket.org/apptension/rnd-app-boilerplate',
+              label: intl.formatMessage({ defaultMessage: 'GitHub repository', id: 'Footer / About / Link' }),
+              link: 'https://github.com/apptension/alpack',
             },
           ],
         },
@@ -77,6 +85,30 @@ export function Home() {
               id: 'Features / Data / Description / NextAuth authorization',
             }),
             icon: IconUsers,
+          },
+          {
+            title: intl.formatMessage({
+              defaultMessage: 'Mantine UI',
+              id: 'Features / Title / Mantine UI',
+            }),
+            description: intl.formatMessage({
+              defaultMessage:
+                'Incorporate modern UI components with Mantine UI, delivering a consistent and responsive user interface design across your application.',
+              id: 'Features / Description / Mantine UI',
+            }),
+            icon: IconBrandMantine,
+          },
+          {
+            title: intl.formatMessage({
+              defaultMessage: 'i18n',
+              id: 'Features / Title / i18n',
+            }),
+            description: intl.formatMessage({
+              defaultMessage:
+                'Support multi-language applications with integrated i18n, catering to a global audience by localizing content and enhancing user experience.',
+              id: 'Features / Description / i18n',
+            }),
+            icon: IconWorld,
           },
           {
             title: intl.formatMessage({

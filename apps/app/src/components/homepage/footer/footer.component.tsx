@@ -1,10 +1,11 @@
 'use client';
 
-import { ActionIcon, Container, Group, Text } from '@mantine/core';
-import { IconBrandBitbucket, IconBrandGithub, IconBrandInstagram } from '@tabler/icons-react';
+import { ActionIcon, Container, Group, Text, useMantineColorScheme } from '@mantine/core';
+import { IconBrandDiscord, IconBrandGithub, IconBrandInstagram, IconBrandX } from '@tabler/icons-react';
 import Image from 'next/image';
 
-import Logo from '../../../../public/logo-dark.png';
+import LogoDark from '../../../../public/logo-dark.png';
+import LogoLight from '../../../../public/logo-light.png';
 import { useStyles } from './footer.styles';
 
 interface FooterLinksProps {
@@ -16,6 +17,7 @@ interface FooterLinksProps {
 
 export function Footer({ data }: FooterLinksProps) {
   const { classes } = useStyles();
+  const { colorScheme } = useMantineColorScheme();
 
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
@@ -36,7 +38,7 @@ export function Footer({ data }: FooterLinksProps) {
     <footer className={classes.footer}>
       <Container className={classes.inner}>
         <div className={classes.logo}>
-          <Image src={Logo} width={40} alt="Apptension" />
+          <Image src={colorScheme === 'dark' ? LogoDark : LogoLight} width={40} alt="Apptension" />
           <Text size="xs" color="dimmed" className={classes.description}>
             Build fully functional web applications faster than ever
           </Text>
@@ -49,16 +51,14 @@ export function Footer({ data }: FooterLinksProps) {
         </Text>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon
-            size="lg"
-            component="a"
-            href="https://bitbucket.org/apptension/rnd-app-boilerplate"
-            target="_blank"
-          >
-            <IconBrandBitbucket size="1.05rem" stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg" component="a" href="https://github.com/apptension" target="_blank">
+          <ActionIcon size="lg" component="a" href="https://github.com/apptension/alpack" target="_blank">
             <IconBrandGithub size="1.05rem" stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon size="lg" component="a" href="https://discord.apptension.com" target="_blank">
+            <IconBrandDiscord size="1.05rem" stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon size="lg" component="a" href="https://twitter.com/apptension" target="_blank">
+            <IconBrandX size="1.05rem" stroke={1.5} />
           </ActionIcon>
           <ActionIcon size="lg" component="a" href="https://www.instagram.com/apptension" target="_blank">
             <IconBrandInstagram size="1.05rem" stroke={1.5} />

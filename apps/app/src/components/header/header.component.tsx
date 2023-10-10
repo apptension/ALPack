@@ -38,7 +38,7 @@ export function Header({ opened, toggleOpen }: MobileHeaderProps) {
               data-testid="toggle-button"
             />
           </MediaQuery>
-          <Image src={colorScheme === 'dark' ? LogoLight : LogoDark} alt="Apptension" height={28} />
+          <Image src={colorScheme === 'dark' ? LogoDark : LogoLight} alt="Apptension" height={28} />
         </>
         <Flex align="center" h="100%" gap="md">
           <ThemeToggler />

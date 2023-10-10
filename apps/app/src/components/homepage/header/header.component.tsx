@@ -47,7 +47,7 @@ export function Header({ links }: HeaderResponsiveProps) {
   return (
     <HeaderBase height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
-        <Image src={colorScheme === 'dark' ? LogoLight : LogoDark} height={50} alt="Apptension" />
+        <Image src={colorScheme === 'dark' ? LogoDark : LogoLight} height={45} alt="Apptension" />
         <Group spacing={5} className={classes.links}>
           {items}
           <Divider orientation="vertical" mx={10} />

@@ -17,7 +17,7 @@ export function Hero() {
 
       <div className={classes.inner}>
         <Title className={classes.title}>
-          NextJS App Boilerplate by{' '}
+          ALPack - NextJS App Boilerplate by{' '}
           <Text component="span" className={classes.highlight} inherit>
             Apptension
           </Text>{' '}
