@@ -1,6 +1,6 @@
 {
   "name": "@ab/emails",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "scripts": {
     "dev": "email dev --dir src/emails --port 3001",
