@@ -58,9 +58,10 @@ We've handpicked the following stack for optimal performance, scalability, and d
 2. Generate **Google OAuth** credentials (default correct authorized URL should be set to: `http://localhost:3000/api/auth/callback/google`).
 3. Prepare `.env` and `apps/app/.env` files based on the `.env.shared` examples. Fill them with Google OAuth credentials.
 4. Install dependencies: `pnpm install`
-5. Launch Docker: `docker compose up -d`
-6. Fire up the Next.js app: `pnpm nx run app:serve`
-7. Dive in! Visit `https://localhost:3000` and start coding.
+5. Create Docker container: `docker volume create {PROJECT_NAME}-web-backend-db-data`. `PROJECT_NAME` needs to be the same as set in `.env` file in step 3.
+6. Launch Docker: `docker compose up -d`
+7. Fire up the Next.js app: `pnpm nx run app:serve`
+8. Dive in! Visit `https://localhost:3000` and start coding.
 
 ## 📂 **Project Structure**
 
