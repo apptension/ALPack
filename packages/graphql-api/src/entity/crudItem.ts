@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 
 @Entity()
-@ObjectType()
+@ObjectType('CRUDItem')
 export class CRUDItem {
     @PrimaryGeneratedColumn('uuid')
     @Field(() => ID)

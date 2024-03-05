@@ -1,5 +1,5 @@
 import { ColorScheme } from '@mantine/core';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { getServerSession } from 'next-auth';
 import { cookies, headers } from 'next/headers';
 
@@ -12,12 +12,14 @@ import { AppProviders } from '@app/providers/appProviders';
 export const metadata: Metadata = {
   title: 'Home',
   description: 'Welcome to Next.js',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
