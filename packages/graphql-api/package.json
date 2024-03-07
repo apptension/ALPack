@@ -18,15 +18,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "class-validator": "^0.14.0",
+    "class-validator": "^0.14.1",
     "graphql-middleware": "^6.1.35",
     "graphql-shield": "^7.6.5",
-    "pg": "8.9.0",
-    "reflect-metadata": "^0.1.13",
+    "pg": "8.11.3",
+    "reflect-metadata": "^0.2.1",
     "type-graphql": "2.0.0-beta.2"
   },
   "devDependencies": {
-    "dotenv-cli": "^7.2.1",
-    "sqlite3": "^5.1.6"
+    "dotenv-cli": "^7.3.0",
+    "sqlite3": "^5.1.7"
   }
 }

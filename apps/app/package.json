@@ -21,19 +21,19 @@
     "@auth/typeorm-adapter": "^1.6.0",
     "@emotion/css": "^11.11.2",
     "@emotion/server": "^11.11.0",
-    "@formatjs/intl-localematcher": "^0.4.2",
-    "@heroicons/react": "^2.0.17",
+    "@formatjs/intl-localematcher": "^0.5.4",
+    "@heroicons/react": "^2.1.1",
     "@mantine/next": "^6.0.11",
     "@mantine/notifications": "^6.0.19",
     "negotiator": "^0.6.3",
-    "react-hook-form": "^7.43.9",
-    "sharp": "^0.32.6"
+    "react-hook-form": "^7.51.0",
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
-    "@formatjs/cli": "^6.2.0",
+    "@formatjs/cli": "^6.2.7",
     "@next/eslint-plugin-next": "^13.4.19",
-    "@storybook/cli": "^7.4.5",
-    "@types/negotiator": "^0.6.1",
+    "@storybook/cli": "^7.6.17",
+    "@types/negotiator": "^0.6.3",
     "eslint-config-next": "13.4.19"
   }
 }
