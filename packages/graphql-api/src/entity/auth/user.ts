@@ -8,7 +8,7 @@ import { AccountEntity } from './account';
 import { SessionEntity } from './session';
 
 @Entity({ name: 'users' })
-@ObjectType()
+@ObjectType('UserEntity')
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => ID)
