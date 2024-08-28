@@ -6,6 +6,7 @@ const nextConfig = {
   transpilePackages: ['@alp/graphql-api', '@alp/api-client', '@alp/core', 'ramda'],
   experimental: {
     serverComponentsExternalPackages: ['typeorm'],
+    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
   webpack: (config, { isServer }) => {
     // fix for: Can't resolve 'pg-native' issue

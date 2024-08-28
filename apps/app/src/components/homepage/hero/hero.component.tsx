@@ -3,11 +3,9 @@
 import { Container, Text, Title } from '@mantine/core';
 
 import { Dots } from './dots.component';
-import { useStyles } from './hero.styles';
+import classes from './hero.module.css';
 
 export function Hero() {
-  const { classes } = useStyles();
-
   return (
     <Container className={classes.wrapper} size={1400}>
       <Dots className={classes.dots} style={{ left: 0, top: 0 }} />

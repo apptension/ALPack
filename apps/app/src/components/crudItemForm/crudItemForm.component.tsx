@@ -16,7 +16,7 @@ export type CrudItemFormProps = {
 };
 
 export const CrudItemForm = ({ loading, onSubmit, initialData }: CrudItemFormProps) => {
-  const initialForm = initialData ? initialData : { name: '' };
+  const initialForm = initialData || { name: '' };
   const form = useForm({
     initialValues: initialForm,
     validate: {
@@ -28,7 +28,7 @@ export const CrudItemForm = ({ loading, onSubmit, initialData }: CrudItemFormPro
     <Box maw={300}>
       <form onSubmit={form.onSubmit(onSubmit)}>
         <TextInput withAsterisk label="Name" placeholder="Name" {...form.getInputProps('name')} />
-        <Group position="right" mt="md">
+        <Group justify="flex-end" mt="md">
           <Button loading={loading} type="submit">
             <FormattedMessage defaultMessage="Submit" id="CrudItemForm / Submit Button" />
           </Button>

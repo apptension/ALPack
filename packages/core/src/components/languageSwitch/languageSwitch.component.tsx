@@ -4,7 +4,7 @@ import { Select } from '@mantine/core';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useTransition } from 'react';
 
-import { Locale, i18n } from '../../config/i18n';
+import { i18n } from '../../config/i18n';
 import { useLocales } from '../../hooks';
 
 export const LanguageSwitch = () => {
@@ -14,7 +14,7 @@ export const LanguageSwitch = () => {
   const { replace } = useRouter();
 
   const onChange = useCallback(
-    (newLocales: Locale) => {
+    (newLocales: string | null) => {
       if (newLocales) {
         startTransition(() => {
           const days = 30;

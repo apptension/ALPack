@@ -1,23 +1,15 @@
 'use client';
 
-import {
-  Burger,
-  Container,
-  Divider,
-  Group,
-  Header as HeaderBase,
-  Paper,
-  Transition,
-  useMantineColorScheme,
-} from '@mantine/core';
+import { Burger, Container, Divider, Group, Paper, Transition, useMantineColorScheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import cx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
 
 import LogoDark from '../../../../public/logo-dark.png';
 import LogoLight from '../../../../public/logo-light.png';
 import { LoginState } from '../loginState';
-import { HEADER_HEIGHT, useStyles } from './header.styles';
+import classes from './header.module.css';
 
 interface HeaderResponsiveProps {
   links: { link: string; label: string }[];
@@ -26,7 +18,6 @@ interface HeaderResponsiveProps {
 export function Header({ links }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
-  const { classes, cx } = useStyles();
   const { colorScheme } = useMantineColorScheme();
 
   const items = links.map((link) => (
@@ -45,15 +36,15 @@ export function Header({ links }: HeaderResponsiveProps) {
   ));
 
   return (
-    <HeaderBase height={HEADER_HEIGHT} className={classes.root}>
-      <Container className={classes.header}>
+    <header className={classes.header}>
+      <Container className={classes.inner}>
         <Image src={colorScheme === 'dark' ? LogoDark : LogoLight} height={45} alt="Apptension" />
-        <Group spacing={5} className={classes.links}>
+        <Group gap={5} visibleFrom="xs">
           {items}
           <Divider orientation="vertical" mx={10} />
           <LoginState />
         </Group>
-        <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
+        <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
@@ -62,6 +53,6 @@ export function Header({ links }: HeaderResponsiveProps) {
           )}
         </Transition>
       </Container>
-    </HeaderBase>
+    </header>
   );
 }

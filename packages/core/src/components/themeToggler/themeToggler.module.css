@@ -1,0 +1,18 @@
+.root {
+    color: light-dark(
+            var(--mantine-color-blue-5),
+            var(--mantine-color-yellow-5)
+    );
+}
+
+.iconDark {
+    @mixin light {
+        display: none;
+    }
+}
+
+.iconLight {
+    @mixin dark {
+        display: none;
+    }
+}

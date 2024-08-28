@@ -15,9 +15,7 @@ const meta: Meta<typeof CrudItem> = {
 
 export default meta;
 
-const Template: StoryFn<CrudItemProps> = (args) => {
-  return <CrudItem crudItem={args.crudItem} />;
-};
+const Template: StoryFn<CrudItemProps> = (args) => <CrudItem crudItem={args.crudItem} />;
 
 export const Default: Story = {
   render: Template,

@@ -27,7 +27,7 @@ export const CrudList = () => {
   return (
     <>
       <Tooltip label={notAdmin ? addMessage : ''} opened={notAdmin} position="bottom" withArrow>
-        <Link href={RoutesConfig.crudAdd} mb="md" leftIcon={<IconPlus />} disabled={notAdmin}>
+        <Link href={RoutesConfig.crudAdd} mb="md" leftSection={<IconPlus />} disabled={notAdmin}>
           <FormattedMessage defaultMessage="Add new CRUD item" id="CrudList / Add New Item / Link" />
         </Link>
       </Tooltip>

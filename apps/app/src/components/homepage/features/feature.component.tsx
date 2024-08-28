@@ -17,7 +17,7 @@ export function Feature({ icon: Icon, title, description }: FeatureProps) {
       <Text mt="sm" mb={7}>
         {title}
       </Text>
-      <Text size="sm" color="dimmed" sx={{ lineHeight: 1.6 }}>
+      <Text size="sm" c="dimmed" style={{ lineHeight: 1.6 }}>
         {description}
       </Text>
     </div>

@@ -1,12 +1,4 @@
-import {
-  Burger,
-  Flex,
-  Header as HeaderBase,
-  MediaQuery,
-  rem,
-  useMantineColorScheme,
-  useMantineTheme,
-} from '@mantine/core';
+import { AppShell, Burger, Flex, Image as MantineImage, useMantineTheme } from '@mantine/core';
 import Image from 'next/image';
 
 import { LanguageSwitch, ThemeToggler } from '@alp/core/components';
@@ -19,32 +11,29 @@ export interface MobileHeaderProps {
   toggleOpen: () => void;
 }
 
-export const HEADER_HEIGHT = rem(60);
-
 export function Header({ opened, toggleOpen }: MobileHeaderProps) {
   const theme = useMantineTheme();
-  const { colorScheme } = useMantineColorScheme();
   return (
-    <HeaderBase w="100%" height={HEADER_HEIGHT} p="md">
+    <AppShell.Header w="100%" p="md">
       <Flex align="center" h="100%" w="100%" justify="space-between">
         <>
-          <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Burger
-              opened={opened}
-              onClick={toggleOpen}
-              size="sm"
-              color={theme.colors.gray[6]}
-              mr="xl"
-              data-testid="toggle-button"
-            />
-          </MediaQuery>
-          <Image src={colorScheme === 'dark' ? LogoDark : LogoLight} alt="Apptension" height={28} />
+          <Burger
+            hiddenFrom="sm"
+            opened={opened}
+            onClick={toggleOpen}
+            size="sm"
+            color={theme.colors.gray[6]}
+            mr="xl"
+            data-testid="toggle-button"
+          />
+          <MantineImage component={Image} src={LogoLight} alt="Apptension" height={28} darkHidden />
+          <MantineImage component={Image} src={LogoDark} alt="Apptension" height={28} lightHidden />
         </>
         <Flex align="center" h="100%" gap="md">
           <ThemeToggler />
           <LanguageSwitch />
         </Flex>
       </Flex>
-    </HeaderBase>
+    </AppShell.Header>
   );
 }

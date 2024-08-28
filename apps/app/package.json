@@ -6,7 +6,8 @@
     "dev": "pnpm nx serve:app",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint && npm run lint:stylelint",
+    "lint:stylelint": "stylelint '**/*.css' --cache",
     "extract-intl": "formatjs extract 'src/**/!(*.d).(js|jsx|ts|tsx)' '../../packages/core/src/**/!(*.d).(js|jsx|ts|tsx)' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --out-file ../../packages/core/src/translations/en.json --ignore src/tests/mocks/**",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -25,8 +26,8 @@
     "@emotion/server": "^11.11.0",
     "@formatjs/intl-localematcher": "^0.4.2",
     "@heroicons/react": "^2.0.17",
-    "@mantine/next": "^6.0.11",
-    "@mantine/notifications": "^6.0.19",
+    "@mantine/next": "^6.0.21",
+    "@mantine/notifications": "^7.10.1",
     "negotiator": "^0.6.3",
     "react-hook-form": "^7.43.9",
     "sharp": "^0.32.6"
@@ -36,6 +37,9 @@
     "@next/eslint-plugin-next": "^13.4.19",
     "@storybook/cli": "^7.4.5",
     "@types/negotiator": "^0.6.1",
-    "eslint-config-next": "13.4.19"
+    "eslint-config-next": "13.4.19",
+    "postcss": "^8.4.38",
+    "postcss-preset-mantine": "^1.15.0",
+    "postcss-simple-vars": "^7.0.1"
   }
 }

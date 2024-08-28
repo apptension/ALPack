@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import LogoDark from '../../../../public/logo-dark.png';
 import LogoLight from '../../../../public/logo-light.png';
-import { useStyles } from './footer.styles';
+import classes from './footer.module.css';
 
 interface FooterLinksProps {
   data: {
@@ -16,7 +16,6 @@ interface FooterLinksProps {
 }
 
 export function Footer({ data }: FooterLinksProps) {
-  const { classes } = useStyles();
   const { colorScheme } = useMantineColorScheme();
 
   const groups = data.map((group) => {
@@ -50,17 +49,29 @@ export function Footer({ data }: FooterLinksProps) {
           © {new Date().getFullYear()} apptension.com. All rights reserved.
         </Text>
 
-        <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon size="lg" component="a" href="https://github.com/apptension/alpack" target="_blank">
+        <Group gap={0} className={classes.social} justify="flex-end" wrap="nowrap">
+          <ActionIcon
+            size="lg"
+            variant="subtle"
+            component="a"
+            href="https://github.com/apptension/alpack"
+            target="_blank"
+          >
             <IconBrandGithub size="1.05rem" stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg" component="a" href="https://discord.apptension.com" target="_blank">
+          <ActionIcon size="lg" variant="subtle" component="a" href="https://discord.apptension.com" target="_blank">
             <IconBrandDiscord size="1.05rem" stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg" component="a" href="https://twitter.com/apptension" target="_blank">
+          <ActionIcon size="lg" variant="subtle" component="a" href="https://twitter.com/apptension" target="_blank">
             <IconBrandX size="1.05rem" stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg" component="a" href="https://www.instagram.com/apptension" target="_blank">
+          <ActionIcon
+            size="lg"
+            variant="subtle"
+            component="a"
+            href="https://www.instagram.com/apptension"
+            target="_blank"
+          >
             <IconBrandInstagram size="1.05rem" stroke={1.5} />
           </ActionIcon>
         </Group>
