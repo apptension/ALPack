@@ -1,0 +1,12 @@
+diff --git a/index.js b/index.js
+index f8d34785aa2c60c874ab0fa64766ba533d52befe..ffe861208b47c4ee5dc33ed37964d859e3b6dcfe 100644
+--- a/index.js
++++ b/index.js
+@@ -243,6 +243,7 @@ export function TypeORMAdapter(dataSource, options) {
+     const c = {
+         dataSource,
+         entities: {
++            ...dataSource.entities,
+             UserEntity: entities?.UserEntity ?? defaultEntities.UserEntity,
+             SessionEntity: entities?.SessionEntity ?? defaultEntities.SessionEntity,
+             AccountEntity: entities?.AccountEntity ?? defaultEntities.AccountEntity,

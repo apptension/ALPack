@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@alp/internal-core": "*",
+    "@alp/internal-core": "workspace:*",
     "@faker-js/faker": "^8.0.2",
     "@nx/devkit": "^16.9.1",
     "@nx/eslint-plugin": "^16.9.1",
@@ -89,6 +89,9 @@
   "pnpm": {
     "overrides": {
       "superjson": "1.13.1"
+    },
+    "patchedDependencies": {
+      "@auth/typeorm-adapter@1.6.0": "patches/@auth__typeorm-adapter@1.6.0.patch"
     }
   }
 }

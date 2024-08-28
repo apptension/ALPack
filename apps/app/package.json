@@ -15,10 +15,12 @@
     "db:migrate": "cd ../../packages/graphql-api && pnpm run db:migrate"
   },
   "dependencies": {
-    "@alp/api-client": "*",
-    "@alp/core": "*",
+    "@alp/api-client": "workspace:*",
+    "@alp/core": "workspace:*",
+    "@alp/emails": "workspace:*",
+    "@alp/graphql-api": "workspace:*",
     "@as-integrations/next": "^3.0.0",
-    "@auth/typeorm-adapter": "^1.6.0",
+    "@auth/typeorm-adapter": "1.6.0",
     "@emotion/css": "^11.11.2",
     "@emotion/server": "^11.11.0",
     "@formatjs/intl-localematcher": "^0.4.2",
