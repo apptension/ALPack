@@ -4,12 +4,14 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import { WelcomeEmail, sendEmail } from '@alp/emails';
 import { dataSourceOptions } from '@alp/graphql-api/data-source';
-import * as entities from '@alp/graphql-api/entity/auth';
+import { AccountEntity, SessionEntity, UserEntity, VerificationTokenEntity } from '@alp/graphql-api/entity/auth';
 import { UserRole } from '@alp/graphql-api/types';
 
 export const authOptions: NextAuthOptions = {
   // @ts-ignore
-  adapter: TypeORMAdapter(dataSourceOptions, { entities }),
+  adapter: TypeORMAdapter(dataSourceOptions, {
+    entities: { UserEntity, SessionEntity, AccountEntity, VerificationTokenEntity },
+  }),
   providers: [
     GoogleProvider({
       clientId: process.env['OAUTH_GOOGLE_CLIENT_ID'] ?? '',
@@ -28,10 +30,14 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     jwt({ token, user }) {
       // save role in JWT
-      if (user) token.role = user.role;
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
       return token;
     },
     session({ session, token }) {
+      session.user.id = token.id as string;
       session.user.role = token.role as UserRole;
       return session;
     },
