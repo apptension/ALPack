@@ -1,10 +1,10 @@
-import { ColorScheme } from '@mantine/core';
+import { ColorSchemeScript } from '@mantine/core';
+import '@mantine/core/styles.css';
 import { Metadata, Viewport } from 'next';
 import { getServerSession } from 'next-auth';
-import { cookies, headers } from 'next/headers';
+import { headers } from 'next/headers';
 
 import { Locale, i18n } from '@alp/core/config/i18n';
-import { COLOR_SCHEME_COOKIE_NAME } from '@alp/core/providers/mantineProvider/MantineProvider.const';
 
 import { authOptions } from '@app/config/auth';
 import { AppProviders } from '@app/providers/appProviders';
@@ -29,10 +29,12 @@ export default async function Root({ children, params }: { children: React.React
   const authHeaders = {
     COOKIE: headers().get('COOKIE') || '',
   };
-  const cookieStore = cookies();
-  const colorSchemeValue = cookieStore.get(COLOR_SCHEME_COOKIE_NAME);
   return (
     <html lang={params.lang}>
+      <head>
+        <ColorSchemeScript />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no" />
+      </head>
       <body>
         <AppProviders
           session={session}
@@ -40,7 +42,6 @@ export default async function Root({ children, params }: { children: React.React
             authHeaders,
           }}
           lang={params.lang}
-          defaultColorScheme={colorSchemeValue ? (colorSchemeValue.value as ColorScheme) : undefined}
         >
           {children}
         </AppProviders>

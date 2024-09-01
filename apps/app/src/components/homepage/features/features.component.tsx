@@ -3,7 +3,7 @@
 import { Container, SimpleGrid, Text, Title } from '@mantine/core';
 
 import { Feature, FeatureProps } from './feature.component';
-import { useStyles } from './features.styles';
+import classes from './features.module.css';
 
 export const FEATURES_ANCHOR_ID = 'features';
 
@@ -14,7 +14,6 @@ interface FeaturesGridProps {
 }
 
 export function Features({ title, description, data }: FeaturesGridProps) {
-  const { classes } = useStyles();
   const features = data.map((feature, index) => <Feature {...feature} key={index} />);
 
   return (
@@ -22,20 +21,12 @@ export function Features({ title, description, data }: FeaturesGridProps) {
       <Title className={classes.title}>{title}</Title>
 
       <Container size={560} p={0}>
-        <Text size="m" color="dimmed" className={classes.description}>
+        <Text size="m" c="dimmed" className={classes.description}>
           {description}
         </Text>
       </Container>
 
-      <SimpleGrid
-        mt={60}
-        cols={3}
-        spacing={50}
-        breakpoints={[
-          { maxWidth: 980, cols: 2, spacing: 'xl' },
-          { maxWidth: 755, cols: 1, spacing: 'xl' },
-        ]}
-      >
+      <SimpleGrid mt={60} spacing={50} cols={{ base: 1, sm: 3 }}>
         {features}
       </SimpleGrid>
     </Container>

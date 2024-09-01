@@ -10,7 +10,9 @@ function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
 
   const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+  request.headers.forEach((value, key) => {
+    negotiatorHeaders[key] = value;
+  });
 
   const language = request.cookies.get('NEXT_LOCALE')?.value ?? getBrowserLanguage(request) ?? i18n.defaultLocale;
 
@@ -21,9 +23,7 @@ const authMiddleware = withAuth(
   // Note that this callback is only invoked if
   // the `authorized` callback has returned `true`
   // and not for pages listed in `pages`.
-  function onSuccess(req) {
-    return intlMiddleware(req);
-  },
+  (req) => intlMiddleware(req),
   {
     callbacks: {
       authorized: ({ token }) => token != null,
@@ -32,7 +32,7 @@ const authMiddleware = withAuth(
 );
 
 export function intlMiddleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+  const { pathname } = request.nextUrl;
 
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   // // If you have one
@@ -56,6 +56,7 @@ export function intlMiddleware(request: NextRequest) {
 
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
+    // eslint-disable-next-line consistent-return
     return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url));
   }
 }
@@ -66,9 +67,8 @@ export default function middleware(req: NextRequest) {
 
   if (isPublicPage) {
     return intlMiddleware(req);
-  } else {
-    return (authMiddleware as any)(req);
   }
+  return (authMiddleware as any)(req);
 }
 
 export const config = {
@@ -76,8 +76,8 @@ export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico|emails/logo.png).*)'],
 };
 
-const getBrowserLanguage = (req: NextRequest) => {
-  return req.headers
+const getBrowserLanguage = (req: NextRequest) =>
+  req.headers
     .get('accept-language')
     ?.split(',')
     .map((i) => i.split(';'))
@@ -85,4 +85,3 @@ const getBrowserLanguage = (req: NextRequest) => {
     ?.sort((a, b) => (a.priority > b.priority ? -1 : 1))
     ?.find((i) => (i18n.locales as readonly string[]).includes(i.code.substring(0, 2)))
     ?.code?.substring(0, 2);
-};

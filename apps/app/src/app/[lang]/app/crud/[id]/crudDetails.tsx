@@ -8,13 +8,11 @@ import { CrudItem as CrudItemType } from '@alp/api-client';
 export interface CrudDetailsProps {
   crudItem: CrudItemType;
 }
-export const CrudDetails = ({ crudItem }: CrudDetailsProps) => {
-  return (
-    <Box>
-      <Text weight="bold">
-        <FormattedMessage defaultMessage="Name" id="CrudDetails / Label / Name" />
-      </Text>
-      <Text>{crudItem.name}</Text>
-    </Box>
-  );
-};
+export const CrudDetails = ({ crudItem }: CrudDetailsProps) => (
+  <Box>
+    <Text fw="bold">
+      <FormattedMessage defaultMessage="Name" id="CrudDetails / Label / Name" />
+    </Text>
+    <Text>{crudItem.name}</Text>
+  </Box>
+);

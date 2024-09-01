@@ -1,23 +1,29 @@
 'use client';
 
-import { AppShell } from '@mantine/core';
+import { AppShell, rem } from '@mantine/core';
 import { ReactNode, useState } from 'react';
 
 import { Header, Navbar } from '@app/components';
+
+const HEADER_HEIGHT = rem(60);
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   const [opened, setOpened] = useState(false);
 
   return (
     <AppShell
-      navbar={<Navbar opened={opened} />}
-      navbarOffsetBreakpoint="sm"
-      header={<Header opened={opened} toggleOpen={() => setOpened(!opened)} />}
-      styles={(theme) => ({
-        main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.white },
-      })}
+      header={{
+        height: HEADER_HEIGHT,
+      }}
+      navbar={{
+        width: 300,
+        breakpoint: 'sm',
+        collapsed: { mobile: !opened },
+      }}
     >
-      {children}
+      <Header opened={opened} toggleOpen={() => setOpened(!opened)} />
+      <Navbar opened={opened} />
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { ColorScheme } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
@@ -9,22 +9,22 @@ import { ReactNode } from 'react';
 import { MakeClientOpts } from '@alp/api-client/client';
 import { ApolloProvider } from '@alp/api-client/providers';
 import { Locale } from '@alp/core/config/i18n';
-import { IntlProvider, LocalesProvider, MantineProvider } from '@alp/core/providers';
+import { IntlProvider, LocalesProvider } from '@alp/core/providers';
+
+import { theme } from '../../theme';
 
 interface AppProvidersProps {
   children: ReactNode;
   session?: Session | null;
   apolloClientOpts?: MakeClientOpts;
   lang: Locale;
-  defaultColorScheme?: ColorScheme;
 }
 
-export const AppProviders = ({ children, session, apolloClientOpts, lang, defaultColorScheme }: AppProvidersProps) => {
-  return (
+export const AppProviders = ({ children, session, apolloClientOpts, lang }: AppProvidersProps) => (
     <SessionProvider session={session}>
       <LocalesProvider>
         <IntlProvider lang={lang}>
-          <MantineProvider defaultColorScheme={defaultColorScheme}>
+          <MantineProvider theme={theme}>
             <ApolloProvider clientOpts={apolloClientOpts}>
               <Notifications />
               {children}
@@ -34,4 +34,3 @@ export const AppProviders = ({ children, session, apolloClientOpts, lang, defaul
       </LocalesProvider>
     </SessionProvider>
   );
-};

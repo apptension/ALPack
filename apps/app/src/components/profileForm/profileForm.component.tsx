@@ -15,7 +15,7 @@ export type ProfileFormProps = {
 };
 
 export const ProfileForm = ({ loading, onSubmit, initialData }: ProfileFormProps) => {
-  const initialForm = initialData ? initialData : { name: '' };
+  const initialForm = initialData || { name: '' };
   const form = useForm({
     initialValues: initialForm,
     validate: {
@@ -27,7 +27,7 @@ export const ProfileForm = ({ loading, onSubmit, initialData }: ProfileFormProps
     <Box maw={300}>
       <form onSubmit={form.onSubmit(onSubmit)}>
         <TextInput withAsterisk label="Name" placeholder="Name" {...form.getInputProps('name')} />
-        <Group position="right" mt="md">
+        <Group justify="flex-end" mt="md">
           <Button loading={loading} type="submit">
             Submit
           </Button>

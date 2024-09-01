@@ -1,3 +1,4 @@
+import { MantineProvider, MantineProviderProps } from '@mantine/core';
 import { Queries, queries } from '@testing-library/dom';
 import { RenderOptions, RenderResult, render, renderHook } from '@testing-library/react';
 import { ComponentClass, ComponentType, FC, PropsWithChildren, ReactElement } from 'react';
@@ -5,7 +6,6 @@ import { IntlProvider } from 'react-intl';
 
 import { DEFAULT_LOCALE, Locale, TranslationMessages, translationMessages } from '../../config/i18n';
 import { LocalesProvider } from '../../providers/localesProvider';
-import { MantineProvider, MantineProviderProps } from '../../providers/mantineProvider';
 import { AppRouterContextProviderMock, AppRouterContextProviderMockProps } from '../providers';
 
 /**

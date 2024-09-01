@@ -1,6 +1,6 @@
 import { UserRole } from '@alp/graphql-api/types';
 
-import { useUserRole } from '../';
+import { useUserRole } from '..';
 import { sessionProviderFactory } from '../../../tests/factories/sessionProviderFactory';
 import { renderHook } from '../../../tests/utils/rendering';
 

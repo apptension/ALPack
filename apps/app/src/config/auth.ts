@@ -14,8 +14,8 @@ export const authOptions: NextAuthOptions = {
   }),
   providers: [
     GoogleProvider({
-      clientId: process.env['OAUTH_GOOGLE_CLIENT_ID'] ?? '',
-      clientSecret: process.env['OAUTH_GOOGLE_SECRET'] ?? '',
+      clientId: process.env.OAUTH_GOOGLE_CLIENT_ID ?? '',
+      clientSecret: process.env.OAUTH_GOOGLE_SECRET ?? '',
     }),
   ],
   session: {

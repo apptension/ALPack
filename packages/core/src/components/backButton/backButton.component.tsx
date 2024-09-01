@@ -18,7 +18,7 @@ export const BackButton = ({ children }: BackButtonProps) => {
   };
 
   return (
-    <Button onClick={handleBackClick} leftIcon={<IconChevronLeft />}>
+    <Button onClick={handleBackClick} leftSection={<IconChevronLeft />}>
       {children ?? <FormattedMessage defaultMessage="Go back" id="BackButton / Label" />}
     </Button>
   );

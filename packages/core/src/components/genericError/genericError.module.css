@@ -1,0 +1,32 @@
+.root {
+  padding-top: var(--mantine-spacing-xl);
+  padding-bottom: var(--mantine-spacing-xl);
+}
+
+.inner {
+  position: relative;
+}
+
+.image {
+  opacity: 0.75;
+}
+
+.content {
+  padding-top: var(--mantine-spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: "Greycliff CF", var(--mantine-font-family);
+  text-align: center;
+  font-weight: 900;
+  font-size: var(--mantine-font-sizes-xl);
+}
+
+.description {
+  max-width: var(--mantine-spacing-xl);
+  margin: auto;
+  margin-top: var(--mantine-spacing-xl);
+  margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
+}

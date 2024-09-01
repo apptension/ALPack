@@ -1,18 +1,20 @@
 import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { IconMoonStars, IconSun } from '@tabler/icons-react';
 
+import classes from './themeToggler.module.css';
+
 export const ThemeToggler = () => {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const dark = colorScheme === 'dark';
+  const { toggleColorScheme } = useMantineColorScheme();
 
   return (
     <ActionIcon
       variant="outline"
-      color={dark ? 'yellow' : 'blue'}
       onClick={() => toggleColorScheme()}
       title="Toggle color scheme"
+      className={classes.root}
     >
-      {dark ? <IconSun data-testid="dark" size="1.1rem" /> : <IconMoonStars data-testid="light" size="1.1rem" />}
+      <IconMoonStars className={classes.iconLight} data-testid="light" size="1.1rem" />
+      <IconSun className={classes.iconDark} data-testid="dark" size="1.1rem" />
     </ActionIcon>
   );
 };

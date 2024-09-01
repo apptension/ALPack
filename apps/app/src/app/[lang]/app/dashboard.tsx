@@ -3,10 +3,9 @@
 import { Text } from '@mantine/core';
 import { FormattedMessage } from 'react-intl';
 
-import { useStyles } from './dashboard.styles';
+import classes from './dashboard.module.css';
 
 export function Dashboard() {
-  const { classes } = useStyles();
   return (
     <div>
       <Text className={classes.text}>

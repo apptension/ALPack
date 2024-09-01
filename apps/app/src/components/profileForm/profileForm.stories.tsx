@@ -12,9 +12,7 @@ const meta: Meta<typeof ProfileForm> = {
 
 export default meta;
 
-const Template: StoryFn<ProfileFormProps> = (args) => {
-  return <ProfileForm {...args} />;
-};
+const Template: StoryFn<ProfileFormProps> = (args) => <ProfileForm {...args} />;
 
 export const Default: Story = {
   render: Template,

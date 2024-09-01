@@ -10,7 +10,8 @@
     "noFallthroughCasesInSwitch": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "files": [],
   "include": [],

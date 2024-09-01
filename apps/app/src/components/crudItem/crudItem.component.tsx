@@ -59,7 +59,7 @@ export const CrudItem = ({ crudItem }: CrudItemProps) => {
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Flex w="100%" justify="center" align="center">
         <Link href={`/app/crud/${crudItem.id}`}>
-          <Text weight={500}>{crudItem.name}</Text>
+          <Text fw={500}>{crudItem.name}</Text>
         </Link>
         <ActionIcon onClick={handleUpdateRedirect} variant="subtle">
           <IconEdit />

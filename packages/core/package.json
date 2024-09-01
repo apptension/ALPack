@@ -3,7 +3,8 @@
   "version": "0.1.1",
   "description": "",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && npm run lint:stylelint",
+    "lint:stylelint": "stylelint '**/*.css' --cache",
     "type-check": "tsc --noEmit --project tsconfig.lib.json",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -15,6 +16,10 @@
     "cookies-next": "^3.0.0"
   },
   "devDependencies": {
-    "resize-observer-polyfill": "^1.5.1"
+    "postcss": "^8.4.38",
+    "postcss-preset-mantine": "^1.15.0",
+    "postcss-simple-vars": "^7.0.1",
+    "resize-observer-polyfill": "^1.5.1",
+    "typescript-plugin-css-modules": "^5.1.0"
   }
 }

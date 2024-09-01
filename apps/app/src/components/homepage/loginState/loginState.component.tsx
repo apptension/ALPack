@@ -17,7 +17,7 @@ export const LoginState = () => {
   }
 
   const renderUnauthorized = () => (
-    <Button variant="light" compact onClick={() => signIn()}>
+    <Button variant="light" onClick={() => signIn()}>
       Sign in
     </Button>
   );
@@ -27,7 +27,7 @@ export const LoginState = () => {
       <Avatar color="cyan" radius="xl">
         {session?.user?.name?.slice(0, 2)}
       </Avatar>
-      <Link href="/app" compact variant="light">
+      <Link href="/app" variant="light">
         Go to app
       </Link>
     </Flex>

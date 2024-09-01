@@ -12,9 +12,7 @@ const meta: Meta<typeof CrudItemForm> = {
 
 export default meta;
 
-const Template: StoryFn<CrudItemFormProps> = (args) => {
-  return <CrudItemForm {...args} />;
-};
+const Template: StoryFn<CrudItemFormProps> = (args) => <CrudItemForm {...args} />;
 
 export const Default: Story = {
   render: Template,
